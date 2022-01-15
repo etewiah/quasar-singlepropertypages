@@ -36,7 +36,7 @@ export default defineComponent({
     let originProtocolAndHost = `${
       ssrContext.req.protocol
     }://${ssrContext.req.get("Host")}`
-    // console.log(`originProtocolAndHost is ${originProtocolAndHost}`);
+    console.log(`originProtocolAndHost is ${originProtocolAndHost}`);
     let requestDetails = {
       originProtocolAndHost: originProtocolAndHost,
     }
