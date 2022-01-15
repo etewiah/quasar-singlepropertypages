@@ -27,7 +27,6 @@
     ></ListingEnquirySection>
     <MainSppDescription
       v-else-if="editorTemplate === 'MainSppDescription'"
-      :pic_urls="pic_urls"
       :texts="texts"
     ></MainSppDescription>
     <TitleWithText
@@ -37,8 +36,7 @@
     ></TitleWithText>
     <MapIframeSection
       v-else-if="editorTemplate === 'MapIframeSection'"
-      :pic_urls="pic_urls"
-      :texts="texts"
+      :currentListingData="currentListingData"
     ></MapIframeSection>
     <LargePicWithSmallTextToRight
       v-else-if="editorTemplate === 'LargePicWithSmallTextToRight'"
@@ -53,7 +51,6 @@
     <SimpleTitle
       v-else-if="editorTemplate === 'SimpleTitle'"
       adjustForEditClass="adjust-gen-template-for-edit"
-      :pic_urls="pic_urls"
       :texts="texts"
     ></SimpleTitle>
     <!-- <HeroClassic

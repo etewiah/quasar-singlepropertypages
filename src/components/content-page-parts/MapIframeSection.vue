@@ -26,15 +26,12 @@
   </div>
 </template>
 <script>
-// import { sharedConfig } from "boot/shared-config"
+import coreDefaultSetup from "src/nuggets/core-default-setup.js"
 export default {
-  inject: ["listingsStore"],
   props: {
-    // texts: {
-    //   type: Object,
-    //   default: () => {},
-    //   required: false,
-    // },
+    currentListingData: {
+      type: Object,
+    },
   },
   data: function () {
     return {}
@@ -43,21 +40,14 @@ export default {
   // },
   computed: {
     gmapsEmbedKey() {
-      return ""
-      // return sharedConfig.GMAPS_EMBED_KEY
-    },
-    currentListing() {
-      let currentListing = {}
-      // if (this.listingsStore.state.currentListingAndPage.listing) {
-      //   currentListing = this.listingsStore.state.currentListingAndPage.listing
-      // }
-      return currentListing
+      // console.log(coreDefaultSetup.general.GMAPS_EMBED_KEY)
+      return coreDefaultSetup.general.GMAPS_EMBED_KEY
     },
     mapQueryName() {
-      return this.currentListing.city || "Costa del Sol"
+      return this.currentListingData.city || "Costa del Sol"
     },
     mapCountryName() {
-      return this.currentListing.country || "España"
+      return this.currentListingData.country || "España"
     },
     mapSrc() {
       let mapSrc =
@@ -73,5 +63,4 @@ export default {
   },
 }
 </script>
-<style>
-</style>
+<style></style>
