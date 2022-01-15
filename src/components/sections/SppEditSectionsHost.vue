@@ -21,7 +21,7 @@
 <script>
 import { defineComponent, ref } from "vue"
 // import EditRichTextSection from "components/content-page-parts-edit/EditRichTextSection.vue"
-import EditGenericTemplateSection from "components/content-page-parts-edit/EditGenericTemplateSection.vue"
+import EditPagePart from "src/components/content-page-parts-edit/EditPagePart.vue"
 // import ImageWithTextSection from "src/packs/spp/page-parts/ImageWithTextSection.vue"
 
 export default defineComponent({
@@ -29,7 +29,7 @@ export default defineComponent({
   components: {
     // EditRichTextSection,
     // ImageWithTextSection,
-    EditGenericTemplateSection,
+    EditPagePart,
   },
   props: {
     activeEditFabGroup: {
@@ -58,7 +58,7 @@ export default defineComponent({
         editorTemplate !== "HeroClassic"
       ) {
         // Excluding HeroClassic as I use it for SppHero
-        return "EditGenericTemplateSection"
+        return "EditPagePart"
         // } else if (confSlug === "richTextSection") {
         //   return "EditRichTextSection"
       } else {

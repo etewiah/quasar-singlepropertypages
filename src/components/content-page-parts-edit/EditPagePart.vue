@@ -7,12 +7,12 @@
           class="dd-edit-btn-container"
           style="margin-bottom: -60px; height: 40px"
         >
-          <!-- <EditActionsContainer
+          <EditActionsContainer
             :activeEditFabGroup="activeEditFabGroup"
             @setActiveEditFabGroup="setActiveEditFabGroup"
             :allPhotosForSpp="allPhotosForSpp"
             :currentPageSectionForEditing="currentPageSectionForEditing"
-          ></EditActionsContainer> -->
+          ></EditActionsContainer>
           <div class="q-mt-sm q-ml-md row justify-right"></div>
         </div>
         <div v-else class="hidden-section-header row q-mt-md" style="">
@@ -55,11 +55,11 @@
 <script>
 // import { ref } from "vue"
 // import useModal from "src/packs/spp/compose-in/useModal.js"
-// import EditActionsContainer from "components/content-page-parts-edit/fab-items/EditActionsContainer.vue"
+import EditActionsContainer from "components/content-page-parts-edit/EditActionsContainer.vue"
 import PagePartResolver from "components/content-page-parts/PagePartResolver.vue"
 export default {
   components: {
-    // EditActionsContainer,
+    EditActionsContainer,
     PagePartResolver,
   },
   mounted: function () {},
