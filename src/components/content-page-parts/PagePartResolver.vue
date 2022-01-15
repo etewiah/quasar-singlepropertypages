@@ -5,7 +5,7 @@
       :pic_urls="pic_urls"
       :texts="texts"
     ></SppCarousel>
-    <!-- <ListingAttributesSection
+    <ListingAttributesSection
       v-else-if="editorTemplate === 'ListingAttributesSection'"
       :pic_urls="pic_urls"
       :texts="texts"
@@ -56,7 +56,7 @@
       :pic_urls="pic_urls"
       :texts="texts"
     ></SimpleTitle>
-    <HeroClassic
+    <!-- <HeroClassic
       v-else-if="editorTemplate === 'HeroClassic'"
       :pic_urls="pic_urls"
       :texts="texts"
@@ -66,30 +66,30 @@
   </div>
 </template>
 <script>
-// import ListingFeaturesSection from "components/content-page-parts/ListingFeaturesSection.vue"
-// import ListingAttributesSection from "components/content-page-parts/ListingAttributesSection.vue"
-// import ListingEnquirySection from "components/content-page-parts/ListingEnquirySection.vue"
-// import MainSppDescription from "components/content-page-parts/MainSppDescription.vue"
-// import TitleWithText from "components/content-page-parts/TitleWithText.vue"
-// import MapIframeSection from "components/content-page-parts/MapIframeSection.vue"
-// import LargePicWithSmallTextToLeft from "components/content-page-parts/LargePicWithSmallTextToLeft.vue"
-// import LargePicWithSmallTextToRight from "components/content-page-parts/LargePicWithSmallTextToRight.vue"
+import ListingFeaturesSection from "components/content-page-parts/ListingFeaturesSection.vue"
+import ListingAttributesSection from "components/content-page-parts/ListingAttributesSection.vue"
+import ListingEnquirySection from "components/content-page-parts/ListingEnquirySection.vue"
+import MainSppDescription from "components/content-page-parts/MainSppDescription.vue"
+import TitleWithText from "components/content-page-parts/TitleWithText.vue"
+import MapIframeSection from "components/content-page-parts/MapIframeSection.vue"
+import LargePicWithSmallTextToLeft from "components/content-page-parts/LargePicWithSmallTextToLeft.vue"
+import LargePicWithSmallTextToRight from "components/content-page-parts/LargePicWithSmallTextToRight.vue"
 // import HeroClassic from "components/content-page-parts/HeroClassic.vue"
-// import SimpleTitle from "components/content-page-parts/SimpleTitle.vue"
+import SimpleTitle from "components/content-page-parts/SimpleTitle.vue"
 import SppCarousel from "components/content-page-parts/SppCarousel.vue"
 export default {
   // inject: ["listingsStore"],
   components: {
-    // ListingFeaturesSection,
-    // ListingAttributesSection,
-    // ListingEnquirySection,
-    // MainSppDescription,
-    // TitleWithText,
-    // MapIframeSection,
-    // LargePicWithSmallTextToRight,
-    // LargePicWithSmallTextToLeft,
+    ListingFeaturesSection,
+    ListingAttributesSection,
+    ListingEnquirySection,
+    MainSppDescription,
+    TitleWithText,
+    MapIframeSection,
+    LargePicWithSmallTextToRight,
+    LargePicWithSmallTextToLeft,
     // HeroClassic,
-    // SimpleTitle,
+    SimpleTitle,
     SppCarousel,
   },
   mounted: function () {},
