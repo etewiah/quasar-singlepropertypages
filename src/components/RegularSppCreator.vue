@@ -100,12 +100,11 @@ export default {
         //     message: "You need to accept the license and terms first",
         //   })
       } else {
-        // let webConfigData = this.$store.getters["configStore/getWebConfigData"]
-        // let dataApiBase = webConfigData.general.dataApiBase || "/"
-        let dataApiBase = "https://bvh.propertywebbuilder.com";
+        let dataApiBase = this.$store.getters["configStore/getDataApiBase"];
+        // let dataApiBase = "https://bvh.propertywebbuilder.com";
         SppService.createSppFromUrl(dataApiBase, this.importUrl)
           .then((response) => {
-            let targetPath = `/regular/spp/for-sale/${response.data.listing.listing_uuid}`;
+            let targetPath = `/p/spp/for-sale/${response.data.listing.listing_uuid}`;
             this.$router.push(targetPath);
           })
           .catch((error) => {
