@@ -4,21 +4,23 @@
     style="font-family: 'Source Sans Pro', sans-serif"
   >
     <HeroClassic
-      :texts="{}"
       :isEdit="false"
       :heroPageSection="heroPageSection"
       :sppListingDetails="sppViewData"
+      :pic_urls="heroPageSection.pic_urls"
+      :texts="heroPageSection.texts"
+      :editorTemplate="heroPageSection.editor_template"
     >
     </HeroClassic>
     <div>
       <div class="container max-w-6xl mx-auto">
         <div class="mx-0">
           <div>
-            <!-- <div v-for="pageSection in sppPageSections" :key="pageSection.uuid">
-              <SppSectionsResolver
+            <div v-for="pageSection in sppPageSections" :key="pageSection.uuid">
+              <SppViewSectionsHost
                 :pageSection="pageSection"
-              ></SppSectionsResolver>
-            </div> -->
+              ></SppViewSectionsHost>
+            </div>
           </div>
         </div>
       </div>
@@ -29,13 +31,13 @@
 import { defineComponent, ref, toRef } from "vue"
 import { useMeta } from "quasar"
 import { useStore } from "vuex"
-// import SppSectionsResolver from "src/packs/spp/sections/SppSectionsResolver.vue"
+import SppViewSectionsHost from "src/components/sections/SppViewSectionsHost.vue"
 // import SppHero from "src/packs/spp/sections/SppHero.vue"
 import HeroClassic from "src/components/content-page-parts/HeroClassic.vue"
 // import { useSSRContext } from "vue"
 export default defineComponent({
   components: {
-    // SppSectionsResolver,
+    SppViewSectionsHost,
     HeroClassic,
   },
   setup(props) {
