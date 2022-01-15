@@ -38,12 +38,12 @@
 <script>
 import { defineComponent, ref } from "vue"
 import { useQuasar } from "quasar"
-import { useStore } from "vuex"
+// import { useStore } from "vuex"
 import HeroClassic from "src/components/content-page-parts/HeroClassic.vue"
 import SppEditSectionsHost from "src/components/sections/SppEditSectionsHost.vue"
 // import SppEditSectionsResolver from "src/packs/spp/sections/SppEditSectionsResolver.vue"
 // import ClientService from "src/services/client.service"
-import axios from "axios"
+import useMgmtService from "src/compose/useMgmtService.js"
 // import SectionAdder from "src/packs/spp/edit/SectionAdder.vue"
 // import { listingsEditStore } from "src/packs/spp/compose-in/listings-edit-provider.js"
 export default defineComponent({
@@ -60,27 +60,29 @@ export default defineComponent({
     sppViewData: {
       handler(newVal, oldVal) {
         if (newVal && newVal.listing.realty_asset_uuid) {
-          // this.runMgmtDataLoad()
+          this.runEditorDataLoad()
         }
       },
     },
   },
-  setup(props) {
+  setup() {
     const $q = useQuasar()
-    const store = useStore()
+    // const store = useStore()
     const currentEditData = ref(null)
     currentEditData.value = {
       editor_setup: {},
       mgmt_content: {},
     }
+    const { getMgmtRealtyAsset } = useMgmtService()
     // const route = useRoute()
     // const router = useRouter()
-    function runMgmtDataLoad() {
+    function runEditorDataLoad() {
       let realtyAssetUuid = this.sppViewData.listing.realty_asset_uuid
       // console.log(store)
-      let webConfigData = store.getters["configStore/getWebConfigData"]
-      let dataApiBase = webConfigData.general.dataApiBase || "/"
-      ClientService.getMgmtRealtyAsset(dataApiBase, realtyAssetUuid)
+      // let webConfigData = store.getters["configStore/getWebConfigData"]
+      // let dataApiBase = webConfigData.general.dataApiBase || "/"
+      getMgmtRealtyAsset(realtyAssetUuid)
+        // ClientService.getMgmtRealtyAsset(dataApiBase, realtyAssetUuid)
         .then((response) => {
           currentEditData.value = response.data
           let listingsGrouping = this.$route.params.listings_grouping
@@ -109,17 +111,17 @@ export default defineComponent({
               errorMessage += error.toString()
             }
           }
-          $q.notify({
-            color: "negative",
-            position: "top",
-            message: errorMessage,
-            icon: "report_problem",
-          })
+          // $q.notify({
+          //   color: "negative",
+          //   position: "top",
+          //   message: errorMessage,
+          //   icon: "report_problem",
+          // })
         })
     }
     return {
       currentEditData,
-      runMgmtDataLoad,
+      runEditorDataLoad,
     }
   },
   data() {
@@ -166,23 +168,23 @@ export default defineComponent({
       return heroPageSection
     },
     sppEditPageSections() {
-      return this.sppPageSections
-      // let sppEditPageSections = this.listingPage
-      //   ? this.listingPage.sections_for_editing
-      //   : []
-      // sppEditPageSections.forEach((currentPageSection, index) => {
-      //   if (sppEditPageSections[index - 2]) {
-      //     // Using "-2 above because the section immediately after page hero cannot be moved up"
-      //     currentPageSection.previousSectionUuid =
-      //       sppEditPageSections[index - 1].uuid
-      //   }
-      //   if (sppEditPageSections[index + 1]) {
-      //     // if (sppEditPageSections[index+1] && sppEditPageSections[index+1].visible_on_page) {
-      //     currentPageSection.nextSectionUuid =
-      //       sppEditPageSections[index + 1].uuid
-      //   }
-      // })
-      // return sppEditPageSections
+      // return this.sppPageSections
+      let sppEditPageSections = this.listingPage
+        ? this.listingPage.sections_for_editing
+        : []
+      sppEditPageSections.forEach((currentPageSection, index) => {
+        if (sppEditPageSections[index - 2]) {
+          // Using "-2 above because the section immediately after page hero cannot be moved up"
+          currentPageSection.previousSectionUuid =
+            sppEditPageSections[index - 1].uuid
+        }
+        if (sppEditPageSections[index + 1]) {
+          // if (sppEditPageSections[index+1] && sppEditPageSections[index+1].visible_on_page) {
+          currentPageSection.nextSectionUuid =
+            sppEditPageSections[index + 1].uuid
+        }
+      })
+      return sppEditPageSections
     },
     allPhotosForSpp() {
       let allPhotosForSpp = this.listingForEdit

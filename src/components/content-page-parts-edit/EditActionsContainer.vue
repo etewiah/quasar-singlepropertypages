@@ -91,8 +91,8 @@
   </div>
 </template>
 <script>
-import useModal from "src/compose/useModal.js"
-// import useClientService from "src/packs/spp/compose-in/useClientService.js"
+import useEditorModal from "src/compose/useEditorModal.js"
+// import useMgmtService from "src/packs/spp/compose-in/useMgmtService.js"
 import TextsEditBtn from "components/content-page-parts-edit/TextsEditBtn.vue"
 // import SppModalFormsContainer from "src/packs/spp/edit/SppModalFormsContainer.vue"
 export default {
@@ -132,7 +132,7 @@ export default {
     },
   },
   methods: {
-    // Jan 2022 - previously had functions like below in useModal composable but no longer see that as necessary
+    // Jan 2022 - previously had functions like below in useEditorModal composable but no longer see that as necessary
     onStartDuplicateSection(currentPageSectionForEditing) {
       let pageSectionUuid = currentPageSectionForEditing.uuid
       // let dataApiBase = this.$store.getters["configStore/getDataApiBase"]
@@ -175,8 +175,8 @@ export default {
       sppModalHasClosed,
       onStartHideSection,
       onMoveSection,
-    } = useModal()
-    // const { duplicatePageSection } = useClientService()
+    } = useEditorModal()
+    // const { duplicatePageSection } = useMgmtService()
 
     return {
       heroFabBtnMod,
