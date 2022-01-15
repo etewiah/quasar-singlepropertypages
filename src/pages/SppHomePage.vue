@@ -24,7 +24,7 @@
   </q-page>
 </template>
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from "vue"
 import RegularSppCreator from "src/components/RegularSppCreator.vue"
 export default defineComponent({
   name: "BvhSppHomePage",
@@ -44,5 +44,5 @@ export default defineComponent({
     // },
   },
   mounted() {},
-});
+})
 </script>

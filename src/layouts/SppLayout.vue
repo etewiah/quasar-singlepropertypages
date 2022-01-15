@@ -17,8 +17,8 @@
 </template>
 <script>
 // import SppTopAdminSection from "src/packs/bvh-spp/SppTopAdminSection.vue"
-import { defineComponent, ref } from "vue";
-import { useQuasar, useMeta } from "quasar";
+import { defineComponent, ref } from "vue"
+import { useQuasar, useMeta } from "quasar"
 export default defineComponent({
   name: "SppLayout",
   components: {
@@ -35,17 +35,17 @@ export default defineComponent({
   }) {
     let originProtocolAndHost = `${
       ssrContext.req.protocol
-    }://${ssrContext.req.get("Host")}`;
+    }://${ssrContext.req.get("Host")}`
     // console.log(`originProtocolAndHost is ${originProtocolAndHost}`);
     let requestDetails = {
       originProtocolAndHost: originProtocolAndHost,
-    };
+    }
     return store.dispatch("configStore/fetchWebConfig", requestDetails).then(
       (data) => {
         // console.log(data)
       },
       (error) => {}
-    );
+    )
   },
   computed: {},
   setup() {
@@ -70,15 +70,15 @@ export default defineComponent({
     // useMeta(() => {
     //   return metaData
     // })
-    const $q = useQuasar();
+    const $q = useQuasar()
     function showNotification(notificationMessage) {
-      $q.notify(notificationMessage);
+      $q.notify(notificationMessage)
     }
     return {
       showNotification,
       // qLang: $q.lang,
-    };
+    }
   },
-});
+})
 </script>
 <style></style>
