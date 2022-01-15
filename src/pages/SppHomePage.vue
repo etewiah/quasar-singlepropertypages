@@ -1,6 +1,6 @@
 <template>
   <q-page class="">
-    <div class="container p-0 mx-auto">
+    <!-- <div class="container p-0 mx-auto">
       <div class="row mt-10">
         <div class="col-xs-12">
           <h2
@@ -10,9 +10,14 @@
           </h2>
         </div>
       </div>
+    </div> -->
+    <div class="container p-0 mx-auto">
       <div class="row mt-10">
         <div class="col-xs-12">
-          <!-- <SppCreator></SppCreator> -->
+          <RegularSppCreator></RegularSppCreator>
+        </div>
+        <div class="col-xs-12">
+          <!-- <LocalSppItems></LocalSppItems> -->
         </div>
       </div>
     </div>
@@ -20,11 +25,11 @@
 </template>
 <script>
 import { defineComponent, ref } from "vue";
-// import SppCreator from "src/packs/bvh-spp/SppCreator.vue"
+import RegularSppCreator from "src/components/RegularSppCreator.vue"
 export default defineComponent({
   name: "BvhSppHomePage",
   components: {
-    // SppCreator,
+    RegularSppCreator,
   },
   methods: {},
   props: {
@@ -34,9 +39,9 @@ export default defineComponent({
     // },
   },
   computed: {
-    pageHeading() {
-      return "Enter the url of a listing to create a custom page for it";
-    },
+    // pageHeading() {
+    //   return "Enter the url of a listing to create a custom page for it";
+    // },
   },
   mounted() {},
 });
