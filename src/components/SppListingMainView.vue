@@ -9,7 +9,6 @@
       :sppListingDetails="sppViewData"
       :pic_urls="heroPageSection.pic_urls"
       :texts="heroPageSection.texts"
-      :editorTemplate="heroPageSection.editor_template"
     >
     </HeroClassic>
     <div>
