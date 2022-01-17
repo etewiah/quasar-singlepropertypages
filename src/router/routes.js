@@ -7,23 +7,35 @@ const routes = [
         path: "",
         name: "rBvhHomePage",
         component: () => import("src/pages/SppHomePage.vue"),
+        children: [
+        ]
+      },
+      {
+        path: "p/spp/:listings_grouping/:listing_slug",
+        name: "rSppEdit",
+        component: () => import("src/pages/SppEdit.vue"),
+      },
+      {
+        path: "p/spp/:listings_grouping/:listing_slug/preview",
+        name: "rSppPreview",
+        component: () => import("src/pages/SppPreview.vue"),
       },
       // {
       //   path: "p/spp/:listings_grouping/",
       //   name: "rSppsContainer",
       //   component: () => import("pages/listings-container.vue"),
-      //   children: [
-      //     {
-      //       path: ":listing_slug",
-      //       name: "rSppEdit",
-      //       component: () => import("src/pages/SppEdit.vue"),
-      //     },
-      //     {
-      //       path: ":listing_slug/preview",
-      //       name: "rSppPreview",
-      //       component: () => import("src/pages/SppPreview.vue"),
-      //     },
-      //   ]
+      //   // children: [
+      //   //   {
+      //   //     path: ":listing_slug",
+      //   //     name: "rSppEdit",
+      //   //     component: () => import("src/pages/SppEdit.vue"),
+      //   //   },
+      //   //   {
+      //   //     path: ":listing_slug/preview",
+      //   //     name: "rSppPreview",
+      //   //     component: () => import("src/pages/SppPreview.vue"),
+      //   //   },
+      //   // ]
       // }
     ]
   },

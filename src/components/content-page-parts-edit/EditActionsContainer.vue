@@ -1,13 +1,13 @@
 <template>
   <div>
-    <!-- <SppModalFormsContainer
+    <SppModalFormsContainer
       @modalHasClosed="sppModalHasClosed"
       :label="editFormLabel"
       :showModalFormIncoming="showModalForm"
       :formName="editFormName"
       :allPhotosForSpp="allPhotosForSpp"
       :currentPropForEditing="currentPageSectionForEditing"
-    ></SppModalFormsContainer> -->
+    ></SppModalFormsContainer>
     <div class="q-mt-sm q-ml-md row justify-right" style="">
       <div class="col-12 edit-actions-qfab-cont" v-if="showEditFab">
         <q-fab
@@ -94,11 +94,11 @@
 import useEditorModal from "src/compose/useEditorModal.js"
 // import useMgmtService from "src/packs/spp/compose-in/useMgmtService.js"
 import TextsEditBtn from "components/content-page-parts-edit/TextsEditBtn.vue"
-// import SppModalFormsContainer from "src/packs/spp/edit/SppModalFormsContainer.vue"
+import SppModalFormsContainer from "components/content-page-parts-edit/SppModalFormsContainer.vue"
 export default {
   components: {
     TextsEditBtn,
-    // SppModalFormsContainer,
+    SppModalFormsContainer,
   },
   mounted: function () {},
   computed: {

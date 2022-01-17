@@ -113,17 +113,9 @@ export default defineComponent({
       // In preview mode I fetch Spp in preFetch hook
       // doing it client side here so I can more easily
       // see the api call in browser
-      let beTypeAndVersion = "rs1"
-      if (route.name === "rRegularSppEdit") {
-        beTypeAndVersion = "v4"
-      }
-      // if (props.setupData.general) {
-      //   beTypeAndVersion = props.setupData.general.beTypeAndVersion
-      // }
       let listingParams = {
         listingSlug: route.params.listing_slug,
         listingsGrouping: route.params.listings_grouping,
-        beTypeAndVersion: beTypeAndVersion,
       }
       return store.dispatch("sppStore/fetchSpp", listingParams).then(
         (response) => {

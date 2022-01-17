@@ -28,13 +28,13 @@
 </template>
 <script>
 import { defineComponent, ref } from "vue"
-import EditFeaturesForm from "src/packs/spp/forms/EditFeaturesForm.vue"
-import EditAttributesForm from "src/packs/spp/forms/EditAttributesForm.vue"
-import EditDescriptionForm from "src/packs/spp/forms/EditDescriptionForm.vue"
-import EditMapForm from "src/packs/spp/forms/EditMapForm.vue"
-import EditRegularTextsForm from "src/packs/spp/forms/EditRegularTextsForm.vue"
-import EditRichTextForm from "src/packs/spp/forms/EditRichTextForm.vue"
-import ImagePickerSection from "src/packs/spp/forms/ImagePickerSection.vue"
+import EditFeaturesForm from "src/components/editor-forms//EditFeaturesForm.vue"
+import EditAttributesForm from "src/components/editor-forms//EditAttributesForm.vue"
+import EditDescriptionForm from "src/components/editor-forms//EditDescriptionForm.vue"
+import EditMapForm from "src/components/editor-forms//EditMapForm.vue"
+import EditRegularTextsForm from "src/components/editor-forms//EditRegularTextsForm.vue"
+import EditRichTextForm from "src/components/editor-forms//EditRichTextForm.vue"
+import ImagePickerSection from "src/components/editor-forms//ImagePickerSection.vue"
 export default defineComponent({
   name: "SppModalFormsContainer",
   components: {
