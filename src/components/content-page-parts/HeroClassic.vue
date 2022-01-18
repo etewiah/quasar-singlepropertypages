@@ -8,6 +8,12 @@
         <h1 style="" class="text-h2 text-white text-center">
           {{ texts.primary_title }}
         </h1>
+        <div>
+          <SocialSharing
+            :urlProp="listingUrl"
+            :socialSharingTitle="texts.primary_title"
+          ></SocialSharing>
+        </div>
       </div>
     </q-img>
     <!-- <q-parallax :height="heroImageHeight" :src="primaryImageUrl">
@@ -18,10 +24,10 @@
   </div>
 </template>
 <script>
-// import SocialSharing from "components/SocialSharing.vue"
+import SocialSharing from "components/SocialSharing.vue"
 export default {
   components: {
-    // SocialSharing,
+    SocialSharing,
   },
   mounted: function () {},
   props: {
@@ -40,10 +46,10 @@ export default {
       default: () => {},
       required: false,
     },
-    listingLocationOrigin: {
-      type: String,
-      default: "",
-    },
+    // listingLocationOrigin: {
+    //   type: String,
+    //   default: "",
+    // },
   },
   data: () => ({}),
   methods: {},
@@ -51,6 +57,16 @@ export default {
     // heroImageHeight() {
     //   return 500
     // },
+    listingLocationOrigin() {
+      let sppViewDataAsString =
+        this.$store.state.sppStore.sppViewDataString || "{}"
+      let sppViewData = JSON.parse(sppViewDataAsString)
+      if (sppViewData.page) {
+        return sppViewData.page.location_origin
+      } else {
+        return ""
+      }
+    },
     listingUrl() {
       // Below involves setting location_origin on server
       // but means I can get correct url even when rendered
