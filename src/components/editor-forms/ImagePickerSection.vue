@@ -1,36 +1,27 @@
 <template>
-  <div>
-    <q-card class="listing-enq-card">
-      <q-card-section>
-        <div>
-          <h3>Image Picker</h3>
-          <div>
-            <SppSubmitter
-              :cancelPendingChanges="cancelPendingChanges"
-              :lastChangedField="lastChangedField"
-              :currentModelForEditing="currentPropForEditing"
-              @changesCanceled="changesCanceled"
-            ></SppSubmitter>
-          </div>
-          <div class="selectable-images-container">
-            <q-list
-              class="
-                w-full
-                pwb-search-res
-                mb-16
-                grid grid-cols-1
-                sm:grid-cols-2
-                md:grid-cols-2
-                lg:grid-cols-3
-                xl:grid-cols-3
-                gap-8
-              "
-              bordered
-              padding
-            >
-              <q-item v-for="(imageItem, index) in imageOptions" :key="index">
-                <q-item-section avatar>
+  <div class="img-picker-sect q-pa-md">
+    <div>
+      <h3>Image Picker</h3>
+      <div>
+        <SppSubmitter
+          :cancelPendingChanges="cancelPendingChanges"
+          :lastChangedField="lastChangedField"
+          :currentModelForEditing="currentPropForEditing"
+          @changesCanceled="changesCanceled"
+        ></SppSubmitter>
+      </div>
+      <div class="selectable-images-container">
+        <div class="sic-list row q-col-gutter-md" bordered padding>
+          <div
+            class="col-6 col-md-4"
+            v-for="(imageItem, index) in imageOptions"
+            :key="index"
+          >
+            <q-card class="img-picker-item-card">
+              <q-card-section class="q-pa-none">
+                <q-item-section class="column items-center" avatar>
                   <q-radio
+                    class="col"
                     v-model="selectedImageOption"
                     :val="imageItem.value"
                     color="teal"
@@ -42,39 +33,12 @@
                 >
                   <q-img class="" :ratio="16 / 9" :src="imageItem.label" />
                 </q-item-section>
-                <!-- <q-item-section top thumbnail class="q-ml-none">
-                  <img :src="imageItem.label" />
-                </q-item-section>
-
-                <q-item-section>
-                  <q-item-label>{{ imageItem.value }}</q-item-label>
-                  <q-item-label caption>...</q-item-label>
-                </q-item-section> -->
-                <!-- 
-                <q-item-section side top>
-                  <q-item-label caption>meta</q-item-label>
-                </q-item-section> -->
-              </q-item>
-            </q-list>
+              </q-card-section>
+            </q-card>
           </div>
-          <!-- <div class="q-pa-lg">
-            <q-option-group
-              @update:model-value="fieldChangeHandler"
-              v-model="selectedImageOption"
-              :options="imageOptions"
-              color="green"
-              type="radio"
-            >
-              <template v-slot:label="opt">
-                <div class="row items-center">
-                  <span class="text-teal">laaaa{{ opt.label }}</span>
-                </div>
-              </template>
-            </q-option-group>
-          </div> -->
         </div>
-      </q-card-section>
-    </q-card>
+      </div>
+    </div>
   </div>
 </template>
 <script>

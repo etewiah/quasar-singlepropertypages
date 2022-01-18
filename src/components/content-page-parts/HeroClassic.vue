@@ -1,32 +1,20 @@
 <template>
   <div class="">
-    <div class="hover-to-scale" style="overflow: hidden; min-height: 60vh">
-      <div
-        class="bg-cover <%= @feel['animations']['hero_image_animation'] %>"
-        :style="heroBgStyle"
-      >
-        <div
-          class="container max-w-6xl mx-auto text-center break-normal hero-text-container"
-        >
-          <div class="py-8">
-            <p
-              class="text-white font-extrabold text-4xl md:text-6xl capitalize"
-            >
-              {{ texts.primary_title }}
-            </p>
-            <p class="text-xl md:text-2xl text-gray-500"></p>
-            <div class="justify-center">
-              <div class="mt-6 flex justify-center">
-                <!-- <SocialSharing
-                  :socialSharingTitle="texts.primary_title"
-                  :urlProp="listingUrl"
-                ></SocialSharing> -->
-              </div>
-            </div>
-          </div>
-        </div>
+    <q-img
+      :src="primaryImageUrl"
+      placeholder-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWBAMAAADOL2zRAAAAG1BMVEXMzMyWlpaqqqq3t7fFxcW+vr6xsbGjo6OcnJyLKnDGAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABAElEQVRoge3SMW+DMBiE4YsxJqMJtHOTITPeOsLQnaodGImEUMZEkZhRUqn92f0MaTubtfeMh/QGHANEREREREREREREtIJJ0xbH299kp8l8FaGtLdTQ19HjofxZlJ0m1+eBKZcikd9PWtXC5DoDotRO04B9YOvFIXmXLy2jEbiqE6Df7DTleA5socLqvEFVxtJyrpZFWz/pHM2CVte0lS8g2eDe6prOyqPglhzROL+Xye4tmT4WvRcQ2/m81p+/rdguOi8Hc5L/8Qk4vhZzy08DduGt9eVQyP2qoTM1zi0/uf4hvBWf5c77e69Gf798y08L7j0RERERERERERH9P99ZpSVRivB/rgAAAABJRU5ErkJggg=="
+    >
+      <div class="absolute column items-center">
+        <h1 style="" class="text-h3 text-white text-center">
+          {{ texts.primary_title }}
+        </h1>
       </div>
-    </div>
+    </q-img>
+    <!-- <q-parallax :height="heroImageHeight" :src="primaryImageUrl">
+      <h1 style="" class="hero-classic-text text-h3 text-white text-center">
+        {{ texts.primary_title }}
+      </h1>
+    </q-parallax> -->
   </div>
 </template>
 <script>
@@ -57,52 +45,43 @@ export default {
       default: "",
     },
   },
-  data: () => ({
-    // newPriColorBaseClass: "",
-  }),
-  methods: {
-    // psContentDirectlyChanged() {
-    //   this.$emit("psContentDirectlyChanged", this.$refs.templateCompiledContent)
-    // },
-  },
+  data: () => ({}),
+  methods: {},
   computed: {
+    // heroImageHeight() {
+    //   return 500
+    // },
     listingUrl() {
-      // let origin = ""
-      // // const cookies = process.env.SERVER
-      // //   ? Cookies.parseSSR(ssrContext)
-      // //   : Cookies
-      // if (typeof window !== "undefined") {
-      //   origin = location.origin
-      // }
       // Below involves setting location_origin on server
       // but means I can get correct url even when rendered
       // server side with prefetch
       return `${this.listingLocationOrigin}${this.$route.href}`
     },
-    heroBgStyle() {
-      let bgUrl = ""
+    primaryImageUrl() {
+      let primaryImageUrl = ""
       if (this.pic_urls && this.pic_urls.primary) {
-        bgUrl = this.pic_urls.primary.default_url
+        primaryImageUrl = this.pic_urls.primary.default_url
         // this.sppListingDetails.pic_urls.hero_a_image.default_url
       }
-      return (
-        // "background-image: linear-gradient(rgba(135, 80, 156, 0.9),rgba(135, 80, 156, 0.9)), url('" +
-        "background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('" +
-        bgUrl +
-        "');" +
-        "min-height: 60vh;" +
-        // below needed because there was a gap after the bottom of the image (visible against secondary background)
-        "margin-bottom: -12px;" +
-        "height: 700px;"
-      )
+      return primaryImageUrl
     },
-    // bgPrimaryColorClass() {
-    //   let primaryColor = this.colors.primary_class || "green-500"
-    //   return `bg-${primaryColor}`
-    // },
-    // primaryColorClassSuffix() {
-    //   return this.colors.primary_class || "green-500"
+    // heroBgStyle() {
+    //   return (
+    //     // "background-image: linear-gradient(rgba(135, 80, 156, 0.9),rgba(135, 80, 156, 0.9)), url('" +
+    //     "background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('" +
+    //     this.primaryImageUrl +
+    //     "');" +
+    //     "min-height: 60vh;" +
+    //     // below needed because there was a gap after the bottom of the image (visible against secondary background)
+    //     "margin-bottom: -12px;" +
+    //     "height: 700px;"
+    //   )
     // },
   },
 }
 </script>
+<style scoped>
+/* .hero-classic-text {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+} */
+</style>
