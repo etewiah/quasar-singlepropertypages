@@ -31,7 +31,7 @@ import { defineComponent, ref } from "vue"
 import LocalisedContentField from "src/components/editor-forms-parts//LocalisedContentField.vue"
 import SppSubmitter from "src/components/editor-forms-parts//SppSubmitter.vue"
 export default defineComponent({
-  name: "EditDescriptionForm",
+  name: "EditRichTextForm",
   components: {
     LocalisedContentField,
     SppSubmitter,

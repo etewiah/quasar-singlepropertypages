@@ -30,7 +30,7 @@
 import { defineComponent, ref } from "vue"
 import EditFeaturesForm from "src/components/editor-forms//EditFeaturesForm.vue"
 import EditAttributesForm from "src/components/editor-forms//EditAttributesForm.vue"
-import EditDescriptionForm from "src/components/editor-forms//EditDescriptionForm.vue"
+// import EditDescriptionForm from "src/components/editor-forms//EditDescriptionForm.vue"
 import EditMapForm from "src/components/editor-forms//EditMapForm.vue"
 import EditRegularTextsForm from "src/components/editor-forms//EditRegularTextsForm.vue"
 import EditRichTextForm from "src/components/editor-forms//EditRichTextForm.vue"
@@ -42,7 +42,7 @@ export default defineComponent({
     EditAttributesForm,
     EditMapForm,
     EditRegularTextsForm,
-    EditDescriptionForm,
+    // EditDescriptionForm,
     EditRichTextForm,
     ImagePickerSection,
   },
@@ -87,7 +87,7 @@ export default defineComponent({
   },
   computed: {
     formToUse() {
-      return this.formName // "EditDescriptionForm"
+      return this.formName
     },
   },
   methods: {},
