@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Features</h1>
     <div v-if="isEdit || listingFeatures.length > 0" class="q-pt-md" style="">
       <q-card class="listing-features-card">
         <q-card-section>
@@ -58,6 +59,7 @@ export default {
   },
   computed: {
     listingFeatures() {
+      debugger
       return this.currentListingData.feature_field_keys || []
     },
   },

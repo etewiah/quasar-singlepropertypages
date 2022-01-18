@@ -1,35 +1,79 @@
 <template>
-  <div v-if="currentListingData" class="listing-attributes-section">
-    <q-card class="listing-attributes-card">
-      <q-card-section>
-        <!-- <ListingSummaryDetails
-          :summaryDetails="summaryDetails"
-        ></ListingSummaryDetails> -->
-      </q-card-section>
-    </q-card>
+  <div class="listing-summ-det flex" v-if="currentListingData">
+    <q-item
+      class="q-mr-lg q-mb-sm border-gray-800 bg-gray-200 border-2 float-left cursor-none"
+      clickable
+    >
+      <q-item-section side>
+        <q-icon color="blue" name="bathtub" />
+      </q-item-section>
+      <q-item-section class="q-mr-sm">
+        <q-item-label class="text-weight-medium text-h6">
+          {{ currentListingData.count_bathrooms }}
+        </q-item-label>
+      </q-item-section>
+    </q-item>
+    <q-item
+      class="q-mr-lg q-mb-sm border-gray-800 bg-gray-200 border-2 float-left cursor-none"
+      clickable
+    >
+      <q-item-section side>
+        <q-icon color="blue" name="hotel" />
+      </q-item-section>
+      <q-item-section class="q-mr-sm">
+        <q-item-label class="text-weight-medium text-h6">
+          {{ currentListingData.count_bedrooms }}
+        </q-item-label>
+        <!-- <q-item-label caption>Fill your gas tank.</q-item-label> -->
+      </q-item-section>
+    </q-item>
+    <q-item
+      class="q-mr-lg q-mb-sm border-gray-800 bg-gray-200 border-2 float-left cursor-none"
+      clickable
+    >
+      <q-item-section side>
+        <q-icon color="blue" :name="mdiAspectRatio" />
+      </q-item-section>
+      <q-item-section class="q-mr-sm">
+        <q-item-label class="text-weight-medium text-h6">
+          {{ currentListingData.formatted_constructed_area }}
+        </q-item-label>
+      </q-item-section>
+    </q-item>
+    <q-item
+      class="q-mr-lg q-mb-sm border-gray-800 bg-gray-200 border-2 float-left cursor-none"
+      clickable
+    >
+      <q-item-section side>
+        <q-icon color="blue" :name="mdiCashMultiple" />
+      </q-item-section>
+      <q-item-section class="q-mr-sm">
+        <q-item-label class="text-weight-medium text-h6">
+          {{ currentListingData.formatted_display_price }}
+        </q-item-label>
+      </q-item-section>
+    </q-item>
+    <!--  -->
   </div>
 </template>
 <script>
-// import ListingSummaryDetails from "components/listings/ListingSummaryDetails"
+// import { ref, toRef, watch } from "vue"
+import { mdiAspectRatio, mdiCashMultiple } from "@quasar/extras/mdi-v5"
 export default {
-  components: {
-    // ListingSummaryDetails,
+  created() {
+    this.mdiAspectRatio = mdiAspectRatio
+    this.mdiCashMultiple = mdiCashMultiple
+  },
+  data() {
+    return {}
   },
   props: {
     currentListingData: {
       type: Object,
+      default: () => {},
     },
   },
-  // mounted: function () {
-  // },
-  data: function () {
-    return {}
-  },
-  computed: {
-    summaryDetails() {
-      return this.currentListingData
-    },
-  },
+  watch: {},
+  computed: {},
 }
 </script>
-<style></style>

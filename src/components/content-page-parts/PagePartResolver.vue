@@ -22,8 +22,7 @@
       v-else-if="editorTemplate === 'ListingEnquirySection'"
       :pic_urls="pic_urls"
       :texts="texts"
-      :listingsModelName="listingsModelName"
-      :listingUuid="listingUuid"
+      :currentListingData="currentListingData"
     ></ListingEnquirySection>
     <MainSppDescription
       v-else-if="editorTemplate === 'MainSppDescription'"
@@ -91,10 +90,10 @@ export default {
   },
   mounted: function () {},
   computed: {
-    listingUuid() {
-      let listingUuid = this.currentListingData.listing_uuid || ""
-      return listingUuid
-    },
+    // listingUuid() {
+    //   let listingUuid = this.currentListingData.listing_uuid || ""
+    //   return listingUuid
+    // },
     listingLocationOrigin() {
       let sppViewDataAsString =
         this.$store.state.sppStore.sppViewDataString || "{}"
@@ -114,22 +113,10 @@ export default {
       } else {
         return {}
       }
-      // if (this.listingsStore.state.currentListingAndPage.listing) {
-      //   currentListingData =
-      //     this.listingsStore.state.currentListingAndPage.listing
-      // }
-      // return currentListingData
     },
-    listingsModelName() {
-      return this.currentListingData.listings_model_name
-      // let listingsModelName = ""
-      // // if (this.listingsStore.state.currentListingAndPage.listing) {
-      // //   listingsModelName =
-      // //     this.listingsStore.state.currentListingAndPage.listing
-      // //       .listings_model_name
-      // // }
-      // return listingsModelName
-    },
+    // listingsModelName() {
+    //   return this.currentListingData.listings_model_name
+    // },
   },
   methods: {},
   props: {
