@@ -20,8 +20,6 @@
     ></ListingFeaturesSection>
     <ListingEnquirySection
       v-else-if="editorTemplate === 'ListingEnquirySection'"
-      :pic_urls="pic_urls"
-      :texts="texts"
       :currentListingData="currentListingData"
     ></ListingEnquirySection>
     <MainSppDescription

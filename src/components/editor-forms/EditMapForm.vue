@@ -11,20 +11,12 @@
             :currentFieldValue="cityContentValue"
             v-on:updatePendingChanges="updatePendingChanges"
           ></TextField>
-
           <TextField
             :cancelPendingChanges="cancelPendingChanges"
             :fieldDetails="countryFieldDetails"
             :currentFieldValue="countryContentValue"
             v-on:updatePendingChanges="updatePendingChanges"
           ></TextField>
-
-          <!-- <LocalisedContentField
-            :baseFieldDetails="baseFieldDetailsCompiledHtml"
-            :cancelPendingChanges="cancelPendingChanges"
-            :modelForEditing="currentPropForEditing"
-            @updatePendingChanges="updatePendingChanges"
-          ></LocalisedContentField> -->
         </div>
         <div>
           <SppSubmitter
@@ -41,41 +33,31 @@
 </template>
 <script>
 import { defineComponent, ref } from "vue"
-// import LocalisedContentField from "src/components/editor-forms-parts//LocalisedContentField.vue"
 import SppSubmitter from "src/components/editor-forms-parts//SppSubmitter.vue"
 import TextField from "src/components/editor-forms-parts//TextField.vue"
 export default defineComponent({
-  inject: ["listingsStore"],
-  name: "EditDescriptionForm",
+  inject: ["listingsEditProvider"],
+  name: "EditMapForm",
   components: {
-    // LocalisedContentField,
     SppSubmitter,
     TextField,
   },
   watch: {},
-  props: {
-    // currentPropForEditing: {
-    //   type: Object,
-    //   default() {
-    //     return {}
-    //   },
-    // },
-  },
+  props: {},
   computed: {
     cityContentValue() {
-      let cityContentValue = this.currentListing["city"] || " "
+      let cityContentValue = this.currentRealtyAsset["city"] || " "
       return cityContentValue
     },
     countryContentValue() {
-      let countryContentValue = this.currentListing["country"] || " "
+      let countryContentValue = this.currentRealtyAsset["country"] || " "
       return countryContentValue
     },
     currentListing() {
-      let currentListing = {}
-      if (this.listingsStore.state.currentListingAndPage.listing) {
-        currentListing = this.listingsStore.state.currentListingAndPage.listing
-      }
-      return currentListing
+      return this.listingsEditProvider.state.currentEditListing
+    },
+    currentRealtyAsset() {
+      return this.listingsEditProvider.state.currentEditRealtyAsset
     },
   },
   methods: {

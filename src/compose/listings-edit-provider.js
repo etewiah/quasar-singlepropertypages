@@ -35,11 +35,11 @@ function setCurrentEditRealtyAsset(incomingData, listingsGrouping) {
   currentEditRealtyAsset.constructed_area = incomingData.mgmt_content.realty_asset.constructed_area
   currentEditRealtyAsset.count_bedrooms = incomingData.mgmt_content.realty_asset.count_bedrooms
   currentEditRealtyAsset.count_bathrooms = incomingData.mgmt_content.realty_asset.count_bathrooms
-  currentEditRealtyAsset.listing_uuid = currentEditListing.uuid
+  currentEditRealtyAsset.country = incomingData.mgmt_content.realty_asset.country
+  currentEditRealtyAsset.city = incomingData.mgmt_content.realty_asset.city
   currentEditRealtyAsset.realty_asset_uuid = incomingData.mgmt_content.realty_asset.uuid
   currentEditRealtyAsset.listing_uuid = currentEditListing.uuid
   currentEditRealtyAsset.listing_model_name = currentEditListing.model_name
-  // on server side will deconstruct to relevant models....
   state.currentEditRealtyAsset = currentEditRealtyAsset
 }
 // function addItem(todo) {

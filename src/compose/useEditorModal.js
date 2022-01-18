@@ -1,5 +1,4 @@
 import { ref, computed } from "vue";
-// import ClientService from "src/services/client.service"
 import { useStore } from "vuex"
 import axios from "axios"
 import authHeader from "src/services/auth/auth-header"
@@ -49,15 +48,6 @@ export default function () {
     return axios.put(apiUrl, putData, { headers: authHeader() }).then((response) => {
       location.reload()
     })
-    // let dataApiBase = store.getters["configStore/getDataApiBase"]
-    // ClientService.putPageSection(
-    //   dataApiBase,
-    //   pageSectionUuid,
-    //   {
-    //     page_section: currentPageSectionForEditing,
-    //   },
-    //   {}
-    // ).then((response) => { })
   }
   function onStartTextEdit(editFormNameToUse, editFormLabelToUse) {
     showModalForm.value = true

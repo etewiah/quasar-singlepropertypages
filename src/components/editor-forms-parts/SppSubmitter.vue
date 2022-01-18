@@ -159,10 +159,12 @@ export default {
           })
         }
         this.currPendingChanges = {}
+        let listingUuid = this.currentModelForEditing.uuid
+        let listingModelName = this.currentModelForEditing.model_name
         this.putRealtyAssetWithListing({
-          listing_uuid: this.currentModelForEditing.listing_uuid,
-          realty_asset_uuid: this.currentModelForEditing.realty_asset_uuid,
-          listing_model_name: this.currentModelForEditing.listing_model_name,
+          listing_uuid: listingUuid,
+          // realty_asset_uuid: this.currentModelForEditing.realty_asset_uuid,
+          listing_model_name: listingModelName,
           changes: this.currentModelForSubmitting,
         }).then((response) => {
           // TODO - find a better way to refresh than this:
