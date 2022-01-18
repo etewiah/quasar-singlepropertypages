@@ -44,13 +44,13 @@ export const sppStore = {
     },
   },
   getters: {
-    getWebConfigData: (state) => {
-      if (state.webConfigString) {
-        return JSON.parse(state.webConfigString.asString)
-      } else {
-        return {}
-      }
-    },
+    // getWebConfigData: (state) => {
+    //   if (state.webConfigString) {
+    //     return JSON.parse(state.webConfigString.asString)
+    //   } else {
+    //     return {}
+    //   }
+    // },
   },
   mutations: {
     commitSpp: (state, { sppViewData }) => {

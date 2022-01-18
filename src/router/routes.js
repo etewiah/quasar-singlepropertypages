@@ -5,7 +5,7 @@ const routes = [
     children: [
       {
         path: "",
-        name: "rBvhHomePage",
+        name: "rHomePage",
         component: () => import("src/pages/SppHomePage.vue"),
         children: [
         ]
@@ -39,11 +39,11 @@ const routes = [
       // }
     ]
   },
-  // {
-  //   path: "/login",
-  //   name: "rBvhLoginPage",
-  //   component: () => import("src/pages/SppHomeLogin.vue"),
-  // },
+  {
+    path: "/login",
+    name: "rLoginPage",
+    component: () => import("src/pages/SppLogin.vue"),
+  },
   // {
   //   path: '/',
   //   component: () => import('layouts/MainLayout.vue'),

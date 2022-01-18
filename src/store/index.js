@@ -2,6 +2,7 @@ import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
 import { configStore } from "./config-store.module"
 import { sppStore } from "./spp-store.module"
+import { auth } from "./auth.module"
 
 // import example from './module-example'
 
@@ -18,7 +19,8 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       configStore,
-      sppStore
+      sppStore,
+      auth
       // example
     },
 
