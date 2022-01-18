@@ -6,7 +6,6 @@
   </div>
 </template>
 <script>
-// import ClientService from "src/services/client.service"
 import useMgmtService from "src/compose/useMgmtService.js"
 export default {
   components: {},
@@ -99,7 +98,6 @@ export default {
     },
   },
   setup() {
-    // const $q = useQuasar()
     const { putPageSection, putRealtyAssetWithListing, putListingFeatures } =
       useMgmtService()
     return { putPageSection, putRealtyAssetWithListing, putListingFeatures }

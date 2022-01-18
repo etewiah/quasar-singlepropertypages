@@ -79,11 +79,6 @@ export default function () {
     let apiUrl = `${mgmtBaseURL}v4/page_sections/${pageSectionUuid}`
     return axios.put(apiUrl, putData, { headers: authHeader() })
   }
-  // swapPageSection(dataApiBase, pageSectionUuid, sectionUuidToSwapWith) {
-  //   let mgmtBaseURL = `${dataApiBase}/api_mgmt/`
-  //   let apiUrl = `${mgmtBaseURL}v4/swap_page_sections/${pageSectionUuid}/${sectionUuidToSwapWith}`
-  //   return axios.put(apiUrl, {}, { headers: authHeader() })
-  // }
   return {
     getMgmtRealtyAsset,
     putPageSection,

@@ -21,7 +21,7 @@
               <q-card-section>
                 <div class="row justify-right">
                   <div style="min-width: 80%">
-                    <!-- <q-btn
+                    <q-btn
                       fab
                       padding="xs sm"
                       :hide-label="false"
@@ -29,7 +29,7 @@
                       icon="visibility"
                       label="Show This Section"
                       color="primary"
-                    /> -->
+                    />
                     <h4 style="float: right" class="q-mx-lg q-my-xs pull-right">
                       {{ hiddenSectionLabel }} (This section is currently
                       hidden)
@@ -54,7 +54,7 @@
 </template>
 <script>
 // import { ref } from "vue"
-// import useModal from "src/compose/useModal.js"
+import useEditorModal from "src/compose/useEditorModal.js"
 import EditActionsContainer from "components/content-page-parts-edit/EditActionsContainer.vue"
 import PagePartResolver from "components/content-page-parts/PagePartResolver.vue"
 export default {
@@ -89,13 +89,12 @@ export default {
       this.$emit("setActiveEditFabGroup", activeEditFabGroupUuid)
     },
   },
-  // setup() {
-  //   const { onShowSection, onMoveSection } = useModal()
-  //   return {
-  //     onShowSection,
-  //     onMoveSection,
-  //   }
-  // },
+  setup() {
+    const { onShowSection } = useEditorModal()
+    return {
+      onShowSection,
+    }
+  },
   props: {
     activeEditFabGroup: {
       type: String,
