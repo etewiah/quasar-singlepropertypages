@@ -58,7 +58,7 @@
   </div>
   <div class="listing-form-target">
     <div>
-      <div class="w-full flex flex-col flex-grow flex-shrink pl-4">
+      <div class="full-width flex flex-col flex-grow flex-shrink pl-4">
         <div class="h-full ma-0 pa-0 v-card v-sheet theme--light">
           <div class="v-card__text">
             <div>

@@ -2,7 +2,7 @@
   <div class="row bg-white lpic-with-txt-to-left">
     <div class="mobile-hide col-md-4">
       <div class="full-height items-center row">
-        <div class="w-full align-middle px-4 mr-auto ml-auto">
+        <div class="full-width align-middle q-px-md">
           <h3 class="text-3xl mb-2 font-semibold leading-normal">
             <span
               ><div>
@@ -27,14 +27,14 @@
         <img
           alt="content"
           :src="pic_urls.primary.default_url"
-          class="w-full align-middle"
+          class="full-width align-middle"
           style="object-fit: cover; max-height: 500px"
         />
       </div>
     </div>
     <div class="col-xs-12 col-sm-12 mobile-only">
       <div class="full-height items-center row">
-        <div class="w-full align-middle px-4 mr-auto ml-auto">
+        <div class="full-width align-middle q-px-md">
           <h3 class="text-3xl mb-2 font-semibold leading-normal">
             <span
               ><div>

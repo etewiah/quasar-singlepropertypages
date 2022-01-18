@@ -3,6 +3,17 @@
     class="spp-listing-main-edit bg-gray-200 leading-normal tracking-normal"
     style="font-family: 'Source Sans Pro', sans-serif"
   >
+    <div v-if="heroPageSection && heroPageSection.texts">
+      <div class="d">
+        <div class="col-12">
+          <EditPagePart
+            activeEditFabGroup="0"
+            :currentPageSectionForEditing="heroPageSection"
+            :allPhotosForSpp="allPhotosForSpp"
+          ></EditPagePart>
+        </div>
+      </div>
+    </div>
     <HeroClassic
       :isEdit="true"
       :allPhotosForSpp="allPhotosForSpp"
@@ -44,12 +55,13 @@ import SppEditSectionsHost from "src/components/sections/SppEditSectionsHost.vue
 // import SppEditSectionsResolver from "src/packs/spp/sections/SppEditSectionsResolver.vue"
 import useMgmtService from "src/compose/useMgmtService.js"
 // import SectionAdder from "src/packs/spp/edit/SectionAdder.vue"
-import { listingsEditProvider } from "src/compose/listings-edit-provider.js"
+import EditPagePart from "src/components/content-page-parts-edit/EditPagePart.vue"
 export default defineComponent({
   inject: ["listingsEditProvider"],
   components: {
     HeroClassic,
     SppEditSectionsHost,
+    EditPagePart,
     // SectionAdder,
   },
   mounted() {

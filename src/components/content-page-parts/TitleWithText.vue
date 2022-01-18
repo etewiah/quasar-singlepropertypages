@@ -3,10 +3,9 @@
     <q-card class="text-with-title-card">
       <q-card-section>
         <div class="mb-10">
-          <h1
+          <h2
             class="
-              sm:text-3xl
-              text-2xl
+              text-h3
               font-medium
               title-font
               text-gray-900
@@ -15,7 +14,7 @@
             "
           >
             {{ texts.primary_title }}
-          </h1>
+          </h2>
           <p class="text-base leading-relaxed mx-auto"></p>
           <div v-html="texts.compiled_html"></div>
         </div>

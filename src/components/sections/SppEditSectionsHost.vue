@@ -23,9 +23,8 @@ import { defineComponent, ref } from "vue"
 // import EditRichTextSection from "components/content-page-parts-edit/EditRichTextSection.vue"
 import EditPagePart from "src/components/content-page-parts-edit/EditPagePart.vue"
 // import ImageWithTextSection from "src/packs/spp/page-parts/ImageWithTextSection.vue"
-
 export default defineComponent({
-  name: "SppEditSectionsResolver",
+  name: "SppEditSectionsHost",
   components: {
     // EditRichTextSection,
     // ImageWithTextSection,

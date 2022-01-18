@@ -12,7 +12,7 @@
         "
       >
         <div class="mx-auto flex flex-wrap items-center pt-2">
-          <div class="w-full md:w-6/12 px-4 mr-auto ml-auto">
+          <div class="full-width md:w-6/12 q-px-md">
             <div
               class="
                 text-gray-600
@@ -73,14 +73,14 @@
             </div>
             <br />
           </div>
-          <div class="w-full md:w-6/12 px-4 mr-auto ml-auto">
+          <div class="full-width md:w-6/12 q-px-md">
             <div
               :class="[
                 `relative
                 flex flex-col
                 min-w-0
                 break-words
-                w-full
+                full-width
                 mb-6
                 shadow-lg
                 rounded-lg`,
@@ -92,14 +92,14 @@
                 <img
                   alt="content"
                   :src="photo_urls.primary_photo.main_url"
-                  class="w-full align-middle rounded-t-lg"
+                  class="full-width align-middle rounded-t-lg"
               /></span>
               <blockquote :class="[`relative p-8 mb-4`, bgPrimaryColorClass]">
                 <svg
                   preserveAspectRatio="none"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 583 95"
-                  class="absolute left-0 w-full block"
+                  class="absolute left-0 full-width block"
                   style="height: 95px; top: -94px"
                 >
                   <polygon

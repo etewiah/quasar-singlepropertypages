@@ -22,10 +22,6 @@
       v-else-if="editorTemplate === 'ListingEnquirySection'"
       :currentListingData="currentListingData"
     ></ListingEnquirySection>
-    <MainSppDescription
-      v-else-if="editorTemplate === 'MainSppDescription'"
-      :texts="texts"
-    ></MainSppDescription>
     <TitleWithText
       v-else-if="editorTemplate === 'TitleWithText'"
       :pic_urls="pic_urls"
@@ -63,7 +59,7 @@
 import ListingFeaturesSection from "components/content-page-parts/ListingFeaturesSection.vue"
 import ListingAttributesSection from "components/content-page-parts/ListingAttributesSection.vue"
 import ListingEnquirySection from "components/content-page-parts/ListingEnquirySection.vue"
-import MainSppDescription from "components/content-page-parts/MainSppDescription.vue"
+// import MainSppDescription from "components/content-page-parts/MainSppDescription.vue"
 import TitleWithText from "components/content-page-parts/TitleWithText.vue"
 import MapIframeSection from "components/content-page-parts/MapIframeSection.vue"
 import LargePicWithSmallTextToLeft from "components/content-page-parts/LargePicWithSmallTextToLeft.vue"
@@ -77,7 +73,7 @@ export default {
     ListingFeaturesSection,
     ListingAttributesSection,
     ListingEnquirySection,
-    MainSppDescription,
+    // MainSppDescription,
     TitleWithText,
     MapIframeSection,
     LargePicWithSmallTextToRight,

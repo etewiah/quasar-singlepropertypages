@@ -5,7 +5,7 @@
         <q-card-section>
           <div :class="adjustForEditClass">
             <div class="full-height items-center row">
-              <div class="w-full align-middle px-4 mr-auto ml-auto">
+              <div class="full-width align-middle q-px-md">
                 <h3 class="text-3xl mb-2 font-semibold leading-normal">
                   <span
                     ><div>
