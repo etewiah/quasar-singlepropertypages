@@ -135,8 +135,7 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push({ name: "rBvhHomePage" })
-      // this.$router.push("/admin")
+      this.$router.push({ name: "rHomePage" })
     }
   },
   methods: {
@@ -147,7 +146,7 @@ export default {
       this.$store.dispatch("auth/login", user).then(
         (data) => {
           if (data.user.accessToken) {
-            this.$router.push({ name: "rBvhHomePage" })
+            this.$router.push({ name: "rHomePage" })
             // this.$router.push("/admin")
           } else {
             this.qNotify({

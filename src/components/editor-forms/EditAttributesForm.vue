@@ -128,7 +128,7 @@ export default defineComponent({
     this.mdiAspectRatio = mdiAspectRatio
     this.mdiCashMultiple = mdiCashMultiple
   },
-  inject: ["listingsEditStore"],
+  inject: ["listingsEditProvider"],
   name: "EditAttributesForm",
   components: {
     SppSubmitter,
@@ -153,10 +153,10 @@ export default defineComponent({
       return bedroomsContentValue
     },
     currentRealtyAsset() {
-      return this.listingsEditStore.state.currentEditRealtyAsset
+      return this.listingsEditProvider.state.currentEditRealtyAsset
     },
     currentListing() {
-      return this.listingsEditStore.state.currentEditListing
+      return this.listingsEditProvider.state.currentEditListing
     },
   },
   methods: {

@@ -42,12 +42,11 @@ import { useQuasar } from "quasar"
 import HeroClassic from "src/components/content-page-parts/HeroClassic.vue"
 import SppEditSectionsHost from "src/components/sections/SppEditSectionsHost.vue"
 // import SppEditSectionsResolver from "src/packs/spp/sections/SppEditSectionsResolver.vue"
-// import ClientService from "src/services/client.service"
 import useMgmtService from "src/compose/useMgmtService.js"
 // import SectionAdder from "src/packs/spp/edit/SectionAdder.vue"
-// import { listingsEditStore } from "src/packs/spp/compose-in/listings-edit-provider.js"
+import { listingsEditProvider } from "src/compose/listings-edit-provider.js"
 export default defineComponent({
-  // inject: ["listingsEditStore"],
+  inject: ["listingsEditProvider"],
   components: {
     HeroClassic,
     SppEditSectionsHost,
@@ -74,27 +73,21 @@ export default defineComponent({
       mgmt_content: {},
     }
     const { getMgmtRealtyAsset } = useMgmtService()
-    // const route = useRoute()
-    // const router = useRouter()
     function runEditorDataLoad() {
       let realtyAssetUuid = this.sppViewData.listing.realty_asset_uuid
-      // console.log(store)
-      // let webConfigData = store.getters["configStore/getWebConfigData"]
-      // let dataApiBase = webConfigData.general.dataApiBase || "/"
       getMgmtRealtyAsset(realtyAssetUuid)
-        // ClientService.getMgmtRealtyAsset(dataApiBase, realtyAssetUuid)
         .then((response) => {
           currentEditData.value = response.data
           let listingsGrouping = this.$route.params.listings_grouping
-          this.listingsEditStore.setCurrentEditRealtyAsset(
+          this.listingsEditProvider.setCurrentEditRealtyAsset(
             response.data,
             listingsGrouping
           )
-          this.listingsEditStore.setCurrentEditListing(
+          this.listingsEditProvider.setCurrentEditListing(
             response.data,
             listingsGrouping
           )
-          this.listingsEditStore.setEditorConfig(response.data)
+          this.listingsEditProvider.setEditorConfig(response.data)
         })
         .catch((error) => {
           let errorMessage = "SppListingMainEdit Error: "
@@ -111,12 +104,12 @@ export default defineComponent({
               errorMessage += error.toString()
             }
           }
-          // $q.notify({
-          //   color: "negative",
-          //   position: "top",
-          //   message: errorMessage,
-          //   icon: "report_problem",
-          // })
+          $q.notify({
+            color: "negative",
+            position: "top",
+            message: errorMessage,
+            icon: "report_problem",
+          })
         })
     }
     return {

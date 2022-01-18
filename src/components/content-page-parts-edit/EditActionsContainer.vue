@@ -92,7 +92,7 @@
 </template>
 <script>
 import useEditorModal from "src/compose/useEditorModal.js"
-// import useMgmtService from "src/packs/spp/compose-in/useMgmtService.js"
+// import useMgmtService from "src/compose/useMgmtService.js"
 import TextsEditBtn from "components/content-page-parts-edit/TextsEditBtn.vue"
 import SppModalFormsContainer from "components/content-page-parts-edit/SppModalFormsContainer.vue"
 export default {

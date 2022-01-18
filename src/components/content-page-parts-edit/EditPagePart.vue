@@ -54,7 +54,7 @@
 </template>
 <script>
 // import { ref } from "vue"
-// import useModal from "src/packs/spp/compose-in/useModal.js"
+// import useModal from "src/compose/useModal.js"
 import EditActionsContainer from "components/content-page-parts-edit/EditActionsContainer.vue"
 import PagePartResolver from "components/content-page-parts/PagePartResolver.vue"
 export default {

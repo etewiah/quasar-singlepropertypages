@@ -9,7 +9,7 @@
   />
 </template>
 <script>
-// import useModal from "src/packs/spp/compose-in/useModal.js"
+// import useModal from "src/compose/useModal.js"
 export default {
   components: {},
   mounted: function () {},

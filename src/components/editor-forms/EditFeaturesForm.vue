@@ -53,7 +53,7 @@ export default defineComponent({
     this.mdiAspectRatio = mdiAspectRatio
     this.mdiCashMultiple = mdiCashMultiple
   },
-  inject: ["listingsEditStore"],
+  inject: ["listingsEditProvider"],
   name: "EditFeaturesForm",
   components: {
     SppSubmitter,
@@ -63,9 +63,9 @@ export default defineComponent({
   computed: {
     featureFields() {
       let featureFields = []
-      // if (this.$store.state.listingsEditStore.fieldOptions.features) {
+      // if (this.$store.state.listingsEditProvider.fieldOptions.features) {
       // For each possible feature a prop could have I create a field
-      // this.$store.state.listingsEditStore.fieldOptions.features.forEach(
+      // this.$store.state.listingsEditProvider.fieldOptions.features.forEach(
       this.featureFieldOptions.forEach(function (feature) {
         let featureField = {
           // labelTextTKey: feature.ref_slug,
@@ -80,8 +80,8 @@ export default defineComponent({
       return sortBy(featureFields, "label")
     },
     featureFieldOptions() {
-      if (this.listingsEditStore.state.editorConfig) {
-        return this.listingsEditStore.state.editorConfig.select_options
+      if (this.listingsEditProvider.state.editorConfig) {
+        return this.listingsEditProvider.state.editorConfig.select_options
           .availableFeatures
       } else {
         return []
@@ -96,10 +96,10 @@ export default defineComponent({
       // return this.$store.getters.getFeaturesList
     },
     currentListing() {
-      return this.listingsEditStore.state.currentEditListing
+      return this.listingsEditProvider.state.currentEditListing
     },
     currentRealtyAsset() {
-      return this.listingsEditStore.state.currentEditRealtyAsset
+      return this.listingsEditProvider.state.currentEditRealtyAsset
     },
   },
   methods: {
