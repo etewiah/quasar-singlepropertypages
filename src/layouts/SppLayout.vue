@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lhh LpR ffr">
-    <!-- <SppTopAdminSection></SppTopAdminSection> -->
+    <SppTopAdminSection></SppTopAdminSection>
     <q-page-container class="main-layout-router-view-cont">
       <router-view @showNotification="showNotification" />
     </q-page-container>
@@ -16,13 +16,13 @@
   </q-layout>
 </template>
 <script>
-// import SppTopAdminSection from "src/packs/bvh-spp/SppTopAdminSection.vue"
+import SppTopAdminSection from "src/components/SppTopAdminSection.vue"
 import { defineComponent, ref } from "vue"
 import { useQuasar, useMeta } from "quasar"
 export default defineComponent({
   name: "SppLayout",
   components: {
-    // SppTopAdminSection,
+    SppTopAdminSection,
   },
   preFetch({
     store,
