@@ -149,5 +149,6 @@ export default {
 .gen-temp-resolver {
   border-top-width: 4px;
   border-top-color: green;
+  border-top-style: solid;
 }
 </style>

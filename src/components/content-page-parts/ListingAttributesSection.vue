@@ -1,5 +1,5 @@
 <template>
-  <div class="listing-summ-det flex" v-if="currentListingData">
+  <q-card class="listing-summ-det flex" v-if="currentListingData">
     <q-item
       class="q-mr-lg q-mb-sm border-gray-800 bg-gray-200 border-2 float-left cursor-none"
       clickable
@@ -54,7 +54,7 @@
       </q-item-section>
     </q-item>
     <!--  -->
-  </div>
+  </q-card>
 </template>
 <script>
 // import { ref, toRef, watch } from "vue"

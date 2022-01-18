@@ -1,11 +1,11 @@
 <template>
-  <div class="row bg-white lpic-with-txt-to-right">
+  <q-card class="row bg-white lpic-with-txt-to-right">
     <div class="col-xs-12 col-sm-12 col-md-8">
-      <div>
+      <div class="full-height">
         <img
           alt="content"
           :src="pic_urls.primary.default_url"
-          class="full-width align-middle"
+          class="full-width full-height align-middle"
           style="object-fit: cover; max-height: 500px"
         />
       </div>
@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </q-card>
 </template>
 <script>
 // import ColorSwitcher from "@jsroot/edit-pages-ui/forms/ColorSwitcher"

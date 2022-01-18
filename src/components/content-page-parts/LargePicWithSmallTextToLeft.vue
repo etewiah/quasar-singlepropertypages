@@ -1,5 +1,5 @@
 <template>
-  <div class="row bg-white lpic-with-txt-to-left">
+  <q-card class="row bg-white lpic-with-txt-to-left">
     <div class="mobile-hide col-md-4">
       <div class="full-height items-center row">
         <div class="full-width align-middle q-px-md">
@@ -23,11 +23,11 @@
       </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-8">
-      <div>
+      <div class="full-height">
         <img
           alt="content"
           :src="pic_urls.primary.default_url"
-          class="full-width align-middle"
+          class="full-width full-height align-middle"
           style="object-fit: cover; max-height: 500px"
         />
       </div>
@@ -54,8 +54,8 @@
         </div>
       </div>
     </div>
-  </div>
-</template>
+  </q-card>
+ </template>
 <script>
 // import ColorSwitcher from "@jsroot/edit-pages-ui/forms/ColorSwitcher"
 // import ColorMgmtHelper from "@jsroot/edit-pages-ui/mixins/ColorMgmtHelper"
