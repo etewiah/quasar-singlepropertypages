@@ -1,1 +1,85 @@
 // app global css in SCSS form
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+// https://stackoverflow.com/questions/60673143/bootstrap-like-container-in-quasar
+// Might also implement below at some point:
+// breakpoint variable, from https://quasar.dev/style/breakpoints
+// Except the xs one because I think 600px is too small
+// $xs-breakpoint: 718px;
+// $sm-breakpoint: 1024px;
+// $md-breakpoint: 1439px;
+// $lg-breakpoint: 1920px;
+
+// .container,
+// .container-sm,
+// .container-md,
+// .container-lg,
+// .container-xl {
+//   width: 100%;
+//   margin-right: auto;
+//   margin-left: auto;
+// }
+
+// @media (min-width: $xs-breakpoint) {
+//   .container,
+//   .container-sm {
+//     max-width: 540px;
+//   }
+// }
+
+// @media (min-width: $sm-breakpoint) {
+//   .container,
+//   .container-sm,
+//   .container-md {
+//     max-width: 920px;
+//   }
+// }
+
+// @media (min-width: $md-breakpoint) {
+//   .container,
+//   .container-sm,
+//   .container-md,
+//   .container-lg {
+//     max-width: 1140px;
+//   }
+// }
+
+// @media (min-width: $lg-breakpoint) {
+//   .container,
+//   .container-sm,
+//   .container-md,
+//   .container-lg,
+//   .container-xl {
+//     max-width: 1440px;
+//   }
+// }

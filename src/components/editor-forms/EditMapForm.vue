@@ -3,8 +3,7 @@
     <q-card class="listing-enq-card">
       <q-card-section>
         <div>
-          <h3>Location</h3>
-
+          <div class="text-subtitle1 form-label-head">Location</div>
           <TextField
             :cancelPendingChanges="cancelPendingChanges"
             :fieldDetails="cityFieldDetails"

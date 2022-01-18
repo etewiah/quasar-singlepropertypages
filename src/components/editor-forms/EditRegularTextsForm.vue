@@ -3,7 +3,7 @@
     <div class="edit-reg-texts-form q-pa-md">
       <div>
         <div v-if="showTitleField">
-          <h3>Title</h3>
+          <div class="text-subtitle1 form-label-head">Title</div>
           <LocalisedContentField
             :baseFieldDetails="baseFieldDetailsTitle"
             :cancelPendingChanges="cancelPendingChanges"
@@ -12,7 +12,7 @@
           ></LocalisedContentField>
         </div>
         <div v-if="showCompHtmlField">
-          <h3>Text</h3>
+          <div class="text-subtitle1 form-label-head">HTML</div>
           <LocalisedContentField
             :baseFieldDetails="baseFieldDetailsCompHtml"
             :cancelPendingChanges="cancelPendingChanges"
@@ -21,7 +21,7 @@
           ></LocalisedContentField>
         </div>
         <div v-if="showPrimaryContentField">
-          <h3>Text</h3>
+          <div class="text-subtitle1 form-label-head">Text</div>
           <LocalisedContentField
             :baseFieldDetails="baseFieldDetailsPrimaryContent"
             :cancelPendingChanges="cancelPendingChanges"

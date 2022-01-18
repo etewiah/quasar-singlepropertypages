@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <div class="row">
       <div class="col-12">
-        <h3>Listing Attributes</h3>
+        <div class="text-subtitle1 form-label-head">Listing Attributes</div>
       </div>
       <div class="col-12">
         <SppSubmitter
@@ -16,13 +16,7 @@
       <div class="col-12 q-py-lg">
         <q-item
           style="max-height: 100px"
-          class="
-            q-mr-lg q-mb-sm
-            border-gray-800
-            bg-gray-200
-            border-2
-            float-left
-          "
+          class="q-mr-lg q-mb-sm border-gray-800 bg-gray-200 border-2 float-left"
         >
           <q-item-section side>
             <q-icon color="blue" name="bathtub" />
@@ -38,13 +32,7 @@
           </q-item-section>
         </q-item>
         <q-item
-          class="
-            q-mr-lg q-mb-sm
-            border-gray-800
-            bg-gray-200
-            border-2
-            float-left
-          "
+          class="q-mr-lg q-mb-sm border-gray-800 bg-gray-200 border-2 float-left"
         >
           <q-item-section side>
             <q-icon color="blue" name="hotel" />
@@ -61,13 +49,7 @@
         </q-item>
         <q-item
           style="max-height: 100px"
-          class="
-            q-mr-lg q-mb-sm
-            border-gray-800
-            bg-gray-200
-            border-2
-            float-left
-          "
+          class="q-mr-lg q-mb-sm border-gray-800 bg-gray-200 border-2 float-left"
         >
           <q-item-section side>
             <q-icon color="blue" :name="mdiAspectRatio" />
@@ -84,13 +66,7 @@
         </q-item>
         <q-item
           style="max-height: 100px"
-          class="
-            q-mr-lg q-mb-sm
-            border-gray-800
-            bg-gray-200
-            border-2
-            float-left
-          "
+          class="q-mr-lg q-mb-sm border-gray-800 bg-gray-200 border-2 float-left"
         >
           <q-item-section side>
             <q-icon color="blue" :name="mdiCashMultiple" />
