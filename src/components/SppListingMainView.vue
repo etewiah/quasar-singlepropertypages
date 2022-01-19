@@ -100,9 +100,9 @@ export default defineComponent({
         content: "text/html; charset=UTF-8",
       },
     }
-    // useMeta(() => {
-    //   return metaData
-    // })
+    useMeta(() => {
+      return metaData
+    })
     function setAnotherTitle() {
       pageTitleRef.value = "Another title"
       // According to docs
