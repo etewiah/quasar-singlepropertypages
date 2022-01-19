@@ -13,9 +13,12 @@
         :skip-hijack="false"
       />
     </div>
+    <SppFooter></SppFooter>
   </q-layout>
 </template>
 <script>
+import SppFooter from "src/components/SppFooter.vue"
+
 import SppTopAdminSection from "src/components/SppTopAdminSection.vue"
 import { defineComponent, ref } from "vue"
 import { useQuasar, useMeta } from "quasar"
@@ -23,6 +26,7 @@ export default defineComponent({
   name: "SppLayout",
   components: {
     SppTopAdminSection,
+    SppFooter,
   },
   preFetch({
     store,
@@ -36,7 +40,7 @@ export default defineComponent({
     let originProtocolAndHost = `${
       ssrContext.req.protocol
     }://${ssrContext.req.get("Host")}`
-    console.log(`originProtocolAndHost is ${originProtocolAndHost}`);
+    console.log(`originProtocolAndHost is ${originProtocolAndHost}`)
     let requestDetails = {
       originProtocolAndHost: originProtocolAndHost,
     }
