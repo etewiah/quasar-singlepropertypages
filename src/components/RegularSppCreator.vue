@@ -46,7 +46,6 @@
 <script>
 // import { useQuasar } from "quasar"
 import { ref } from "vue";
-// import { useRoute } from "vue-router"
 import SppService from "src/spp.service";
 export default {
   components: {},

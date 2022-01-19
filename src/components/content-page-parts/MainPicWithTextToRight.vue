@@ -107,7 +107,7 @@
                     :class="[`fill-current text-${primaryColorClassSuffix}`]"
                   ></polygon>
                 </svg>
-                <h4 class="text-xl font-bold text-white">
+                <h4 class="text-xl text-weight-bold text-white">
                   <span
                     ><div>
                       <div contenteditable="false" tabindex="0" class="">
