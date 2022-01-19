@@ -2,7 +2,7 @@
   <div>
     <q-page-sticky expand position="bottom"> </q-page-sticky>
     <div class="mt-6 flex justify-center">
-      <div class="q-px-md">
+      <div class="q-pa-sm">
         <a
           class="fb-share-link hover:scale-125 transform border-solid border border-white rounded-full w-12 h-12 flex justify-center items-center"
           target="_blank"
@@ -16,7 +16,7 @@
           />
         </a>
       </div>
-      <div class="q-px-md">
+      <div class="q-pa-sm">
         <a
           class="tw-share-link hover:scale-125 transform border-none rounded-full w-12 h-12 flex justify-center items-center"
           target="_blank"
@@ -30,7 +30,7 @@
           />
         </a>
       </div>
-      <div class="q-px-md">
+      <div class="q-pa-sm">
         <a
           class="whatsapp-share-link hover:scale-125 transform border-none rounded-full w-12 h-12 flex justify-center items-center"
           target="_blank"
@@ -44,7 +44,7 @@
           />
         </a>
       </div>
-      <div class="q-px-md">
+      <div class="q-pa-sm">
         <a
           class="linked-in-share-link hover:scale-125 transform border-none rounded-full w-12 h-12 flex justify-center items-center"
           target="_blank"
@@ -58,7 +58,7 @@
           />
         </a>
       </div>
-      <div class="q-px-md">
+      <div class="q-pa-sm">
         <a
           class="email-share-link hover:scale-125 transform border-none rounded-full w-12 h-12 flex justify-center items-center"
           target="_blank"

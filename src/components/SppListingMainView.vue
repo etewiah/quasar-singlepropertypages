@@ -130,12 +130,26 @@ export default defineComponent({
       })
       return heroPageSection
     },
+    sppPageSections() {
+      if (this.sppPageDetails.sections_for_viewing) {
+        return this.sppPageDetails.sections_for_viewing
+      } else {
+        return []
+      }
+    },
+    sppPageDetails() {
+      if (this.sppViewData && this.sppViewData.page) {
+        return this.sppViewData.page
+      } else {
+        return {}
+      }
+    },
   },
   props: {
-    sppPageSections: {
-      type: Array,
-      default: () => [],
-    },
+    // sppPageSections: {
+    //   type: Array,
+    //   default: () => [],
+    // },
     sppViewData: {
       type: Object,
       default: () => {

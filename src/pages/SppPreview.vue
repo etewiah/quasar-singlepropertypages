@@ -2,7 +2,6 @@
   <q-page class="">
     <SppListingMainView
       :sppViewData="sppViewData"
-      :sppPageSections="sppPageSections"
     ></SppListingMainView>
   </q-page>
 </template>
@@ -42,20 +41,20 @@ export default defineComponent({
     )
   },
   computed: {
-    sppPageSections() {
-      if (this.sppPageDetails.sections_for_viewing) {
-        return this.sppPageDetails.sections_for_viewing
-      } else {
-        return []
-      }
-    },
-    sppPageDetails() {
-      if (this.sppViewData && this.sppViewData.page) {
-        return this.sppViewData.page
-      } else {
-        return {}
-      }
-    },
+    // sppPageSections() {
+    //   if (this.sppPageDetails.sections_for_viewing) {
+    //     return this.sppPageDetails.sections_for_viewing
+    //   } else {
+    //     return []
+    //   }
+    // },
+    // sppPageDetails() {
+    //   if (this.sppViewData && this.sppViewData.page) {
+    //     return this.sppViewData.page
+    //   } else {
+    //     return {}
+    //   }
+    // },
     sppViewData() {
       if (this.sppViewDataAsString) {
         return JSON.parse(this.sppViewDataAsString)

@@ -27,7 +27,7 @@
 import { defineComponent, ref } from "vue"
 import RegularSppCreator from "src/components/RegularSppCreator.vue"
 export default defineComponent({
-  name: "BvhSppHomePage",
+  name: "SppHomePage",
   components: {
     RegularSppCreator,
   },

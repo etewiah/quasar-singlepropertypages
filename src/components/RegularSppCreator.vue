@@ -101,7 +101,6 @@ export default {
         //   })
       } else {
         let dataApiBase = this.$store.getters["configStore/getDataApiBase"];
-        // let dataApiBase = "https://bvh.propertywebbuilder.com";
         SppService.createSppFromUrl(dataApiBase, this.importUrl)
           .then((response) => {
             let targetPath = `/p/spp/for-sale/${response.data.listing.listing_uuid}`;
