@@ -58,10 +58,7 @@ export default defineComponent({
       if (!Array.isArray(localSppItems)) {
         localSppItems = []
       }
-      let sppType = "bvh"
-      if (this.$route.name === "rRegularSppEdit") {
-        sppType = "regular"
-      }
+      let sppType = "regular"
       let listingToSave = {
         sppType: sppType,
         listing_uuid: listing.listing_uuid,

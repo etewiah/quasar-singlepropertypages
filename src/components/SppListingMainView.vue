@@ -29,6 +29,7 @@
 <script>
 import { defineComponent, ref, toRef } from "vue"
 import { useMeta } from "quasar"
+import lodashFilter from "lodash/filter"
 import { useStore } from "vuex"
 import SppViewSectionsHost from "src/components/sections/SppViewSectionsHost.vue"
 // import SppHero from "src/packs/spp/sections/SppHero.vue"
@@ -123,7 +124,8 @@ export default defineComponent({
   computed: {
     heroPageSection() {
       let heroPageSection = null
-      this.sppPageSections.forEach((pageSection) => {
+      let sppPageSections = this.sppPageDetails.sections_for_viewing || []
+      sppPageSections.forEach((pageSection) => {
         if (pageSection.editor_template === "HeroClassic") {
           heroPageSection = pageSection
         }
@@ -132,7 +134,15 @@ export default defineComponent({
     },
     sppPageSections() {
       if (this.sppPageDetails.sections_for_viewing) {
-        return this.sppPageDetails.sections_for_viewing
+        let sectionsToReturn = lodashFilter(
+          this.sppPageDetails.sections_for_viewing,
+          function (pageSection) {
+            return !!!["HeroClassic", "ListingEnquirySection"].includes(
+              pageSection.editor_template
+            )
+          }
+        )
+        return sectionsToReturn
       } else {
         return []
       }

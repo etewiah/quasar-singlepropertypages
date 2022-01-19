@@ -49,6 +49,7 @@
 <script>
 import { defineComponent, ref } from "vue"
 import { useQuasar } from "quasar"
+import lodashFilter from "lodash/filter"
 // import { useStore } from "vuex"
 import HeroClassic from "src/components/content-page-parts/HeroClassic.vue"
 import SppEditSectionsHost from "src/components/sections/SppEditSectionsHost.vue"
@@ -165,7 +166,10 @@ export default defineComponent({
       let heroPageSection = {
         texts: {},
       }
-      this.sppEditPageSections.forEach((pageSection) => {
+      let allSppEditPageSections = this.listingPage
+        ? this.listingPage.sections_for_editing
+        : []
+      allSppEditPageSections.forEach((pageSection) => {
         if (pageSection.editor_template === "HeroClassic") {
           heroPageSection = pageSection
         }
@@ -177,19 +181,28 @@ export default defineComponent({
       let sppEditPageSections = this.listingPage
         ? this.listingPage.sections_for_editing
         : []
-      sppEditPageSections.forEach((currentPageSection, index) => {
-        if (sppEditPageSections[index - 2]) {
-          // Using "-2 above because the section immediately after page hero cannot be moved up"
-          currentPageSection.previousSectionUuid =
-            sppEditPageSections[index - 1].uuid
+      // lodashRemove(sppEditPageSections, function (pageSection) {
+      //   return pageSection.editor_template === "HeroClassic"
+      // })
+      let sectionsToReturn = lodashFilter(
+        sppEditPageSections,
+        function (pageSection) {
+          return !!!["HeroClassic", "ListingEnquirySection"].includes(
+            pageSection.editor_template
+          )
         }
-        if (sppEditPageSections[index + 1]) {
-          // if (sppEditPageSections[index+1] && sppEditPageSections[index+1].visible_on_page) {
-          currentPageSection.nextSectionUuid =
-            sppEditPageSections[index + 1].uuid
+      )
+      sectionsToReturn.forEach((currentPageSection, index) => {
+        if (sectionsToReturn[index - 1]) {
+          currentPageSection.previousSectionUuid =
+            sectionsToReturn[index - 1].uuid
+        }
+        if (sectionsToReturn[index + 1]) {
+          // if (sectionsToReturn[index+1] && sectionsToReturn[index+1].visible_on_page) {
+          currentPageSection.nextSectionUuid = sectionsToReturn[index + 1].uuid
         }
       })
-      return sppEditPageSections
+      return sectionsToReturn
     },
     allPhotosForSpp() {
       let allPhotosForSpp = this.listingForEdit
