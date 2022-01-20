@@ -20,37 +20,13 @@ const routes = [
         name: "rSppPreview",
         component: () => import("src/pages/SppPreview.vue"),
       },
-      // {
-      //   path: "p/spp/:listings_grouping/",
-      //   name: "rSppsContainer",
-      //   component: () => import("pages/listings-container.vue"),
-      //   // children: [
-      //   //   {
-      //   //     path: ":listing_slug",
-      //   //     name: "rSppEdit",
-      //   //     component: () => import("src/pages/SppEdit.vue"),
-      //   //   },
-      //   //   {
-      //   //     path: ":listing_slug/preview",
-      //   //     name: "rSppPreview",
-      //   //     component: () => import("src/pages/SppPreview.vue"),
-      //   //   },
-      //   // ]
-      // }
+      {
+        path: "/login",
+        name: "rLoginPage",
+        component: () => import("src/pages/SppLogin.vue"),
+      },
     ]
   },
-  {
-    path: "/login",
-    name: "rLoginPage",
-    component: () => import("src/pages/SppLogin.vue"),
-  },
-  // {
-  //   path: '/',
-  //   component: () => import('layouts/MainLayout.vue'),
-  //   children: [
-  //     { path: '', component: () => import('pages/Index.vue') }
-  //   ]
-  // },
   // Always leave this as last one,
   // but you can also remove it
   {

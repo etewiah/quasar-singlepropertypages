@@ -1,14 +1,18 @@
 import axios from "axios"
-import { LocalStorage } from "quasar"
-
+// import { Cookies, LocalStorage, useQuasar } from "quasar"
 // const $q = useQuasar()
-const user = JSON.parse(LocalStorage.getItem("user"))
+// const user = JSON.parse(LocalStorage.getItem("user"))
+// const cookies = Cookies
 
-// const user = JSON.parse(localStorage.getItem("user"))
-const initialState = user
-  ? { status: { loggedIn: true }, user }
-  : { status: { loggedIn: false }, user: null }
-// Spt 2021 - Above does not work :(
+// const sppUser = cookies.get("spp_user")
+// // const user = JSON.parse(localStorage.getItem("user"))
+// const initialState = sppUser
+//   ? { status: { loggedIn: true }, sppUser }
+//   : { status: { loggedIn: false }, user: null }
+// - Above does not work so will have to ignore attempt to set initialState:(
+// In any case it is easier to read cookies directly in preFetch hook
+// which is where I want to determine if user is logged in.
+const initialState = { status: {} }
 
 export const auth = {
   namespaced: true,
@@ -16,7 +20,6 @@ export const auth = {
   actions: {
     login({ commit }, userParams) {
       let dataApiBase = this.getters["configStore/getDataApiBase"]
-
       let loginUrl = `${dataApiBase}/api_clients/v4/login`
       return axios
         .post(loginUrl, {
@@ -24,22 +27,20 @@ export const auth = {
           password: userParams.password,
         })
         .then((response) => {
+          let sppUser = {}
           if (response.data.user.accessToken) {
-            let userData = {
+            sppUser = {
               accessToken: response.data.user.accessToken,
               uuid: response.data.user.uuid,
               email: response.data.user.email,
-              // user: {
-              //   uuid: response.data.user.uuid,
-              //   email: response.data.user.email,
-              // },
             }
-            localStorage.setItem("user", JSON.stringify(userData))
+            commit("loginSuccess", sppUser)
+            // localStorage.setItem("user", JSON.stringify(sppUser))
+            // $q.cookies.set("spp_user", user)
           }
-          commit("loginSuccess", userData)
-          // return Promise.resolve(userData)
-          // loginSuccess(state, userData) {
-          return response.data
+          // return Promise.resolve(sppUser)
+          // loginSuccess(state, sppUser) {
+          return sppUser
         })
 
     },
@@ -61,9 +62,9 @@ export const auth = {
     // },
   },
   mutations: {
-    loginSuccess(state, userData) {
+    loginSuccess(state, sppUser) {
       state.status.loggedIn = true
-      state.user = userData.user
+      state.user = sppUser.user
     },
     loginFailure(state) {
       state.status.loggedIn = false

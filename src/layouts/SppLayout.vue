@@ -37,13 +37,16 @@ export default defineComponent({
     urlPath,
     publicPath,
   }) {
-    let originProtocolAndHost = `${
-      ssrContext.req.protocol
-    }://${ssrContext.req.get("Host")}`
-    console.log(`originProtocolAndHost is ${originProtocolAndHost}`)
-    let requestDetails = {
-      originProtocolAndHost: originProtocolAndHost,
-    }
+    // let originProtocolAndHost = `${
+    //   ssrContext.req.protocol
+    // }://${ssrContext.req.get("Host")}`
+    // console.log(`originProtocolAndHost is ${originProtocolAndHost}`)
+    // let requestDetails = {
+    //   originProtocolAndHost: originProtocolAndHost,
+    // }
+    // Above was resulting in error "Cannot read properties of undefined (reading 'req')"
+    // when triggered from client side - eg from redirect..
+    let requestDetails = {}
     return store.dispatch("configStore/fetchWebConfig", requestDetails).then(
       (data) => {
         // console.log(data)

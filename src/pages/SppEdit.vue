@@ -12,15 +12,41 @@
 // import uniqBy from "lodash/uniqBy"
 // import _ from "lodash"
 import lodashRemove from "lodash/remove"
-import { useQuasar } from "quasar"
+import { useQuasar, Cookies } from "quasar"
 import { useRoute, useRouter } from "vue-router"
 import { useStore } from "vuex"
 import { defineComponent, ref } from "vue"
 import SppListingMainEdit from "src/components/SppListingMainEdit.vue"
+// import currentUser from "src/services/auth/current-user"
 export default defineComponent({
   name: "SppEdit",
   components: {
     SppListingMainEdit,
+  },
+  preFetch({
+    store,
+    currentRoute,
+    previousRoute,
+    redirect,
+    ssrContext,
+    urlPath,
+    publicPath,
+  }) {
+    const cookies = process.env.SERVER ? Cookies.parseSSR(ssrContext) : Cookies // otherwise we're on client
+    let sppUser = cookies.get("spp_user")
+    // const bvhManagementRoutes = ["rSppEdit"]
+    // const authRequired = bvhManagementRoutes.includes(currentRoute.name)
+    // let authInitialState = store.state.auth.initialState || {}
+    // console.log(authInitialState)
+    const loggedIn = sppUser && sppUser.hasOwnProperty("accessToken") // this.$q.localStorage.getItem("user")
+    if (loggedIn) {
+      console.log("Cookie user found")
+      // TODO - run check to remote endpoint to
+      // check user is valid
+    } else {
+      console.log("Redirecting to login from prefetch")
+      redirect({ path: "/login" })
+    }
   },
   computed: {
     sppPageSections() {

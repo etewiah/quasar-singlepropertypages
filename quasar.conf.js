@@ -112,7 +112,7 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: ["LocalStorage", "Notify", "Meta"],
+      plugins: ["LocalStorage", "Notify", "Meta", "Cookies"],
 
     },
 

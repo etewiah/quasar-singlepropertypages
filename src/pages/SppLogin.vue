@@ -1,14 +1,7 @@
 <template>
   <q-layout view="lhh LpR ffr">
     <q-page
-      class="
-        login-page
-        bg-light-green
-        window-height window-width
-        row
-        justify-center
-        items-center
-      "
+      class="login-page bg-light-green window-height window-width row justify-center items-center"
     >
       <div class="column">
         <div class="row">
@@ -89,11 +82,10 @@
   </q-layout>
 </template>
 
-<style>
-</style>
+<style></style>
 <script>
 // https://raw.githubusercontent.com/neatpro/Quasar-JWT/master/src/pages/login.vue
-import { useQuasar } from "quasar"
+import { useQuasar, Cookies } from "quasar"
 export default {
   data() {
     // const schema = yup.object().shape({
@@ -120,11 +112,12 @@ export default {
   },
   computed: {
     loggedIn() {
-      let user = null
+      let sppUser = null
       if (process.env.CLIENT) {
-        user = JSON.parse(localStorage.getItem("user"))
+        // user = JSON.parse(localStorage.getItem("user"))
+        sppUser = this.$q.cookies.get("spp_user")
       }
-      if (user) {
+      if (sppUser) {
         return true
       } else {
         return false
@@ -141,11 +134,12 @@ export default {
   methods: {
     onSubmit() {
       this.loading = true
-      let user = this.form
+      let userParams = this.form
       // https://www.bezkoder.com/vue-3-authentication-jwt/#Authentication_service
-      this.$store.dispatch("auth/login", user).then(
-        (data) => {
-          if (data.user.accessToken) {
+      this.$store.dispatch("auth/login", userParams).then(
+        (user) => {
+          if (user.accessToken) {
+            this.$q.cookies.set("spp_user", user)
             this.$router.push({ name: "rHomePage" })
             // this.$router.push("/admin")
           } else {
@@ -159,13 +153,14 @@ export default {
         },
         (error) => {
           this.loading = false
-          let errorMessage =
-            error.response.data.error ||
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
+          let errorMessage = error.message || error.toString()
+          if (error.response) {
+            errorMessage =
+              error.response.data.error ||
+              (error.response &&
+                error.response.data &&
+                error.response.data.message)
+          }
           this.qNotify({
             color: "negative",
             position: "top",
