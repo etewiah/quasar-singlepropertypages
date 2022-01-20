@@ -106,7 +106,7 @@ export default {
             this.$router.push(targetPath);
           })
           .catch((error) => {
-            $q.notify({
+            this.$q.notify({
               color: "negative",
               position: "top",
               message: error,

@@ -59,7 +59,6 @@ export default {
   },
   computed: {
     listingFeatures() {
-      debugger
       return this.currentListingData.feature_field_keys || []
     },
   },
