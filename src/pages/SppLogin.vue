@@ -139,9 +139,13 @@ export default {
       this.$store.dispatch("auth/login", userParams).then(
         (user) => {
           if (user.accessToken) {
-            this.$q.cookies.set("spp_user", user)
+            // let sppUserString = JSON.stringify(user)
+            // this.$q.cookies.set("spp_user", sppUserString)
+            // Saving raw json or json string in a cookie as above
+            // results in not being able to read it on quasar server
+            // side so using simple string below
+            this.$q.cookies.set("spp_user_token", user.accessToken)
             this.$router.push({ name: "rHomePage" })
-            // this.$router.push("/admin")
           } else {
             this.qNotify({
               color: "negative",

@@ -59,7 +59,7 @@ export default {
   },
   setup() {
     // const $q = useQuasar()
-    const importUrl = ref("https://www.rightmove.co.uk/properties/115881926");
+    const importUrl = ref("https://www.rightmove.co.uk/properties/118058243");
     const urlRef = ref(null);
     const accept = ref(false);
     // const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/

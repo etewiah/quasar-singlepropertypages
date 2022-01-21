@@ -198,11 +198,11 @@ export default {
 
   methods: {
     logUserOut() {
-      localStorage.removeItem("user")
-      let sppItemsKey = "spp_items:pwbprem"
+      this.$q.cookies.set("spp_user_token", null)
+      this.$q.cookies.set("spp_user", null)
+      // let sppItemsKey = "spp_items:pwbprem"
       // Clear out locally store SPPs:
-      localStorage.setItem(sppItemsKey, "[]")
-      // AuthService.logout()
+      // localStorage.setItem(sppItemsKey, "[]")
       location.reload()
     },
     deleteSpp() {

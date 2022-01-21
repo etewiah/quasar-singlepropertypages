@@ -33,13 +33,15 @@ export default defineComponent({
     publicPath,
   }) {
     const cookies = process.env.SERVER ? Cookies.parseSSR(ssrContext) : Cookies // otherwise we're on client
-    let sppUser = cookies.get("spp_user")
+    // let sppUser = cookies.get("spp_user")
+    let sppUserToken = cookies.get("spp_user_token")
     // const bvhManagementRoutes = ["rSppEdit"]
     // const authRequired = bvhManagementRoutes.includes(currentRoute.name)
     // let authInitialState = store.state.auth.initialState || {}
     // console.log(authInitialState)
-    const loggedIn = sppUser && sppUser.hasOwnProperty("accessToken") // this.$q.localStorage.getItem("user")
-    if (loggedIn) {
+    // const loggedIn = sppUser && sppUser.hasOwnProperty("accessToken") // this.$q.localStorage.getItem("user")
+    // console.log(`User token is ${sppUserToken}`)
+    if (sppUserToken) {
       console.log("Cookie user found")
       // TODO - run check to remote endpoint to
       // check user is valid

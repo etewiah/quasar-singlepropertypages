@@ -1,8 +1,9 @@
-import currentUser from "src/services/auth/current-user"
+import { Cookies } from "quasar"
+// import currentUser from "src/services/auth/current-user"
 export default function authHeader() {
-  let ourCurrentUser = currentUser()
-  if (ourCurrentUser && ourCurrentUser.accessToken) {
-    return { Authorization: "Bearer " + ourCurrentUser.accessToken }
+  const sppUserToken = Cookies.get("spp_user_token")
+  if (sppUserToken) {
+    return { Authorization: "Bearer " + sppUserToken }
     // return { 'x-access-token': user.accessToken };       // for Node.js Express back-end
   } else {
     return {}
