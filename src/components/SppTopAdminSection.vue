@@ -198,12 +198,14 @@ export default {
 
   methods: {
     logUserOut() {
-      this.$q.cookies.set("spp_user_token", null)
-      this.$q.cookies.set("spp_user", null)
+      debugger
+      this.$q.cookies.set("spp_user_token", null, { path: "/" })
+      this.$router.push({ name: "rHomePage" })
+      // this.$q.cookies.set("spp_user", null)
       // let sppItemsKey = "spp_items:pwbprem"
       // Clear out locally store SPPs:
       // localStorage.setItem(sppItemsKey, "[]")
-      location.reload()
+      // location.reload()
     },
     deleteSpp() {
       // let realtyAssetUuid =
