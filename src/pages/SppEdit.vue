@@ -11,7 +11,7 @@
 <script>
 // import uniqBy from "lodash/uniqBy"
 // import _ from "lodash"
-import lodashRemove from "lodash/remove"
+import lodashRemove from "lodash.remove"
 import { useQuasar, Cookies } from "quasar"
 import { useRoute, useRouter } from "vue-router"
 import { useStore } from "vuex"
