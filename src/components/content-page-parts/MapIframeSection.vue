@@ -44,10 +44,10 @@ export default {
       return coreDefaultSetup.general.GMAPS_EMBED_KEY
     },
     mapQueryName() {
-      return this.currentListingData.city || "Costa del Sol"
+      return this.currentListingData.city || "London"
     },
     mapCountryName() {
-      return this.currentListingData.country || "España"
+      return this.currentListingData.country || "UK"
     },
     mapSrc() {
       let mapSrc =

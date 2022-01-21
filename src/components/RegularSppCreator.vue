@@ -19,7 +19,7 @@
             filled
             v-model="importUrl"
             label="Url to import listing from *"
-            hint="Must be a valid url"
+            hint="Currently works best with listings from rightmove.co.uk"
             lazy-rules
             :rules="urlRules"
           />
