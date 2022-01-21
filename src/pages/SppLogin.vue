@@ -6,7 +6,7 @@
       <div class="column">
         <div class="row">
           <h5 class="text-h5 text-white q-my-md">
-            Single Property Page Builder
+            SinglePropertyPage Builder
           </h5>
         </div>
         <div class="row">
@@ -19,6 +19,13 @@
               <q-card-section class="text-center q-pa-none">
                 <h5 class="text-grey-6">Please sign in</h5>
               </q-card-section>
+              <q-card-section class="text-center q-pa-none">
+                <p class="">
+                  This is a demo site. You can sign in as spp@example.com with
+                  the password spp123456.
+                </p>
+              </q-card-section>
+
               <q-separator />
               <div class="text-left">
                 <q-input
@@ -49,9 +56,12 @@
                 label="Login"
               />
             </q-card-actions> -->
-              <!-- <q-card-section class="text-center q-pa-none">
-              <p class="text-grey-6">Not registered? Created an Account</p>
-            </q-card-section> -->
+              <q-card-section class="text-center q-pa-none">
+                <p class="text-grey-6">
+                  If you are the owner of this site, please create an account at
+                  <a href="https://propertywebbuilder.com/">https://propertywebbuilder.com</a> for a private instance.
+                </p>
+              </q-card-section>
             </q-card>
           </form>
           <!-- <q-card square bordered class="q-pa-lg shadow-1">
