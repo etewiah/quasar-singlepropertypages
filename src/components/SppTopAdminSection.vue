@@ -198,7 +198,6 @@ export default {
 
   methods: {
     logUserOut() {
-      debugger
       this.$q.cookies.set("spp_user_token", null, { path: "/" })
       this.$router.push({ name: "rHomePage" })
       // this.$q.cookies.set("spp_user", null)

@@ -49,7 +49,7 @@
 <script>
 import { defineComponent, ref } from "vue"
 import { useQuasar } from "quasar"
-import lodashFilter from "lodash/filter"
+import {filter} from "lodash"
 // import { useStore } from "vuex"
 import HeroClassic from "src/components/content-page-parts/HeroClassic.vue"
 import SppEditSectionsHost from "src/components/sections/SppEditSectionsHost.vue"
@@ -184,7 +184,7 @@ export default defineComponent({
       // lodashRemove(sppEditPageSections, function (pageSection) {
       //   return pageSection.editor_template === "HeroClassic"
       // })
-      let sectionsToReturn = lodashFilter(
+      let sectionsToReturn = filter(
         sppEditPageSections,
         function (pageSection) {
           return !!!["HeroClassic", "ListingEnquirySection"].includes(

@@ -29,7 +29,7 @@
 <script>
 import { defineComponent, ref, toRef } from "vue"
 import { useMeta } from "quasar"
-import lodashFilter from "lodash/filter"
+import {filter} from "lodash"
 import { useStore } from "vuex"
 import SppViewSectionsHost from "src/components/sections/SppViewSectionsHost.vue"
 // import SppHero from "src/packs/spp/sections/SppHero.vue"
@@ -134,7 +134,7 @@ export default defineComponent({
     },
     sppPageSections() {
       if (this.sppPageDetails.sections_for_viewing) {
-        let sectionsToReturn = lodashFilter(
+        let sectionsToReturn = filter(
           this.sppPageDetails.sections_for_viewing,
           function (pageSection) {
             return !!!["HeroClassic", "ListingEnquirySection"].includes(
