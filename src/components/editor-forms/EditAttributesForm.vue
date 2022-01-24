@@ -8,7 +8,7 @@
         <SppSubmitter
           :cancelPendingChanges="cancelPendingChanges"
           :lastChangedField="lastChangedField"
-          :currentModelForEditing="currentRealtyAsset"
+          :currentModelForEditing="currentRealtyAssetWithListing"
           submitObjectType="realtyAssetPlusListing"
           @changesCanceled="changesCanceled"
         ></SppSubmitter>
@@ -134,6 +134,12 @@ export default defineComponent({
     currentListing() {
       return this.listingsEditProvider.state.currentEditListing
     },
+    currentRealtyAssetWithListing(){
+      return {
+        listing: this.currentListing,
+        realtyAsset: this.currentRealtyAsset
+      }
+    }
   },
   methods: {
     updatePendingChanges({ fieldDetails, newValue }) {

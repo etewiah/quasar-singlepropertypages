@@ -159,8 +159,8 @@ export default {
           })
         }
         this.currPendingChanges = {}
-        let listingUuid = this.currentModelForEditing.uuid
-        let listingModelName = this.currentModelForEditing.model_name
+        let listingUuid = this.currentModelForEditing.listing.uuid
+        let listingModelName = this.currentModelForEditing.listing.model_name
         this.putRealtyAssetWithListing({
           listing_uuid: listingUuid,
           // realty_asset_uuid: this.currentModelForEditing.realty_asset_uuid,

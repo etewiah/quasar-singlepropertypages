@@ -1,9 +1,9 @@
 <template>
-  <div class="row edit-gen-temp-sect">
+  <div v-if="editorTemplate" class="row edit-gen-temp-sect">
     <div class="col-12">
       <div>
         <div
-          v-if="currentPageSectionForEditing.visible_on_page"
+          v-if="ppVisibleOnPage"
           class="dd-edit-btn-container"
           style="margin-bottom: -60px; height: 40px"
         >
@@ -64,6 +64,9 @@ export default {
   },
   mounted: function () {},
   computed: {
+    ppVisibleOnPage() {
+      return this.currentPageSectionForEditing.visible_on_page
+    },
     canBeMovedUp() {
       return !!this.currentPageSectionForEditing.previousSectionUuid
     },
