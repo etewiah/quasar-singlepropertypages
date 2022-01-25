@@ -1,11 +1,14 @@
 <template>
-  <div class="row mt-1">
+  <q-card
+    class="row q-mt-lg text-white"
+    style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)"
+  >
     <div class="col-xs-12">
-      <h2
-        class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 pb-5 pt-10"
+      <h4
+        class="font-medium text-center title-font text-gray-900 q-mb-sm pt-10"
       >
-        Enter url to import your custom page from
-      </h2>
+        Get started by entering a url here:
+      </h4>
     </div>
     <div class="col-xs-12 col-md-12">
       <div class="q-pa-md" style="">
@@ -15,8 +18,12 @@
           class="q-gutter-md"
         >
           <q-input
+            style=""
+            bg-color="white"
             ref="urlRef"
-            filled
+            color="teal"
+            autofocus
+            outlined
             v-model="importUrl"
             label="Url to import listing from *"
             hint="Currently works best with listings from rightmove.co.uk"
@@ -28,7 +35,7 @@
             <q-btn
               label="Create my single property page"
               type="submit"
-              color="primary"
+              color="green"
             />
             <q-btn
               label="Reset"
@@ -41,12 +48,12 @@
         </form>
       </div>
     </div>
-  </div>
+  </q-card>
 </template>
 <script>
 // import { useQuasar } from "quasar"
-import { ref } from "vue";
-import SppService from "src/spp.service";
+import { ref } from "vue"
+import SppService from "src/spp.service"
 export default {
   components: {},
   mounted() {},
@@ -55,13 +62,13 @@ export default {
     return {
       // loadingSearch: false,
       // setupData: {},
-    };
+    }
   },
   setup() {
     // const $q = useQuasar()
-    const importUrl = ref("https://www.rightmove.co.uk/properties/118058243");
-    const urlRef = ref(null);
-    const accept = ref(false);
+    const importUrl = ref("https://www.rightmove.co.uk/properties/118058243")
+    const urlRef = ref(null)
+    const accept = ref(false)
     // const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     const urlRegex = new RegExp(
       "^(https?:\\/\\/)?" + // protocol
@@ -71,7 +78,7 @@ export default {
         "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
         "(\\#[-a-z\\d_]*)?$",
       "i"
-    );
+    )
     // return this.customer.email && emailRegex.test(this.customer.email) || 'Please enter a valid email address';
 
     return {
@@ -83,14 +90,14 @@ export default {
         (val) => (val && urlRegex.test(val)) || "Please enter a valid url",
       ],
       onReset() {
-        importUrl.value = null;
-        urlRef.value.resetValidation();
+        importUrl.value = null
+        urlRef.value.resetValidation()
       },
-    };
+    }
   },
   methods: {
     createSpp() {
-      this.urlRef.validate();
+      this.urlRef.validate()
       if (this.urlRef.hasError) {
         // form has error
         // } else if (accept !== true) {
@@ -99,11 +106,11 @@ export default {
         //     message: "You need to accept the license and terms first",
         //   })
       } else {
-        let dataApiBase = this.$store.getters["configStore/getDataApiBase"];
+        let dataApiBase = this.$store.getters["configStore/getDataApiBase"]
         SppService.createSppFromUrl(dataApiBase, this.importUrl)
           .then((response) => {
-            let targetPath = `/p/spp/for-sale/${response.data.listing.listing_uuid}`;
-            this.$router.push(targetPath);
+            let targetPath = `/p/spp/for-sale/${response.data.listing.listing_uuid}`
+            this.$router.push(targetPath)
           })
           .catch((error) => {
             this.$q.notify({
@@ -111,12 +118,17 @@ export default {
               position: "top",
               message: error,
               icon: "report_problem",
-            });
-          });
+            })
+          })
       }
     },
   },
   computed: {},
   props: {},
-};
+}
 </script>
+<style>
+.q-field__messages {
+  color: white;
+}
+</style>

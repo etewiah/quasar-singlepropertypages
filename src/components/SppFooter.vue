@@ -1,7 +1,7 @@
 <template>
   <q-footer elevated class="bg-grey-8 text-white">
     <q-toolbar>
-      <q-toolbar-title>
+      <!-- <q-toolbar-title>
         <div class="float-left q-pa-sm">
           Powered by :
           <a
@@ -33,8 +33,15 @@
             ></span>
           </a>
         </div>
-      </q-toolbar-title>
-      <div>Copyright © 2021 - 2022 PropertyWebBuilder, Ed Tee</div>
+      </q-toolbar-title> -->
+      <div class="copyright-foot full-width">
+        <div class="float-right">
+          Copyright © 2021 - 2022
+          <a class="text-white" href="https://propertywebbuilder.com"
+            >PropertyWebBuilder</a
+          >, Ed Tee
+        </div>
+      </div>
     </q-toolbar>
   </q-footer>
 </template>
