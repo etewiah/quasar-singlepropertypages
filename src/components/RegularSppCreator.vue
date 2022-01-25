@@ -51,7 +51,7 @@
   </q-card>
 </template>
 <script>
-// import { useQuasar } from "quasar"
+import lodashRemove from "lodash.remove"
 import { ref } from "vue"
 import SppService from "src/spp.service"
 export default {
@@ -59,10 +59,7 @@ export default {
   mounted() {},
   watch: {},
   data() {
-    return {
-      // loadingSearch: false,
-      // setupData: {},
-    }
+    return {}
   },
   setup() {
     // const $q = useQuasar()
@@ -96,6 +93,35 @@ export default {
     }
   },
   methods: {
+    addToLocalSppItems(listing) {
+      let sppItemsKey = "spp_items:pwbprem"
+      let localSppItems = JSON.parse(localStorage.getItem(sppItemsKey)) || []
+      if (!Array.isArray(localSppItems)) {
+        localSppItems = []
+      }
+      let sppType = "regular"
+      let listingToSave = {
+        sppType: sppType,
+        listing_uuid: listing.listing_uuid,
+        preview_url: listing.preview_url,
+        formatted_display_price: listing.formatted_display_price,
+        title: listing.title,
+        reference: listing.reference,
+        count_bathrooms: listing.count_bathrooms,
+        count_bedrooms: listing.count_bedrooms,
+        slug: listing.slug,
+      }
+      // from lodash:
+      // union(localSppItems, [this.currentListingData])
+      lodashRemove(localSppItems, function (n) {
+        return n.listing_uuid === listingToSave.listing_uuid
+      })
+      localSppItems.push(listingToSave)
+      // prefer removing then setting as it ensures latest details are used
+      localStorage.setItem(sppItemsKey, JSON.stringify(localSppItems))
+      // Below would ensure that list does not have duplicates but might keep older version:
+      // localSppItems = uniqBy(localSppItems, "listing_uuid")
+    },
     createSpp() {
       this.urlRef.validate()
       if (this.urlRef.hasError) {
@@ -109,6 +135,7 @@ export default {
         let dataApiBase = this.$store.getters["configStore/getDataApiBase"]
         SppService.createSppFromUrl(dataApiBase, this.importUrl)
           .then((response) => {
+            this.addToLocalSppItems(response.data.listing)
             let targetPath = `/p/spp/for-sale/${response.data.listing.listing_uuid}`
             this.$router.push(targetPath)
           })

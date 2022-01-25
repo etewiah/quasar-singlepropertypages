@@ -100,19 +100,14 @@ export default defineComponent({
       }
       // from lodash:
       // union(localSppItems, [this.currentListingData])
-      // console.log(uniqBy)
-      // console.log(remove)
       lodashRemove(localSppItems, function (n) {
         return n.listing_uuid === listingToSave.listing_uuid
       })
       localSppItems.push(listingToSave)
-      // localSppItems = []
       // prefer removing then setting as it ensures latest details are used
-      // Below will ensure that list does not have duplicates but might keep older version:
-      // localSppItems = uniqBy(localSppItems, "listing_uuid")
       localStorage.setItem(sppItemsKey, JSON.stringify(localSppItems))
-      // below is my way to get favourited computed prop to recompute
-      // this.forceFavourited = true
+      // Below would ensure that list does not have duplicates but might keep older version:
+      // localSppItems = uniqBy(localSppItems, "listing_uuid")
     },
   },
   // props: {},
