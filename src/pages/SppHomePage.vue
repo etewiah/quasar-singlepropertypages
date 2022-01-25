@@ -50,7 +50,7 @@
         </div>
         <div class="col-xs-12">
           <h2
-            class="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 pb-5 pt-10"
+            class="q-pt-xl font-medium text-center title-font text-gray-900"
           >
             FAQ
           </h2>
