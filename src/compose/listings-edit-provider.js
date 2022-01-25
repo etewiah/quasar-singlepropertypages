@@ -32,6 +32,7 @@ function setCurrentEditRealtyAsset(incomingData, listingsGrouping) {
   let currentEditRealtyAsset = {}
   // A bit convuluted doing all this client side but prefer as it gives
   // me more flexibility down the line
+  currentEditRealtyAsset.import_url = incomingData.mgmt_content.realty_asset.import_url
   currentEditRealtyAsset.constructed_area = incomingData.mgmt_content.realty_asset.constructed_area
   currentEditRealtyAsset.count_bedrooms = incomingData.mgmt_content.realty_asset.count_bedrooms
   currentEditRealtyAsset.count_bathrooms = incomingData.mgmt_content.realty_asset.count_bathrooms

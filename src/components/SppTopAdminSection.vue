@@ -1,16 +1,16 @@
 <template>
   <q-header v-if="showAdminSection" elevated>
-    <q-toolbar style="min-height: 70px" class="spp-top-admin-bg">
+    <q-toolbar style="" class="spp-top-admin-bg">
       <q-btn
         flat
         dense
         round
-        class="mobile-only"
+        class=""
         icon="menu"
         aria-label="Menu"
         @click="toggleLeftDrawer"
       />
-      <q-toolbar-title class="mobile-hide">
+      <!-- <q-toolbar-title class="mobile-hide">
         <q-btn
           :to="{ name: sppHomeRouteName }"
           color="primary"
@@ -25,8 +25,8 @@
           icon="logout"
           @click="logUserOut"
         />
-      </q-toolbar-title>
-      <q-tabs class="mobile-hide" style="margin-top: -10px">
+      </q-toolbar-title> -->
+      <q-tabs align="right" class="sta-q-tabs full-width" style="">
         <div class="float-right">
           <q-btn
             align="around"
@@ -99,7 +99,6 @@
       </q-item>
       <q-item clickable>
         <q-btn
-          align="around"
           class="full-width"
           color="brown-5"
           label="Log Out"
@@ -114,14 +113,24 @@
       /> -->
       <q-item clickable>
         <q-btn
-          align="around"
           class="full-width"
           color="blue"
           label="Preview"
           icon="visibility"
           :to="{ name: sppPreviewRouteName }"
         />
-        <!-- <q-btn
+      </q-item>
+      <q-item clickable>
+        <q-btn
+          class="full-width"
+          color="blue"
+          label="Original Listing"
+          icon="link"
+          :href="originalListingUrl"
+          target="_blank"
+        />
+      </q-item>
+      <!-- <q-btn
           align="around"
           class="full-width"
           color="secondary"
@@ -137,18 +146,7 @@
           icon="visibility"
           @click="exportSppToPdf"
         /> -->
-      </q-item>
       <!-- <q-item clickable>
-        <q-btn
-          align="around"
-          class="full-width"
-          color="red"
-          label="Delete"
-          icon="delete"
-          @click="deleteSpp"
-        />
-      </q-item> -->
-      <q-item clickable>
         <q-btn
           align="around"
           class="full-width"
@@ -157,7 +155,7 @@
           icon="settings"
           @click="startPublishSpp"
         />
-      </q-item>
+      </q-item> -->
     </q-list>
   </q-drawer>
 </template>
@@ -174,7 +172,7 @@ import { ref } from "vue"
 // Idea for above from:
 // https://forum.quasar-framework.org/topic/2576/ssr-window-is-not-defined/2
 export default {
-  // inject: ["listingsEditProvider"],
+  inject: ["listingsEditProvider"],
   components: {
     // SppPublishForm,
   },
@@ -276,6 +274,14 @@ export default {
     // download("hello.txt","This is the content of my file :)");
   },
   computed: {
+    originalListingUrl() {
+      let realtyAsset = this.listingsEditProvider.state.currentEditRealtyAsset
+      if (realtyAsset.import_url) {
+        return realtyAsset.import_url
+      } else {
+        return "/"
+      }
+    },
     sppPreviewRouteName() {
       return "rSppPreview"
     },
