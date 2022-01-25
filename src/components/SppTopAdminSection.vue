@@ -44,14 +44,7 @@
           icon="visibility"
           @click="exportSppToHtml"
         />
-        <q-btn
-          align="around"
-          class="btn-fixed-width q-mr-md"
-          color="secondary"
-          label="Export To Pdf"
-          icon="visibility"
-          @click="exportSppToPdf"
-        /> -->
+        -->
 
           <!-- <q-btn
             align="around"
@@ -71,6 +64,29 @@
           /> -->
         </div>
       </q-tabs>
+      <q-dialog v-model="exportToPdfModal">
+        <q-card>
+          <q-card-section>
+            <div class="text-h6">Export to PDF functionality coming soon</div>
+          </q-card-section>
+          <q-card-section class="q-pt-none">
+            <!-- <h4>Coming soon</h4> -->
+            <div>
+              Follow progress here:
+              <br>
+              <a
+              target="_blank"
+                href="https://github.com/etewiah/quasar-singlepropertypages/issues/1"
+                >https://github.com/etewiah/quasar-singlepropertypages/issues/1</a
+              >
+            </div>
+          </q-card-section>
+
+          <q-card-actions align="right">
+            <q-btn flat label="OK" color="primary" v-close-popup />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
       <q-dialog v-model="showPublishModal">
         <q-layout view="Lhh lpR fff" container class="bg-white">
           <!-- <SppPublishForm></SppPublishForm> -->
@@ -130,6 +146,15 @@
           target="_blank"
         />
       </q-item>
+      <q-item>
+        <q-btn
+          class="full-width"
+          color="blue"
+          label="Export To Pdf"
+          icon="picture_as_pdf"
+          @click="startExportToPdf"
+        />
+      </q-item>
       <!-- <q-btn
           align="around"
           class="full-width"
@@ -180,6 +205,7 @@ export default {
   data() {
     return {
       showPublishModal: false,
+      exportToPdfModal: false,
     }
   },
   setup() {
@@ -195,6 +221,9 @@ export default {
   },
 
   methods: {
+    startExportToPdf() {
+      this.exportToPdfModal = true
+    },
     logUserOut() {
       this.$q.cookies.set("spp_user_token", null, { path: "/" })
       this.$router.push({ name: "rHomePage" })
