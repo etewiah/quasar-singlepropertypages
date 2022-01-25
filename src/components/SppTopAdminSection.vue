@@ -98,7 +98,7 @@
   <q-drawer
     v-if="showAdminSection"
     v-model="leftDrawerOpen"
-    do-not-show-if-above
+    show-if-above
     bordered
     class="bg-grey-1"
   >
