@@ -1,9 +1,9 @@
 <template>
   <div
     v-if="savedSppItems.length > 0"
-    class="q-my-xl q-py-xl container search-results-cont container--fluid grid-list-md px-0"
+    class="q-mt-lg q-pt-lg container search-results-cont container--fluid grid-list-md px-0"
   >
-    <div row wrap>
+    <div class="q-mx-sm" row wrap>
       <div class="col-xs-12">
         <h3
           class="font-medium text-center title-font text-gray-900 q-py-lg q-my-lg"
@@ -20,7 +20,7 @@
         padding
       >
         <div
-          class="col-6 col-md-4"
+          class="col-12 col-sm-6 col-md-4"
           v-for="(property, index) in savedSppItems"
           :key="index"
         >
