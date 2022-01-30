@@ -11,6 +11,13 @@ const routes = [
         ]
       },
       {
+        path: "source-html",
+        name: "rSourceHtml",
+        component: () => import("src/pages/SourceHtml.vue"),
+        children: [
+        ]
+      },
+      {
         path: "p/spp/:listings_grouping/:listing_slug",
         name: "rSppEdit",
         component: () => import("src/pages/SppEdit.vue"),
