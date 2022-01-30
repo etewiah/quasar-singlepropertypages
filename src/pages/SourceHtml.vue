@@ -1,11 +1,10 @@
 <template>
   <q-page class="">
-    <div class="container p-0 mx-auto">
+    <div v-if="!!!showUrlPromptModal" class="container p-0 mx-auto">
       <div class="row mt-10">
         <div class="col-xs-12">
           <div class="q-mx-md intro-cont">
-            <h3 class="title-font text-gray-900 pb-5 pt-10">
-            </h3>
+            <h3 class="title-font text-gray-900 pb-5 pt-10"></h3>
             <!-- <div>
               <p class="text-body1 q-mx-md">
                 It has not been possible to get all the data for this listing
@@ -15,10 +14,46 @@
           </div>
         </div>
         <div class="col-xs-12">
-          <HtmlSppCreator></HtmlSppCreator>
+          <HtmlSppCreator :remoteListingSrc="importUrl"></HtmlSppCreator>
         </div>
       </div>
     </div>
+    <q-dialog v-model="showUrlPromptModal">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">
+            Please provide a valid url to import listing from:
+          </div>
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <!-- <h4>Coming soon</h4> -->
+          <div>
+            <form @submit.prevent.stop="updateImportUrl" class="q-gutter-md">
+              <q-input
+                style=""
+                bg-color="white"
+                ref="urlRef"
+                color="black"
+                autofocus
+                outlined
+                v-model="importUrl"
+                label=""
+                hint=""
+                lazy-rules
+                :rules="urlRules"
+              />
+              <div>
+                <q-btn label="Ok" type="submit" color="green" />
+              </div>
+            </form>
+          </div>
+        </q-card-section>
+
+        <!-- <q-card-actions align="right">
+          <q-btn flat label="OK" color="primary" v-close-popup />
+        </q-card-actions> -->
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 <script>
@@ -29,9 +64,64 @@ export default defineComponent({
   components: {
     HtmlSppCreator,
   },
-  methods: {},
+  methods: {
+    updateImportUrl() {
+      this.urlRef.validate()
+      if (!this.urlRef.hasError) {
+        debugger
+        this.$route.query["url"] = this.importUrl
+        this.showUrlPromptModal = false
+      }
+    },
+  },
   props: {},
   computed: {},
-  mounted() {},
+  data() {
+    return {
+      showUrlPromptModal: false,
+    }
+  },
+  setup() {
+    const importUrl = ref("")
+    const urlRef = ref(null)
+    const urlRegex = new RegExp(
+      "^(https?:\\/\\/)?" + // protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    )
+    return {
+      urlRegex,
+      importUrl,
+      urlRef,
+      urlRules: [
+        (val) => (val && val.length > 0) || "Please type something",
+        (val) => (val && urlRegex.test(val)) || "Please enter a valid url",
+      ],
+    }
+  },
+  mounted() {
+    // const urlRegex = new RegExp(
+    //   "^(https?:\\/\\/)?" + // protocol
+    //     "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+    //     "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+    //     "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+    //     "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+    //     "(\\#[-a-z\\d_]*)?$",
+    //   "i"
+    // )
+    if (this.$route.query["url"]) {
+      this.importUrl = this.$route.query["url"]
+      let validUrlProvided = this.urlRegex.test(this.$route.query["url"])
+      if (!validUrlProvided) {
+        this.showUrlPromptModal = true
+      }
+    } else {
+      this.showUrlPromptModal = true
+    }
+  },
 })
 </script>

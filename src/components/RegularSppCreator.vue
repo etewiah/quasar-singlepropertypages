@@ -15,7 +15,7 @@
         <form
           @submit.prevent.stop="createSpp"
           @reset.prevent.stop="onReset"
-          class="q-gutter-md"
+          class="q-gutter-md reg-spp-creator"
         >
           <q-input
             style=""
@@ -155,7 +155,7 @@ export default {
 }
 </script>
 <style>
-.q-field__messages {
+.reg-spp-creator .q-field__messages {
   color: white;
 }
 </style>

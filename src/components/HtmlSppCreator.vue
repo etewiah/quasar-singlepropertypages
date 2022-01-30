@@ -203,16 +203,16 @@ export default {
     },
   },
   computed: {
-    remoteListingSrc() {
-      return "https://www.immobilienscout24.de/expose/131882134?referrer=HP_INSPIRATION_ONE#/"
-      //  "https://www.redfin.com/HI/Hilo/918-Kumukoa-St-96720/unit-B303/home/88415062"
+    // remoteListingSrc() {
+    //   return "https://www.immobilienscout24.de/expose/131882134?referrer=HP_INSPIRATION_ONE#/"
+    //   //  "https://www.redfin.com/HI/Hilo/918-Kumukoa-St-96720/unit-B303/home/88415062"
+    // },
+  },
+  props: {
+    remoteListingSrc: {
+      type: String,
     },
   },
-  props: {},
 }
 </script>
-<style>
-.q-field__messages {
-  color: white;
-}
-</style>
+<style></style>
