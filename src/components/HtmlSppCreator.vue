@@ -33,6 +33,7 @@
               outlined
               v-model="rawHtmlToParse"
               lazy-rules
+              :rules="rawHtmlRules"
             />
             <!-- <q-toggle v-model="accept" label="I accept the license and terms" /> -->
             <div>
@@ -122,26 +123,31 @@ export default {
     // const $q = useQuasar()
     const rawHtmlToParse = ref("")
     const rawHtmlRef = ref(null)
-    const accept = ref(false)
-    // const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    const urlRegex = new RegExp(
-      "^(https?:\\/\\/)?" + // protocol
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-        "(\\#[-a-z\\d_]*)?$",
-      "i"
-    )
-    // return this.customer.email && emailRegex.test(this.customer.email) || 'Please enter a valid email address';
+    // const accept = ref(false)
+    function isValidHTML(html) {
+      let parser = new DOMParser()
+      let doc = parser.parseFromString(html, "text/html")
+      let allElementsLength = doc.getElementsByTagName("*").length
+      // This simple validation is sufficient for now as fuller validation
+      // occurs on the server
+      if (doc.title && doc.title.length > 2 && allElementsLength > 50) {
+        return true
+      } else {
+        return false
+      }
+      // https://stackoverflow.com/questions/9353791/strict-html-parsing-in-javascript
+    }
 
     return {
-      accept,
+      // accept,
       rawHtmlToParse,
       rawHtmlRef,
-      urlRules: [
-        (val) => (val && val.length > 0) || "Please type something",
-        (val) => (val && urlRegex.test(val)) || "Please enter a valid url",
+      rawHtmlRules: [
+        (val) =>
+          (val && val.length > 0) ||
+          "Please enter the source html for the property listing",
+        (val) =>
+          (val && isValidHTML(val)) || "Content entered is not valid html",
       ],
       onReset() {
         rawHtmlToParse.value = null
@@ -180,34 +186,38 @@ export default {
       // localSppItems = uniqBy(localSppItems, "listing_uuid")
     },
     createSpp() {
-      // this.rawHtmlRef.validate()
-      let dataApiBase = this.$store.getters["configStore/getDataApiBase"]
-      SppService.createSppFromHtml(
-        dataApiBase,
-        this.remoteListingSrc,
-        this.rawHtmlToParse
-      )
-        .then((response) => {
-          this.addToLocalSppItems(response.data.listing)
-          let targetPath = `/p/spp/for-sale/${response.data.listing.listing_uuid}`
-          this.$router.push(targetPath)
-        })
-        .catch((error) => {
-          this.$q.notify({
-            color: "negative",
-            position: "top",
-            message: error,
-            icon: "report_problem",
+      this.rawHtmlRef.validate()
+      if (this.rawHtmlRef.hasError) {
+      } else {
+        let dataApiBase = this.$store.getters["configStore/getDataApiBase"]
+        SppService.createSppFromHtml(
+          dataApiBase,
+          this.remoteListingSrc,
+          this.rawHtmlToParse
+        )
+          .then((response) => {
+            this.addToLocalSppItems(response.data.listing)
+            let targetPath = `/p/spp/for-sale/${response.data.listing.listing_uuid}`
+            this.$router.push(targetPath)
           })
-        })
+          .catch((error) => {
+            let errorMessage = "Sorry, "
+            if (error.response && error.response.data.error) {
+              errorMessage += error.response.data.error
+            } else {
+              errorMessage += "there has been an error"
+            }
+            this.$q.notify({
+              color: "negative",
+              position: "top",
+              message: errorMessage,
+              icon: "report_problem",
+            })
+          })
+      }
     },
   },
-  computed: {
-    // remoteListingSrc() {
-    //   return "https://www.immobilienscout24.de/expose/131882134?referrer=HP_INSPIRATION_ONE#/"
-    //   //  "https://www.redfin.com/HI/Hilo/918-Kumukoa-St-96720/unit-B303/home/88415062"
-    // },
-  },
+  computed: {},
   props: {
     remoteListingSrc: {
       type: String,

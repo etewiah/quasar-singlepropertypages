@@ -48,10 +48,6 @@
             </form>
           </div>
         </q-card-section>
-
-        <!-- <q-card-actions align="right">
-          <q-btn flat label="OK" color="primary" v-close-popup />
-        </q-card-actions> -->
       </q-card>
     </q-dialog>
   </q-page>
@@ -68,8 +64,8 @@ export default defineComponent({
     updateImportUrl() {
       this.urlRef.validate()
       if (!this.urlRef.hasError) {
-        debugger
-        this.$route.query["url"] = this.importUrl
+        // this.$route.query["url"] = this.importUrl
+        this.$router.push({query: {url: this.importUrl}})
         this.showUrlPromptModal = false
       }
     },
@@ -98,21 +94,12 @@ export default defineComponent({
       importUrl,
       urlRef,
       urlRules: [
-        (val) => (val && val.length > 0) || "Please type something",
+        (val) => (val && val.length > 0) || "Please enter url",
         (val) => (val && urlRegex.test(val)) || "Please enter a valid url",
       ],
     }
   },
   mounted() {
-    // const urlRegex = new RegExp(
-    //   "^(https?:\\/\\/)?" + // protocol
-    //     "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-    //     "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-    //     "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-    //     "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-    //     "(\\#[-a-z\\d_]*)?$",
-    //   "i"
-    // )
     if (this.$route.query["url"]) {
       this.importUrl = this.$route.query["url"]
       let validUrlProvided = this.urlRegex.test(this.$route.query["url"])
