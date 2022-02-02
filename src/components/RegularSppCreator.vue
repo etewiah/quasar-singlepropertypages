@@ -67,16 +67,24 @@ export default {
     const urlRef = ref(null)
     const accept = ref(false)
     // const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    const urlRegex = new RegExp(
-      "^(https?:\\/\\/)?" + // protocol
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-        "(\\#[-a-z\\d_]*)?$",
-      "i"
-    )
+    // const urlRegex = new RegExp(
+    //   "^(https?:\\/\\/)?" + // protocol
+    //     "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+    //     "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+    //     "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+    //     "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+    //     "(\\#[-a-z\\d_]*)?$",
+    //   "i"
+    // )
     // return this.customer.email && emailRegex.test(this.customer.email) || 'Please enter a valid email address';
+    function urlValidator(urlString) {
+      const urlObject = new URL(urlString)
+      if (urlObject.host.length > 1) {
+        return true
+      } else {
+        return false
+      }
+    }
 
     return {
       accept,
@@ -84,7 +92,8 @@ export default {
       urlRef,
       urlRules: [
         (val) => (val && val.length > 0) || "Please type something",
-        (val) => (val && urlRegex.test(val)) || "Please enter a valid url",
+        (val) => (val && urlValidator(val)) || "Please enter a valid url",
+        // (val) => (val && urlRegex.test(val)) || "Please enter a valid url",
       ],
       onReset() {
         importUrl.value = null
@@ -140,12 +149,19 @@ export default {
             this.$router.push(targetPath)
           })
           .catch((error) => {
-            this.$q.notify({
-              color: "negative",
-              position: "top",
-              message: error,
-              icon: "report_problem",
-            })
+            if (error.response.status === 418) {
+              this.$router.push({
+                name: "rSourceHtml",
+                query: { url: this.importUrl },
+              })
+            } else {
+              this.$q.notify({
+                color: "negative",
+                position: "top",
+                message: error,
+                icon: "report_problem",
+              })
+            }
           })
       }
     },

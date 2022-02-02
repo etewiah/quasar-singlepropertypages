@@ -65,7 +65,7 @@ export default defineComponent({
       this.urlRef.validate()
       if (!this.urlRef.hasError) {
         // this.$route.query["url"] = this.importUrl
-        this.$router.push({query: {url: this.importUrl}})
+        this.$router.push({ query: { url: this.importUrl } })
         this.showUrlPromptModal = false
       }
     },
@@ -80,29 +80,39 @@ export default defineComponent({
   setup() {
     const importUrl = ref("")
     const urlRef = ref(null)
-    const urlRegex = new RegExp(
-      "^(https?:\\/\\/)?" + // protocol
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-        "(\\#[-a-z\\d_]*)?$",
-      "i"
-    )
+    // const urlRegex = new RegExp(
+    //   "^(https?:\\/\\/)?" + // protocol
+    //     "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+    //     "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+    //     "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+    //     "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+    //     "(\\#[-a-z\\d_]*)?$",
+    //   "i"
+    // )
+    function urlValidator(urlString) {
+      const urlObject = new URL(urlString)
+      if (urlObject.host.length > 1) {
+        return true
+      } else {
+        return false
+      }
+    }
     return {
-      urlRegex,
+      urlValidator,
       importUrl,
       urlRef,
       urlRules: [
         (val) => (val && val.length > 0) || "Please enter url",
-        (val) => (val && urlRegex.test(val)) || "Please enter a valid url",
+        (val) => (val && urlValidator(val)) || "Please enter a valid url",
+        // (val) => (val && urlRegex.test(val)) || "Please enter a valid url",
       ],
     }
   },
   mounted() {
     if (this.$route.query["url"]) {
       this.importUrl = this.$route.query["url"]
-      let validUrlProvided = this.urlRegex.test(this.$route.query["url"])
+      // let validUrlProvided = this.urlRegex.test(this.$route.query["url"])
+      let validUrlProvided = this.urlValidator(this.$route.query["url"])
       if (!validUrlProvided) {
         this.showUrlPromptModal = true
       }
