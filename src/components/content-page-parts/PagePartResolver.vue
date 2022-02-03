@@ -27,10 +27,11 @@
       :pic_urls="pic_urls"
       :texts="texts"
     ></TitleWithText>
-    <MapIframeSection
+    <!-- TODO - name editor-template for below MapContainerSection -->
+    <MapContainerSection
       v-else-if="editorTemplate === 'MapIframeSection'"
       :currentListingData="currentListingData"
-    ></MapIframeSection>
+    ></MapContainerSection>
     <LargePicWithSmallTextToRight
       v-else-if="editorTemplate === 'LargePicWithSmallTextToRight'"
       :pic_urls="pic_urls"
@@ -46,13 +47,6 @@
       adjustForEditClass="adjust-gen-template-for-edit"
       :texts="texts"
     ></SimpleTitle>
-    <!-- <HeroClassic
-      v-else-if="editorTemplate === 'HeroClassic'"
-      :pic_urls="pic_urls"
-      :texts="texts"
-      :listingLocationOrigin="listingLocationOrigin"
-    ></HeroClassic> -->
-    <!-- <div v-html="compiled_html"></div> -->
   </div>
 </template>
 <script>
@@ -61,7 +55,7 @@ import ListingAttributesSection from "components/content-page-parts/ListingAttri
 import ListingEnquirySection from "components/content-page-parts/ListingEnquirySection.vue"
 // import MainSppDescription from "components/content-page-parts/MainSppDescription.vue"
 import TitleWithText from "components/content-page-parts/TitleWithText.vue"
-import MapIframeSection from "components/content-page-parts/MapIframeSection.vue"
+import MapContainerSection from "components/content-page-parts/MapContainerSection.vue"
 import LargePicWithSmallTextToLeft from "components/content-page-parts/LargePicWithSmallTextToLeft.vue"
 import LargePicWithSmallTextToRight from "components/content-page-parts/LargePicWithSmallTextToRight.vue"
 // import HeroClassic from "components/content-page-parts/HeroClassic.vue"
@@ -75,7 +69,7 @@ export default {
     ListingEnquirySection,
     // MainSppDescription,
     TitleWithText,
-    MapIframeSection,
+    MapContainerSection,
     LargePicWithSmallTextToRight,
     LargePicWithSmallTextToLeft,
     // HeroClassic,
