@@ -3,10 +3,22 @@ import { reactive, computed, readonly } from "vue";
 
 const state = reactive({
   items: [],
+  pendingLocationChanges: {},
   currentEditListing: {},
   currentEditRealtyAsset: {},
   editorConfig: {}
 })
+
+function setPendingLocationChanges({ fieldDetails, newValue }) {
+  state.pendingLocationChanges[fieldDetails.fieldName] = newValue
+  fieldDetails.newValue = newValue
+  // this.lastChangedField.fieldDetails = fieldDetails
+  // this.lastChangedField.lastUpdateStamp = Date.now()
+}
+
+function clearPendingLocationChanges() {
+  state.pendingLocationChanges = {}
+}
 
 function setEditorConfig(incomingData) {
   // let editorConfig = {}
@@ -36,8 +48,13 @@ function setCurrentEditRealtyAsset(incomingData, listingsGrouping) {
   currentEditRealtyAsset.constructed_area = incomingData.mgmt_content.realty_asset.constructed_area
   currentEditRealtyAsset.count_bedrooms = incomingData.mgmt_content.realty_asset.count_bedrooms
   currentEditRealtyAsset.count_bathrooms = incomingData.mgmt_content.realty_asset.count_bathrooms
-  currentEditRealtyAsset.country = incomingData.mgmt_content.realty_asset.country
+  currentEditRealtyAsset.street_number = incomingData.mgmt_content.realty_asset.street_number
+  currentEditRealtyAsset.street_address = incomingData.mgmt_content.realty_asset.street_address
+  currentEditRealtyAsset.postal_code = incomingData.mgmt_content.realty_asset.postal_code
   currentEditRealtyAsset.city = incomingData.mgmt_content.realty_asset.city
+  currentEditRealtyAsset.country = incomingData.mgmt_content.realty_asset.country
+  currentEditRealtyAsset.latitude = incomingData.mgmt_content.realty_asset.latitude
+  currentEditRealtyAsset.longitude = incomingData.mgmt_content.realty_asset.longitude
   currentEditRealtyAsset.realty_asset_uuid = incomingData.mgmt_content.realty_asset.uuid
   currentEditRealtyAsset.listing_uuid = currentEditListing.uuid
   currentEditRealtyAsset.listing_model_name = currentEditListing.model_name
@@ -66,5 +83,7 @@ export const listingsEditProvider = readonly({
   setCurrentEditListing,
   setCurrentEditRealtyAsset,
   parseCurrentEditListing,
-  setEditorConfig
+  setEditorConfig,
+  setPendingLocationChanges,
+  clearPendingLocationChanges
 });

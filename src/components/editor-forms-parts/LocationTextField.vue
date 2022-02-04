@@ -23,14 +23,13 @@ export default {
     fieldDetails: {
       type: Object,
     },
-    currentFieldValue: {
-      type: String,
-    },
+    // currentFieldValue: {
+    //   type: String,
+    // },
     cancelPendingChanges: {
       type: Boolean,
     },
   },
-  // props: ["fieldDetails", "currentFieldValue", "cancelPendingChanges"],
   data() {
     return {
       localFieldValue: "",
@@ -47,30 +46,20 @@ export default {
       }
     },
     "fieldDetails.newValFromMap"(newValue, oldValue) {
-      if (newValue && newValue.length > 0) {
+      // toString below for fields like latitude that might not be a string
+      if (newValue && newValue.toString().length > 0) {
         // This triggers when map marker is dragged and dropped
         // or autocomplete changes
-        this.localFieldValue = newValue
+        this.localFieldValue = newValue.toString()
         this.$emit("updatePendingChanges", {
           fieldDetails: this.fieldDetails,
-          newValue: newValue,
+          newValue: newValue.toString(),
         })
       }
     },
-    currentFieldValue: {
+    fieldDetails: {
       handler(newValue, oldVal) {
-        // This is effectively an initializer
-        // that will not change as a result of typing
-        // Will retrigger though when an update is pushed
-        // to the server
         if (newValue) {
-          // if (this.fieldDetails.fieldType === "localesHash") {
-          //   newValue = newValue[this.fieldDetails.activeLocale]
-          // }
-          // if (this.fieldDetails.inputType === "moneyField") {
-          //   newValue = newValue / 100
-          // }
-        } else {
           this.localFieldValue =
             this.locationResourceModel[this.fieldDetails.fieldName]
           this.originalValue =

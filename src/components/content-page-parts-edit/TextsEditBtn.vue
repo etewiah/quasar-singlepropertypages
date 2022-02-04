@@ -40,7 +40,7 @@ export default {
       if (
         this.currentPageSectionForEditing.editor_template === "MapIframeSection"
       ) {
-        return "EditMapForm"
+        return "EditLocFromAutoCompleteForm"
       } else if (
         this.currentPageSectionForEditing.editor_template ===
         "ListingFeaturesSection"

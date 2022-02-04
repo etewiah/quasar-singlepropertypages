@@ -9,53 +9,61 @@
             placeholder="Type here to find a new address"
             @place_changed="setPlace"
             :options="autoCompleteOptions"
+            class="gmap-ac-input"
           />
-
-          <template
-            v-for="fieldDetails in locationFields.mainInputFields1"
-            :key="fieldDetails.fieldName"
-          >
-            <LocationTextField
-              v-on:updatePendingChanges="updatePendingChanges"
-              :fieldDetails="fieldDetails"
-              :fieldOptions="{}"
-              :cancelPendingChanges="cancelPendingChanges"
-              v-bind:locationResourceModel="currentRealtyAsset"
-            ></LocationTextField>
-          </template>
-          <template
-            v-for="fieldDetails in locationFields.mainInputFields2"
-            :key="fieldDetails.fieldName"
-          >
-            <LocationTextField
-              v-on:updatePendingChanges="updatePendingChanges"
-              :fieldDetails="fieldDetails"
-              :fieldOptions="{}"
-              :cancelPendingChanges="cancelPendingChanges"
-              v-bind:locationResourceModel="currentRealtyAsset"
-            ></LocationTextField>
-          </template>
-          <!-- <LocationTextField
-            :cancelPendingChanges="cancelPendingChanges"
-            :fieldDetails="cityFieldDetails"
-            :currentFieldValue="cityContentValue"
-            v-on:updatePendingChanges="updatePendingChanges"
-          ></LocationTextField>
-          <LocationTextField
-            :cancelPendingChanges="cancelPendingChanges"
-            :fieldDetails="countryFieldDetails"
-            :currentFieldValue="countryContentValue"
-            v-on:updatePendingChanges="updatePendingChanges"
-          ></LocationTextField> -->
+          <div class="row q-col-gutter-sm">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <template
+                v-for="fieldDetails in locationFields.mainInputFields1"
+                :key="fieldDetails.fieldName"
+              >
+                <LocationTextField
+                  v-on:updatePendingChanges="updatePendingChanges"
+                  :fieldDetails="fieldDetails"
+                  :fieldOptions="{}"
+                  :cancelPendingChanges="cancelPendingChanges"
+                  v-bind:locationResourceModel="currentRealtyAsset"
+                ></LocationTextField>
+              </template>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <template
+                v-for="fieldDetails in locationFields.mainInputFields2"
+                :key="fieldDetails.fieldName"
+              >
+                <LocationTextField
+                  v-on:updatePendingChanges="updatePendingChanges"
+                  :fieldDetails="fieldDetails"
+                  :fieldOptions="{}"
+                  :cancelPendingChanges="cancelPendingChanges"
+                  v-bind:locationResourceModel="currentRealtyAsset"
+                ></LocationTextField>
+              </template>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <template
+                v-for="fieldDetails in locationFields.mainInputFields3"
+                :key="fieldDetails.fieldName"
+              >
+                <LocationTextField
+                  v-on:updatePendingChanges="updatePendingChanges"
+                  :fieldDetails="fieldDetails"
+                  :fieldOptions="{}"
+                  :cancelPendingChanges="cancelPendingChanges"
+                  v-bind:locationResourceModel="currentRealtyAsset"
+                ></LocationTextField>
+              </template>
+            </div>
+          </div>
         </div>
         <div>
-          <SppSubmitter
+          <SppLocationSubmitter
             :cancelPendingChanges="cancelPendingChanges"
             :lastChangedField="lastChangedField"
             :currentModelForEditing="currentRealtyAssetWithListing"
             submitObjectType="realtyAssetPlusListing"
             @changesCanceled="changesCanceled"
-          ></SppSubmitter>
+          ></SppLocationSubmitter>
         </div>
       </q-card-section>
     </q-card>
@@ -63,20 +71,20 @@
 </template>
 <script>
 import { defineComponent, ref } from "vue"
-import SppSubmitter from "src/components/editor-forms-parts//SppSubmitter.vue"
+import SppLocationSubmitter from "src/components/editor-forms-parts//SppLocationSubmitter.vue"
 import LocationTextField from "src/components/editor-forms-parts//LocationTextField.vue"
 export default defineComponent({
   inject: ["listingsEditProvider"],
-  name: "EditMapForm",
+  name: "EditLocFromAutoCompleteForm",
   components: {
-    SppSubmitter,
+    SppLocationSubmitter,
     LocationTextField,
   },
   watch: {},
   props: {
-    locationResourceModel: {
-      type: Object,
-    },
+    // locationResourceModel: {
+    //   type: Object,
+    // },
   },
   computed: {
     autoCompleteOptions() {
@@ -87,14 +95,14 @@ export default defineComponent({
       //   strictBounds: true,
       // }
     },
-    cityContentValue() {
-      let cityContentValue = this.currentRealtyAsset["city"] || " "
-      return cityContentValue
-    },
-    countryContentValue() {
-      let countryContentValue = this.currentRealtyAsset["country"] || " "
-      return countryContentValue
-    },
+    // cityContentValue() {
+    //   let cityContentValue = this.currentRealtyAsset["city"] || " "
+    //   return cityContentValue
+    // },
+    // countryContentValue() {
+    //   let countryContentValue = this.currentRealtyAsset["country"] || " "
+    //   return countryContentValue
+    // },
     currentListing() {
       return this.listingsEditProvider.state.currentEditListing
     },
@@ -119,7 +127,11 @@ export default defineComponent({
       this.locationFields.mainInputFields2.forEach(function (fieldDetails) {
         fieldDetails.newValFromMap = newAddressDetails[fieldDetails.fieldName]
       })
-    },
+      this.locationFields.mainInputFields3.forEach(function (fieldDetails) {
+        fieldDetails.newValFromMap = newAddressDetails[fieldDetails.fieldName]
+      })
+
+},
     getAddressFromGoogleResult(googleAddress) {
       let newAddressFromMap = {}
       newAddressFromMap.street_address = googleAddress.formatted_address
@@ -188,26 +200,22 @@ export default defineComponent({
       return newAddressFromMap
     },
     updatePendingChanges({ fieldDetails, newValue }) {
-      // need to consistently use destructuring as above rather than
-      // old syntax below
-      // updatePendingChanges(fieldDetails, newValue) {
-      fieldDetails.newValue = newValue
-      // Dec 2021 - previous I had set above in child component but now linter
-      // complains about modifying a prop so doing it here
-      this.lastChangedField.fieldDetails = fieldDetails
-      this.lastChangedField.lastUpdateStamp = Date.now()
-      // also $set is no longer available in vue 3:
-      // // this.$store.dispatch('updatePendingPropChanges', fieldDetails)
-      // this.$set(this.lastChangedField, "fieldDetails", fieldDetails)
-      // // below exists just to trigger watcher in formsubmitter:
-      // this.$set(this.lastChangedField, "lastUpdateStamp", Date.now())
+      this.listingsEditProvider.setPendingLocationChanges({
+        fieldDetails,
+        newValue,
+      })
+
+      // fieldDetails.newValue = newValue
+      // // Dec 2021 - previous I had set above in child component but now linter
+      // // complains about modifying a prop so doing it here
+      // this.lastChangedField.fieldDetails = fieldDetails
+      // this.lastChangedField.lastUpdateStamp = Date.now()
       this.cancelPendingChanges = false
     },
     changesCanceled() {
-      // this.$set(this.lastChangedField, 'fieldDetails', {})
-      // this.$set(this.lastChangedField, 'lastUpdateStamp', Date.now())
-      this.$emit("changesCanceled")
-      this.cancelPendingChanges = true
+      this.listingsEditProvider.clearPendingLocationChanges()
+      // this.$emit("changesCanceled")
+      // this.cancelPendingChanges = true
     },
   },
   data() {
@@ -291,6 +299,22 @@ export default defineComponent({
             },
           },
         ],
+        mainInputFields3: [
+          {
+            labelEn: "Latitude",
+            newValFromMap: "",
+            fieldName: "latitude",
+            fieldType: "simpleInput",
+            inputType: "text",
+          },
+          {
+            labelEn: "Longitude",
+            newValFromMap: "",
+            fieldName: "longitude",
+            fieldType: "simpleInput",
+            inputType: "text",
+          },
+        ],
       },
       cityFieldDetails: {
         labelEn: "City",
@@ -323,3 +347,14 @@ export default defineComponent({
   },
 })
 </script>
+<style scoped>
+.pac-target-input {
+  min-height: 26px;
+  padding-top: 1px;
+  padding: 5px;
+  font-size: large;
+  min-width: 500px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+</style>

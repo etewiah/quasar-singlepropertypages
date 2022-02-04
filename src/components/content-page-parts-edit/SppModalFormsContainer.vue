@@ -31,16 +31,18 @@ import { defineComponent, ref } from "vue"
 import EditFeaturesForm from "src/components/editor-forms//EditFeaturesForm.vue"
 import EditAttributesForm from "src/components/editor-forms//EditAttributesForm.vue"
 // import EditDescriptionForm from "src/components/editor-forms//EditDescriptionForm.vue"
-import EditMapForm from "src/components/editor-forms//EditMapForm.vue"
+// import EditMapForm from "src/components/editor-forms//EditMapForm.vue"
+import EditLocFromAutoCompleteForm from "src/components/editor-forms//EditLocFromAutoCompleteForm.vue"
 import EditRegularTextsForm from "src/components/editor-forms//EditRegularTextsForm.vue"
 import EditRichTextForm from "src/components/editor-forms//EditRichTextForm.vue"
 import ImagePickerSection from "src/components/editor-forms//ImagePickerSection.vue"
 export default defineComponent({
   name: "SppModalFormsContainer",
   components: {
+    EditLocFromAutoCompleteForm,
     EditFeaturesForm,
     EditAttributesForm,
-    EditMapForm,
+    // EditMapForm,
     EditRegularTextsForm,
     // EditDescriptionForm,
     EditRichTextForm,

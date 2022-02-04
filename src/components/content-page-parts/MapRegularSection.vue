@@ -1,15 +1,15 @@
 <template>
   <div class="map-regular-section" style="height: 900px">
-    <EditMapForm :currentPropForEditing="currentListingData"></EditMapForm>
+    <!-- <EditMapForm :currentPropForEditing="currentListingData"></EditMapForm> -->
     <EditLocFromAutoCompleteForm :locationResourceModel="currentListingData"></EditLocFromAutoCompleteForm>
-    <GMapAutocomplete
+    <!-- <GMapAutocomplete
       placeholder="This is a placeholder"
       @place_changed="setPlace"
       :options="{
         bounds: { north: 1.4, south: 1.2, east: 104, west: 102 },
         strictBounds: true,
       }"
-    />
+    /> -->
     <GMapMap
       :center="mapCenter"
       :zoom="15"
@@ -36,11 +36,11 @@
   </div>
 </template>
 <script>
-import EditMapForm from "src/components/editor-forms//EditMapForm.vue"
+// import EditMapForm from "src/components/editor-forms//EditMapForm.vue"
 import EditLocFromAutoCompleteForm from "src/components/editor-forms//EditLocFromAutoCompleteForm.vue"
 export default {
   components: {
-    EditMapForm,
+    // EditMapForm,
     EditLocFromAutoCompleteForm,
   },
   props: {
