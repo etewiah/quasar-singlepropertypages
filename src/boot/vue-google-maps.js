@@ -7,6 +7,7 @@ export default boot(({ app }) => {
   app.use(VueGoogleMaps, {
     load: {
       key: gak,
+      libraries: "places"
     },
   })
 })

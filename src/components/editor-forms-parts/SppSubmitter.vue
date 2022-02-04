@@ -152,6 +152,7 @@ export default {
           location.reload()
         })
       } else {
+
         if (this.hasPendingChanges) {
           Object.keys(this.currPendingChanges).forEach((pendingChangeKey) => {
             this.currentModelForSubmitting[pendingChangeKey] =
