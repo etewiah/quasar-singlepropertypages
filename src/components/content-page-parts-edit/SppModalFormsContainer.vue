@@ -28,21 +28,19 @@
 </template>
 <script>
 import { defineComponent, ref } from "vue"
-import EditFeaturesForm from "src/components/editor-forms//EditFeaturesForm.vue"
-import EditAttributesForm from "src/components/editor-forms//EditAttributesForm.vue"
-// import EditDescriptionForm from "src/components/editor-forms//EditDescriptionForm.vue"
-// import EditMapForm from "src/components/editor-forms//EditMapForm.vue"
-import EditLocFromAutoCompleteForm from "src/components/editor-forms//EditLocFromAutoCompleteForm.vue"
-import EditRegularTextsForm from "src/components/editor-forms//EditRegularTextsForm.vue"
-import EditRichTextForm from "src/components/editor-forms//EditRichTextForm.vue"
-import ImagePickerSection from "src/components/editor-forms//ImagePickerSection.vue"
+import EditFeaturesForm from "src/components/editor-forms/EditFeaturesForm.vue"
+import EditAttributesForm from "src/components/editor-forms/EditAttributesForm.vue"
+// / import EditDescriptionForm from "src/components/editor-forms/EditDescriptionForm.vue"
+import EditLocFormContainer from "src/components/editor-forms/EditLocFormContainer.vue"
+import EditRegularTextsForm from "src/components/editor-forms/EditRegularTextsForm.vue"
+import EditRichTextForm from "src/components/editor-forms/EditRichTextForm.vue"
+import ImagePickerSection from "src/components/editor-forms/ImagePickerSection.vue"
 export default defineComponent({
   name: "SppModalFormsContainer",
   components: {
-    EditLocFromAutoCompleteForm,
+    EditLocFormContainer,
     EditFeaturesForm,
     EditAttributesForm,
-    // EditMapForm,
     EditRegularTextsForm,
     // EditDescriptionForm,
     EditRichTextForm,
@@ -61,7 +59,7 @@ export default defineComponent({
         if (!!!newValue) {
           this.$emit("modalHasClosed")
           let pacContainer = document.querySelector(".pac-container")
-          if (pacContainer && this.formName === "EditLocFromAutoCompleteForm") {
+          if (pacContainer && this.formName === "EditLocFormContainer") {
             pacContainer.setAttribute("style", "display: block")
             document.querySelector(".pac-container").style["display"] = "none"
           }
