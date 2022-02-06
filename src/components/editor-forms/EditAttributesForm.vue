@@ -2,7 +2,7 @@
   <div class="q-pa-md">
     <div class="row">
       <div class="col-12">
-        <div class="text-subtitle1 form-label-head">Listing Attributes</div>
+        <!-- <div class="text-subtitle1 form-label-head">Listing Attributes</div> -->
       </div>
       <div class="col-12">
         <SppSubmitter
@@ -86,7 +86,7 @@
         <SppSubmitter
           :cancelPendingChanges="cancelPendingChanges"
           :lastChangedField="lastChangedField"
-          :currentModelForEditing="currentRealtyAsset"
+          :currentModelForEditing="currentRealtyAssetWithListing"
           submitObjectType="realtyAssetPlusListing"
           @changesCanceled="changesCanceled"
         ></SppSubmitter>

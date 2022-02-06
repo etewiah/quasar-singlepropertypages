@@ -12,25 +12,6 @@
       type="textarea"
       autogrow
     />
-    <!-- <v-textarea
-      v-if="fieldDetails.rows"
-      :rows="fieldDetails.rows"
-      :name="fieldDetails.fieldName"
-      :type="textFieldType"
-      :label="fieldLabel"
-      v-on:keyup="fieldChangeHandler"
-      :autofocus="fieldDetails.autofocus"
-      v-model="localFieldValue"
-    ></v-textarea>
-    <v-text-field
-      v-else
-      :name="fieldDetails.fieldName"
-      :type="textFieldType"
-      :label="fieldLabel"
-      v-on:keyup="fieldChangeHandler"
-      :autofocus="fieldDetails.autofocus"
-      v-model="localFieldValue"
-    ></v-text-field> -->
   </div>
 </template>
 <script>
@@ -82,17 +63,16 @@ export default {
   },
   computed: {
     fieldLabel() {
-      return ""
-      // if (this.fieldDetails.labelEn) {
-      //   return this.fieldDetails.labelEn
-      // } else {
-      //   return "Unknown trnlation"
-      //   // return (
-      //   //   this.$ft(this.fieldDetails.labelTextTKey) +
-      //   //   " " +
-      //   //   this.$ft(this.fieldDetails.suffixTKey)
-      //   // )
-      // }
+      if (this.fieldDetails.labelEn) {
+        return this.fieldDetails.labelEn
+      } else {
+        return ""
+        // return (
+        //   this.$ft(this.fieldDetails.labelTextTKey) +
+        //   " " +
+        //   this.$ft(this.fieldDetails.suffixTKey)
+        // )
+      }
     },
     // not going to use mask prop for textfield
     // cos it conflicts with an input type of number

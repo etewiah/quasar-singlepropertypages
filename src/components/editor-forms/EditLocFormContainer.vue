@@ -38,7 +38,6 @@ export default defineComponent({
       return this.listingsEditProvider.state.currentEditRealtyAsset
     },
     isRegularMap() {
-      debugger
       return (
         !!this.currentRealtyAsset.longitude &&
         !!this.currentRealtyAsset.latitude

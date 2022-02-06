@@ -34,7 +34,7 @@
         <SppSubmitter
           :cancelPendingChanges="cancelPendingChanges"
           :lastChangedField="lastChangedField"
-          :currentModelForEditing="currentRealtyAsset"
+          :currentModelForEditing="currentRealtyAssetWithListing"
           submitObjectType="realtyAssetPlusListing"
           @changesCanceled="changesCanceled"
         ></SppSubmitter>

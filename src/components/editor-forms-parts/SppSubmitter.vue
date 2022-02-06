@@ -1,5 +1,5 @@
 <template>
-  <div v-if="hasPendingChanges" xs12 sm12 offset-sm0>
+  <div v-if="hasPendingChanges" class="q-gutter-md spp-submit-cont" xs12 sm12 offset-sm0>
     <!-- <q-btn label="Submit" type="submit" color="primary" /> -->
     <q-btn @click="startUpdate" color="primary" type="submit"> Save </q-btn>
     <q-btn @click="runCancelListingChanges">Cancel</q-btn>
@@ -152,7 +152,6 @@ export default {
           location.reload()
         })
       } else {
-
         if (this.hasPendingChanges) {
           Object.keys(this.currPendingChanges).forEach((pendingChangeKey) => {
             this.currentModelForSubmitting[pendingChangeKey] =

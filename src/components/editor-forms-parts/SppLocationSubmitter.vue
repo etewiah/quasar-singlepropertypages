@@ -1,5 +1,5 @@
 <template>
-  <div v-if="hasPendingChanges" xs12 sm12 offset-sm0>
+  <div v-if="hasPendingChanges" class="q-gutter-md spp-loc-submit-cont" xs12 sm12 offset-sm0>
     <q-btn @click="startUpdate" color="primary" type="submit"> Save </q-btn>
     <q-btn @click="runCancelListingChanges">Cancel</q-btn>
   </div>

@@ -1,33 +1,40 @@
 <template>
-  <div>
-    <q-card class="listing-enq-card">
-      <q-card-section>
-        <div>
-          <div class="text-subtitle1 form-label-head">Location</div>
-          <TextField
-            :cancelPendingChanges="cancelPendingChanges"
-            :fieldDetails="cityFieldDetails"
-            :currentFieldValue="cityContentValue"
-            v-on:updatePendingChanges="updatePendingChanges"
-          ></TextField>
-          <TextField
-            :cancelPendingChanges="cancelPendingChanges"
-            :fieldDetails="countryFieldDetails"
-            :currentFieldValue="countryContentValue"
-            v-on:updatePendingChanges="updatePendingChanges"
-          ></TextField>
-        </div>
-        <div>
-          <SppSubmitter
-            :cancelPendingChanges="cancelPendingChanges"
-            :lastChangedField="lastChangedField"
-            :currentModelForEditing="currentListing"
-            submitObjectType="realtyAssetPlusListing"
-            @changesCanceled="changesCanceled"
-          ></SppSubmitter>
-        </div>
-      </q-card-section>
-    </q-card>
+  <div class="q-pa-md">
+    <div class="row">
+      <div class="col-12">
+        <SppSubmitter
+          :cancelPendingChanges="cancelPendingChanges"
+          :lastChangedField="lastChangedField"
+          :currentModelForEditing="currentRealtyAssetWithListing"
+          submitObjectType="realtyAssetPlusListing"
+          @changesCanceled="changesCanceled"
+        ></SppSubmitter>
+      </div>
+      <div class="col-12 q-mt-lg">
+        <!-- <div class="text-subtitle1 form-label-head">Location</div> -->
+        <TextField
+          :cancelPendingChanges="cancelPendingChanges"
+          :fieldDetails="cityFieldDetails"
+          :currentFieldValue="cityContentValue"
+          v-on:updatePendingChanges="updatePendingChanges"
+        ></TextField>
+        <TextField
+          :cancelPendingChanges="cancelPendingChanges"
+          :fieldDetails="countryFieldDetails"
+          :currentFieldValue="countryContentValue"
+          v-on:updatePendingChanges="updatePendingChanges"
+        ></TextField>
+      </div>
+      <div class="col-12">
+        <SppSubmitter
+          :cancelPendingChanges="cancelPendingChanges"
+          :lastChangedField="lastChangedField"
+          :currentModelForEditing="currentRealtyAssetWithListing"
+          submitObjectType="realtyAssetPlusListing"
+          @changesCanceled="changesCanceled"
+        ></SppSubmitter>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -57,6 +64,12 @@ export default defineComponent({
     },
     currentRealtyAsset() {
       return this.listingsEditProvider.state.currentEditRealtyAsset
+    },
+    currentRealtyAssetWithListing() {
+      return {
+        listing: this.currentListing,
+        realtyAsset: this.currentRealtyAsset,
+      }
     },
   },
   methods: {
