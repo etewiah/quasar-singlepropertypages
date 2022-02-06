@@ -60,6 +60,11 @@ export default defineComponent({
       handler(newValue, oldVal) {
         if (!!!newValue) {
           this.$emit("modalHasClosed")
+          let pacContainer = document.querySelector(".pac-container")
+          if (pacContainer && this.formName === "EditLocFromAutoCompleteForm") {
+            pacContainer.setAttribute("style", "display: block")
+            document.querySelector(".pac-container").style["display"] = "none"
+          }
         }
         // this.showModalFormLocal = newValue
       },

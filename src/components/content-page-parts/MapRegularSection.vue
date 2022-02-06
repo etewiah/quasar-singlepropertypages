@@ -10,29 +10,31 @@
         strictBounds: true,
       }"
     /> -->
-    <GMapMap
-      :center="mapCenter"
-      :zoom="15"
-      map-type-id="roadmap"
-      style="width: 100vw; height: 900px"
-    >
-      <GMapMarker
-        :key="index"
-        v-for="(m, index) in mapMarkers"
-        :position="m.position"
-        :clickable="true"
-        :draggable="true"
-        @click="openMarker(m.id)"
+    <q-no-ssr>
+      <GMapMap
+        :center="mapCenter"
+        :zoom="15"
+        map-type-id="roadmap"
+        style="width: 100vw; height: 900px"
       >
-        <GMapInfoWindow
-          :closeclick="true"
-          @closeclick="openMarker(null)"
-          :opened="openedMarkerID === m.id"
+        <GMapMarker
+          :key="index"
+          v-for="(m, index) in mapMarkers"
+          :position="m.position"
+          :clickable="true"
+          :draggable="isMapDraggable"
+          @click="openMarker(m.id)"
         >
-          <div>{{ infoWindowText }}</div>
-        </GMapInfoWindow>
-      </GMapMarker>
-    </GMapMap>
+          <GMapInfoWindow
+            :closeclick="true"
+            @closeclick="openMarker(null)"
+            :opened="openedMarkerID === m.id"
+          >
+            <div>{{ infoWindowText }}</div>
+          </GMapInfoWindow>
+        </GMapMarker>
+      </GMapMap>
+    </q-no-ssr>
   </div>
 </template>
 <script>
@@ -131,6 +133,10 @@ export default {
     },
   },
   computed: {
+    isMapDraggable() {
+      // TODO - enable dragging in edit mode to set new location
+      return false
+    },
     infoWindowText() {
       return (
         this.currentListingData.street_address || this.currentListingData.title

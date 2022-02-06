@@ -6,10 +6,14 @@
           <div class="text-subtitle1 form-label-head"></div>
 
           <GMapAutocomplete
+            autofocus="true"
             placeholder="Type here to find a new address"
             @place_changed="setPlace"
             :options="autoCompleteOptions"
             class="gmap-ac-input"
+            style="margin-bottom: 40px"
+            @focus="onFocus()"
+            @blur="onBlur()"
           />
           <div class="row q-col-gutter-sm">
             <div class="col-xs-12 col-sm-12 col-md-6">
@@ -169,13 +173,14 @@ export default defineComponent({
       // document.querySelector(".pac-container").style["display"] = "block"
       // document.querySelector(".pac-container").style["position"] =
       //   "fixed !important"
-      document
-        .querySelector(".pac-container")
-        .setAttribute(
+      let pacContainer = document.querySelector(".pac-container")
+
+      if (pacContainer) {
+        pacContainer.setAttribute(
           "style",
           "display: block !important;position: fixed !important; z-index: 10000 !important;"
         )
-
+      }
       // this.biasAutocompleteLocation()
       this.$emit("focus")
     },
@@ -184,7 +189,7 @@ export default defineComponent({
      * When the input loses focus
      */
     onBlur() {
-      // document.querySelector(".pac-container").style["display"] = "none"
+      document.querySelector(".pac-container").style["display"] = "none"
       // document.querySelector(".pac-container").style["position"] =
       //   "absolute !important"
       this.$emit("blur")
