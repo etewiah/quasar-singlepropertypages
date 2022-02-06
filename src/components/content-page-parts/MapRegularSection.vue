@@ -1,7 +1,7 @@
 <template>
   <div class="map-regular-section" style="height: 900px">
     <!-- <EditMapForm :currentPropForEditing="currentListingData"></EditMapForm> -->
-    <EditLocFromAutoCompleteForm :locationResourceModel="currentListingData"></EditLocFromAutoCompleteForm>
+    <!-- <EditLocFromAutoCompleteForm :locationResourceModel="currentListingData"></EditLocFromAutoCompleteForm> -->
     <!-- <GMapAutocomplete
       placeholder="This is a placeholder"
       @place_changed="setPlace"
@@ -37,11 +37,11 @@
 </template>
 <script>
 // import EditMapForm from "src/components/editor-forms//EditMapForm.vue"
-import EditLocFromAutoCompleteForm from "src/components/editor-forms//EditLocFromAutoCompleteForm.vue"
+// import EditLocFromAutoCompleteForm from "src/components/editor-forms//EditLocFromAutoCompleteForm.vue"
 export default {
   components: {
     // EditMapForm,
-    EditLocFromAutoCompleteForm,
+    // EditLocFromAutoCompleteForm,
   },
   props: {
     currentListingData: {

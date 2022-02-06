@@ -95,14 +95,6 @@ export default defineComponent({
       //   strictBounds: true,
       // }
     },
-    // cityContentValue() {
-    //   let cityContentValue = this.currentRealtyAsset["city"] || " "
-    //   return cityContentValue
-    // },
-    // countryContentValue() {
-    //   let countryContentValue = this.currentRealtyAsset["country"] || " "
-    //   return countryContentValue
-    // },
     currentListing() {
       return this.listingsEditProvider.state.currentEditListing
     },
@@ -117,6 +109,86 @@ export default defineComponent({
     },
   },
   methods: {
+    /**
+     * When the input got changed
+     */
+    onChange() {
+      // document.querySelector(".pac-container").style["display"] = "block"
+      // document.querySelector(".pac-container").style["position"] =
+      //   "fixed !important"
+      document
+        .querySelector(".pac-container")
+        .setAttribute(
+          "style",
+          "display: block !important;position: fixed !important; z-index: 10000 !important;"
+        )
+      // this.$emit("change", this.autocompleteText)
+    },
+
+    /**
+     * When a key gets pressed
+     * @param  {Event} event A keypress event
+     */
+    onKeyPress(event) {
+      document
+        .querySelector(".pac-container")
+        .setAttribute(
+          "style",
+          "display: block !important;position: fixed !important; z-index: 10000 !important;"
+        )
+
+      setTimeout(() => {
+        document
+          .querySelector(".pac-container")
+          .setAttribute(
+            "style",
+            "display: block !important;position: fixed !important; z-index: 10000 !important;"
+          )
+      }, 1500)
+      this.$emit("keypress", event)
+    },
+
+    /**
+     * When a keyup occurs
+     * @param  {Event} event A keyup event
+     */
+    onKeyUp(event) {
+      document
+        .querySelector(".pac-container")
+        .setAttribute(
+          "style",
+          "display: block !important;position: fixed !important; z-index: 10000 !important;"
+        )
+
+      this.$emit("keyup", event)
+    },
+    /**
+     * When the input gets focus
+     */
+    onFocus() {
+      // document.querySelector(".pac-container").style["display"] = "block"
+      // document.querySelector(".pac-container").style["position"] =
+      //   "fixed !important"
+      document
+        .querySelector(".pac-container")
+        .setAttribute(
+          "style",
+          "display: block !important;position: fixed !important; z-index: 10000 !important;"
+        )
+
+      // this.biasAutocompleteLocation()
+      this.$emit("focus")
+    },
+
+    /**
+     * When the input loses focus
+     */
+    onBlur() {
+      // document.querySelector(".pac-container").style["display"] = "none"
+      // document.querySelector(".pac-container").style["position"] =
+      //   "absolute !important"
+      this.$emit("blur")
+    },
     setPlace(placeResultData) {
       // addressData is less detailed than placeResultData
       let newAddressDetails = this.getAddressFromGoogleResult(placeResultData)
@@ -130,8 +202,7 @@ export default defineComponent({
       this.locationFields.mainInputFields3.forEach(function (fieldDetails) {
         fieldDetails.newValFromMap = newAddressDetails[fieldDetails.fieldName]
       })
-
-},
+    },
     getAddressFromGoogleResult(googleAddress) {
       let newAddressFromMap = {}
       newAddressFromMap.street_address = googleAddress.formatted_address
@@ -347,7 +418,17 @@ export default defineComponent({
   },
 })
 </script>
-<style scoped>
+<style>
+.pac-container {
+  position: fixed !important;
+  z-index: 10000 !important;
+  display: block !important;
+  /* width: auto !important;
+  position: initial !important;
+  left: 0 !important;
+  right: 0 !important;
+   */
+}
 .pac-target-input {
   min-height: 26px;
   padding-top: 1px;
@@ -357,4 +438,7 @@ export default defineComponent({
   border-radius: 6px;
   margin-bottom: 15px;
 }
+
+/* https://stackoverflow.com/questions/7893857/how-do-you-style-the-dropdown-on-google-places-autocomplete-api 
+*/
 </style>
