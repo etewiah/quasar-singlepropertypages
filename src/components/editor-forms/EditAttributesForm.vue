@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <div class="row">
+    <div class="row edit-attr-row">
       <div class="col-12">
         <!-- <div class="text-subtitle1 form-label-head">Listing Attributes</div> -->
       </div>
@@ -117,8 +117,9 @@ export default defineComponent({
       return areaContentValue
     },
     priceContentValue() {
-      let priceContentValue = this.currentListing["price_sale_current"]
-      return priceContentValue
+      let priceContentValue =
+        this.currentListing["price_sale_current_cents"] || 0
+      return priceContentValue / 100
     },
     bathroomContentValue() {
       let bathroomContentValue = this.currentRealtyAsset["count_bathrooms"]
@@ -134,12 +135,12 @@ export default defineComponent({
     currentListing() {
       return this.listingsEditProvider.state.currentEditListing
     },
-    currentRealtyAssetWithListing(){
+    currentRealtyAssetWithListing() {
       return {
         listing: this.currentListing,
-        realtyAsset: this.currentRealtyAsset
+        realtyAsset: this.currentRealtyAsset,
       }
-    }
+    },
   },
   methods: {
     updatePendingChanges({ fieldDetails, newValue }) {
@@ -173,7 +174,7 @@ export default defineComponent({
         autofocus: false,
         fieldName: "constructed_area",
         fieldType: "simpleInput",
-        inputType: "text",
+        qInputType: "number",
         constraints: {
           inputValue: {},
         },
@@ -184,7 +185,7 @@ export default defineComponent({
         autofocus: false,
         fieldName: "price_sale_current",
         fieldType: "simpleInput",
-        inputType: "text",
+        qInputType: "number",
         constraints: {
           inputValue: {},
         },
@@ -195,7 +196,7 @@ export default defineComponent({
         autofocus: false,
         fieldName: "count_bathrooms",
         fieldType: "simpleInput",
-        inputType: "text",
+        qInputType: "number",
         constraints: {
           inputValue: {},
         },
@@ -206,7 +207,7 @@ export default defineComponent({
         autofocus: false,
         fieldName: "count_bedrooms",
         fieldType: "simpleInput",
-        inputType: "text",
+        qInputType: "number",
         constraints: {
           inputValue: {},
         },
@@ -220,3 +221,8 @@ export default defineComponent({
   },
 })
 </script>
+<style>
+.edit-attr-row .q-field__native {
+  font-size: larger;
+}
+</style>

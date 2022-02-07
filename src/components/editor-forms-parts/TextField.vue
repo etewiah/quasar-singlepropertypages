@@ -1,6 +1,19 @@
 <template>
   <div>
     <q-input
+      v-if="textFieldType === 'number'"
+      :hide-bottom-space="true"
+      class="regular-textfield-input"
+      outlined
+      v-on:keyup="fieldChangeHandler"
+      v-model.number="localFieldValue"
+      :label="fieldLabel"
+      hint=""
+      lazy-rules
+      :type="textFieldType"
+    />
+    <q-input
+      v-else
       :hide-bottom-space="true"
       class="regular-textfield-input"
       outlined
@@ -9,7 +22,7 @@
       :label="fieldLabel"
       hint=""
       lazy-rules
-      type="textarea"
+      :type="textFieldType"
       autogrow
     />
   </div>
@@ -80,11 +93,14 @@ export default {
     //   return "#"
     // },
     textFieldType() {
-      if (this.fieldDetails.fieldDbType === "int") {
-        return "number"
-      } else {
-        return ""
-      }
+      return this.fieldDetails.qInputType || "text"
+      // Acceptable values for qInputType:
+      // text password textarea email search tel file number url time date
+      // if (this.fieldDetails.fieldDbType === "int") {
+      //   return "number"
+      // } else {
+      //   return ""
+      // }
     },
   },
   methods: {
