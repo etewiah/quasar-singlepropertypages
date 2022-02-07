@@ -73,12 +73,13 @@
           </q-item-section>
           <q-item-section class="q-mr-sm">
             <q-item-label class="text-weight-medium text-h6"> </q-item-label>
-            <TextField
+            <CurrencyField
               :cancelPendingChanges="cancelPendingChanges"
               :fieldDetails="priceFieldDetails"
-              :currentFieldValue="priceContentValue"
+              :modelValue="priceContentValue"
+              :currencyToUse="currentListing.currency"
               v-on:updatePendingChanges="updatePendingChanges"
-            ></TextField>
+            ></CurrencyField>
           </q-item-section>
         </q-item>
       </div>
@@ -96,8 +97,9 @@
 </template>
 <script>
 import { defineComponent, ref } from "vue"
-import SppSubmitter from "src/components/editor-forms-parts//SppSubmitter.vue"
-import TextField from "src/components/editor-forms-parts//TextField.vue"
+import SppSubmitter from "src/components/editor-forms-parts/SppSubmitter.vue"
+import TextField from "src/components/editor-forms-parts/TextField.vue"
+import CurrencyField from "src/components/editor-forms-parts/CurrencyField.vue"
 import { mdiAspectRatio, mdiCashMultiple } from "@quasar/extras/mdi-v5"
 export default defineComponent({
   created() {
@@ -109,6 +111,7 @@ export default defineComponent({
   components: {
     SppSubmitter,
     TextField,
+    CurrencyField,
   },
   props: {},
   computed: {
