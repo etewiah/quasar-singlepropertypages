@@ -16,6 +16,7 @@
     "core-js": "^3.6.5",
     "lodash.remove": "^4.7.0",
     "quasar": "^2.0.0",
+    "vue-currency-input": "^2.4.0",
     "vuex": "^4.0.1"
   },
   "devDependencies": {
