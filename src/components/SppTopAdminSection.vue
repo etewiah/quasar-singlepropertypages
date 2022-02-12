@@ -73,9 +73,9 @@
             <!-- <h4>Coming soon</h4> -->
             <div>
               Follow progress here:
-              <br>
+              <br />
               <a
-              target="_blank"
+                target="_blank"
                 href="https://github.com/etewiah/quasar-singlepropertypages/issues/1"
                 >https://github.com/etewiah/quasar-singlepropertypages/issues/1</a
               >
@@ -155,6 +155,9 @@
           @click="startExportToPdf"
         />
       </q-item>
+      <q-item>
+        <HomeHuntOverview></HomeHuntOverview>
+      </q-item>
       <!-- <q-btn
           align="around"
           class="full-width"
@@ -188,6 +191,8 @@
 // import Jspdf from "jspdf"
 // import useClientService from "src/compose/useClientService.js"
 // import SppPublishForm from "src/packs/bvh-spp/SppPublishForm.vue"
+import HomeHuntOverview from "components/home-hunt/HomeHuntOverview.vue"
+
 import { ref } from "vue"
 // // let domtoimage = {}
 // if (!process.env.SERVER) {
@@ -200,6 +205,7 @@ export default {
   inject: ["listingsEditProvider"],
   components: {
     // SppPublishForm,
+    HomeHuntOverview,
   },
   props: {},
   data() {
