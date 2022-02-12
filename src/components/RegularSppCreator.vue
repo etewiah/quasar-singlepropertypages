@@ -26,7 +26,7 @@
             outlined
             v-model="importUrl"
             label="Url to import listing from *"
-            hint="Currently works best with listings from rightmove.co.uk"
+            hint=""
             lazy-rules
             :rules="urlRules"
           />
@@ -78,12 +78,14 @@ export default {
     // )
     // return this.customer.email && emailRegex.test(this.customer.email) || 'Please enter a valid email address';
     function urlValidator(urlString) {
-      const urlObject = new URL(urlString)
-      if (urlObject.host.length > 1) {
-        return true
-      } else {
-        return false
-      }
+      let urlIsValid = false
+      try {
+        const urlObject = new URL(urlString)
+        if (urlObject.host.length > 1) {
+          urlIsValid = true
+        }
+      } catch (error) {}
+      return urlIsValid
     }
 
     return {
