@@ -18,6 +18,13 @@ const routes = [
         ]
       },
       {
+        path: "mortgage-calculator",
+        name: "rMortgageCalculator",
+        component: () => import("src/pages/MortgageCalculator.vue"),
+        children: [
+        ]
+      },
+      {
         path: "p/spp/:listings_grouping/:listing_slug",
         name: "rSppEdit",
         component: () => import("src/pages/SppEdit.vue"),
