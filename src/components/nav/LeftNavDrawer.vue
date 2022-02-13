@@ -1,12 +1,13 @@
 <template>
   <q-drawer
+    side="left"
     v-model="leftDrawerOpenModel"
     show-if-above
     bordered
     class="bg-grey-1"
   >
     <q-list>
-      <q-item-label header class="text-grey-8">Actions</q-item-label>
+      <!-- <q-item-label header class="text-grey-8">Actions</q-item-label> -->
       <q-item clickable>
         <q-btn
           :to="{ name: sppHomeRouteName }"
@@ -23,15 +24,6 @@
           label="Log Out"
           icon="logout"
           @click="logUserOut"
-        />
-      </q-item>
-      <q-item>
-        <q-btn
-          class="full-width"
-          color="blue"
-          label="Export To Pdf"
-          icon="picture_as_pdf"
-          @click="startExportToPdf"
         />
       </q-item>
       <q-item>
@@ -66,34 +58,6 @@
       </q-item> -->
     </q-list>
   </q-drawer>
-  <q-dialog v-model="exportToPdfModal">
-    <q-card>
-      <q-card-section>
-        <div class="text-h6">Export to PDF functionality coming soon</div>
-      </q-card-section>
-      <q-card-section class="q-pt-none">
-        <!-- <h4>Coming soon</h4> -->
-        <div>
-          Follow progress here:
-          <br />
-          <a
-            target="_blank"
-            href="https://github.com/etewiah/quasar-singlepropertypages/issues/1"
-            >https://github.com/etewiah/quasar-singlepropertypages/issues/1</a
-          >
-        </div>
-      </q-card-section>
-
-      <q-card-actions align="right">
-        <q-btn flat label="OK" color="primary" v-close-popup />
-      </q-card-actions>
-    </q-card>
-  </q-dialog>
-  <q-dialog v-model="showPublishModal">
-    <q-layout view="Lhh lpR fff" container class="bg-white">
-      <!-- <SppPublishForm></SppPublishForm> -->
-    </q-layout>
-  </q-dialog>
 </template>
 <script>
 import { defineComponent, ref } from "vue"
@@ -134,9 +98,6 @@ export default defineComponent({
     }
   },
   methods: {
-    startExportToPdf() {
-      this.exportToPdfModal = true
-    },
     logUserOut() {
       this.$q.cookies.set("spp_user_token", null, { path: "/" })
       this.$router.push({ name: "rHomePage" })
@@ -145,10 +106,6 @@ export default defineComponent({
       // Clear out locally store SPPs:
       // localStorage.setItem(sppItemsKey, "[]")
       // location.reload()
-    },
-    // deleteSpp() {},
-    startPublishSpp() {
-      this.showPublishModal = true
     },
   },
 })

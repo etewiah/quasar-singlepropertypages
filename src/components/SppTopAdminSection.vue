@@ -27,50 +27,35 @@
         />
       </q-toolbar-title> -->
       <q-tabs align="right" class="sta-q-tabs full-width" style="">
+        <q-btn
+          flat
+          dense
+          round
+          class=""
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleRightDrawer"
+        />
         <div class="float-right">
-          <q-btn
+          <!-- <q-btn
             align="around"
             class="btn-fixed-width q-mr-md"
             color="blue"
             label="Preview"
             icon="visibility"
             :to="{ name: sppPreviewRouteName }"
-          />
-          <!-- <q-btn
-          align="around"
-          class="btn-fixed-width q-mr-md"
-          color="secondary"
-          label="Export To HTML"
-          icon="visibility"
-          @click="exportSppToHtml"
-        />
-        -->
-
-          <!-- <q-btn
-            align="around"
-            class="btn-fixed-width q-mr-md"
-            color="red"
-            label="Delete"
-            icon="delete"
-            @click="deleteSpp"
-          /> -->
-          <!-- <q-btn
-            align="around"
-            class="btn-fixed-width q-mr-md"
-            color="brown-5"
-            label="Publish"
-            icon="settings"
-            @click="startPublishSpp"
           /> -->
         </div>
       </q-tabs>
     </q-toolbar>
   </q-header>
   <LeftNavDrawer :leftDrawerOpen="leftDrawerOpen"></LeftNavDrawer>
+  <RightNavDrawer :rightDrawerOpen="rightDrawerOpen"></RightNavDrawer>
 </template>
 <script>
 // import Jspdf from "jspdf"
 import LeftNavDrawer from "components/nav/LeftNavDrawer.vue"
+import RightNavDrawer from "components/nav/RightNavDrawer.vue"
 import { ref } from "vue"
 // // let domtoimage = {}
 // if (!process.env.SERVER) {
@@ -80,9 +65,10 @@ import { ref } from "vue"
 // Idea for above from:
 // https://forum.quasar-framework.org/topic/2576/ssr-window-is-not-defined/2
 export default {
-  inject: ["listingsEditProvider"],
+  // inject: ["listingsEditProvider"],
   components: {
     LeftNavDrawer,
+    RightNavDrawer,
   },
   props: {},
   data() {
@@ -94,12 +80,16 @@ export default {
   setup() {
     // const { deleteRealtyAssetAndAssocs } = useClientService()
     const leftDrawerOpen = ref(true)
+    const rightDrawerOpen = ref(true)
     return {
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value
       },
-      // deleteRealtyAssetAndAssocs,
+      rightDrawerOpen,
+      toggleRightDrawer() {
+        rightDrawerOpen.value = !rightDrawerOpen.value
+      },
     }
   },
 
@@ -162,25 +152,12 @@ export default {
     // download("hello.txt","This is the content of my file :)");
   },
   computed: {
-    originalListingUrl() {
-      let realtyAsset = this.listingsEditProvider.state.currentEditRealtyAsset
-      if (realtyAsset.import_url) {
-        return realtyAsset.import_url
-      } else {
-        return "/"
-      }
-    },
-    sppPreviewRouteName() {
-      return "rSppPreview"
-    },
-    // sppHomeRouteName() {
-    //   return "rHomePage"
+    // sppPreviewRouteName() {
+    //   return "rSppPreview"
     // },
     showAdminSection() {
       return ["rSppEdit"].includes(this.$route.name)
     },
-    //   return textForAction
-    // },
   },
 }
 </script>
