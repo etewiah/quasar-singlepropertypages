@@ -158,6 +158,7 @@
       <q-item>
         <HomeHuntOverview></HomeHuntOverview>
       </q-item>
+      <ListingNavItems></ListingNavItems>
       <!-- <q-btn
           align="around"
           class="full-width"
@@ -189,8 +190,7 @@
 </template>
 <script>
 // import Jspdf from "jspdf"
-// import useClientService from "src/compose/useClientService.js"
-// import SppPublishForm from "src/packs/bvh-spp/SppPublishForm.vue"
+import ListingNavItems from "components/nav/ListingNavItems.vue"
 import HomeHuntOverview from "components/home-hunt/HomeHuntOverview.vue"
 
 import { ref } from "vue"
@@ -204,7 +204,7 @@ import { ref } from "vue"
 export default {
   inject: ["listingsEditProvider"],
   components: {
-    // SppPublishForm,
+    ListingNavItems,
     HomeHuntOverview,
   },
   props: {},
@@ -216,7 +216,7 @@ export default {
   },
   setup() {
     // const { deleteRealtyAssetAndAssocs } = useClientService()
-    const leftDrawerOpen = ref(false)
+    const leftDrawerOpen = ref(true)
     return {
       leftDrawerOpen,
       toggleLeftDrawer() {

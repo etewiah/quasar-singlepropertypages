@@ -53,15 +53,9 @@ export default defineComponent({
   components: {
     ListingRow,
   },
-  props: {
-    // icon: {
-    //   type: String,
-    //   default: "",
-    // },
-  },
   data() {
     return {
-      listingsOverviewModalVisible: true,
+      listingsOverviewModalVisible: false,
       listingColumns: [
         {
           name: "reference",
