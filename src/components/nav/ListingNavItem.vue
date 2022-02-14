@@ -45,9 +45,9 @@ export default defineComponent({
     },
     navColor() {
       if (this.isActive) {
-        return "blue"
-      } else {
         return "green"
+      } else {
+        return "blue"
       }
     },
   },

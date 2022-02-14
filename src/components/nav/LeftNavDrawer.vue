@@ -1,5 +1,6 @@
 <template>
   <q-drawer
+    v-if="drawerVisible"
     side="left"
     v-model="leftDrawerOpenModel"
     show-if-above
@@ -75,6 +76,9 @@ export default defineComponent({
     },
   },
   props: {
+    drawerVisible: {
+      type: Boolean,
+    },
     leftDrawerOpen: {
       type: Boolean,
       default: false,

@@ -1,5 +1,6 @@
 <template>
   <q-drawer
+    v-if="drawerVisible"
     v-model="rightDrawerOpenModel"
     side="right"
     show-if-above
@@ -11,7 +12,7 @@
       <q-item clickable>
         <q-btn
           class="full-width"
-          color="blue"
+          :color="listingActionColor"
           label="Preview"
           icon="visibility"
           :to="{ name: sppPreviewRouteName }"
@@ -20,7 +21,7 @@
       <q-item clickable>
         <q-btn
           class="full-width"
-          color="blue"
+          :color="listingActionColor"
           label="Original Listing"
           icon="link"
           :href="originalListingUrl"
@@ -30,7 +31,7 @@
       <q-item>
         <q-btn
           class="full-width"
-          color="blue"
+          :color="listingActionColor"
           label="Export To Pdf"
           icon="picture_as_pdf"
           @click="startExportToPdf"
@@ -108,6 +109,9 @@ export default defineComponent({
     HomeHuntOverview,
   },
   props: {
+    drawerVisible: {
+      type: Boolean,
+    },
     rightDrawerOpen: {
       type: Boolean,
       default: false,
@@ -115,6 +119,9 @@ export default defineComponent({
     },
   },
   computed: {
+    listingActionColor() {
+      return "primary"
+    },
     sppPreviewRouteName() {
       return "rSppPreview"
     },

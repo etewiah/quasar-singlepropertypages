@@ -49,8 +49,14 @@
       </q-tabs>
     </q-toolbar>
   </q-header>
-  <LeftNavDrawer :leftDrawerOpen="leftDrawerOpen"></LeftNavDrawer>
-  <RightNavDrawer :rightDrawerOpen="rightDrawerOpen"></RightNavDrawer>
+  <LeftNavDrawer
+    :drawerVisible="showAdminSection"
+    :leftDrawerOpen="leftDrawerOpen"
+  ></LeftNavDrawer>
+  <RightNavDrawer
+    :drawerVisible="showAdminSection"
+    :rightDrawerOpen="rightDrawerOpen"
+  ></RightNavDrawer>
 </template>
 <script>
 // import Jspdf from "jspdf"
