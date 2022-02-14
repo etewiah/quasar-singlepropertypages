@@ -112,6 +112,7 @@
 import lodashRemove from "lodash.remove"
 import { ref } from "vue"
 import SppService from "src/spp.service"
+import usePropertyBoard from "src/compose/usePropertyBoard.js"
 export default {
   components: {},
   mounted() {},
@@ -138,8 +139,9 @@ export default {
       // https://stackoverflow.com/questions/9353791/strict-html-parsing-in-javascript
     }
 
+    const { saveLocalPropertyBoard } = usePropertyBoard()
     return {
-      // accept,
+      saveLocalPropertyBoard,
       rawHtmlToParse,
       rawHtmlRef,
       rawHtmlRules: [
@@ -196,6 +198,7 @@ export default {
           this.rawHtmlToParse
         )
           .then((response) => {
+            this.saveLocalPropertyBoard(response.data.property_board)
             this.addToLocalSppItems(response.data.listing)
             let targetPath = `/p/spp/for-sale/${response.data.listing.listing_uuid}`
             this.$router.push(targetPath)

@@ -2,16 +2,23 @@ import axios from "axios"
 
 class SppService {
   createSppFromHtml(dataApiBase, importUrl, rawHtml) {
-    let apiUrl = `${dataApiBase}/api_public/v4/spp/create_from_html`
+    let apiUrl = `${dataApiBase}/api_psq/v1/spp/create_from_html`
     apiUrl += `?import_url=${importUrl}`
+    let propBoardKey = "prop_board:pwbprem"
+    let propBoardUuid = localStorage.getItem(propBoardKey) || ""
     return axios.put(apiUrl, {
-      raw_import_html: rawHtml
+      raw_import_html: rawHtml,
+      prop_board_uuid: propBoardUuid
     })
   }
   createSppFromUrl(dataApiBase, importUrl) {
-    let apiUrl = `${dataApiBase}/api_public/v4/spp/create_from_url`
+    let apiUrl = `${dataApiBase}/api_psq/v1/spp/create_from_url`
     apiUrl += `?import_url=${importUrl}`
-    return axios.get(apiUrl, {})
+    let propBoardKey = "prop_board:pwbprem"
+    let propBoardUuid = localStorage.getItem(propBoardKey) || ""
+    return axios.put(apiUrl, {
+      prop_board_uuid: propBoardUuid
+    })
   }
   // getSpp(dataUrl, beTypeAndVersion) {
   //   beTypeAndVersion = beTypeAndVersion || "v4"

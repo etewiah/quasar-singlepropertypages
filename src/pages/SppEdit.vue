@@ -17,6 +17,8 @@ import { useRoute, useRouter } from "vue-router"
 import { useStore } from "vuex"
 import { defineComponent, ref } from "vue"
 import SppListingMainEdit from "src/components/SppListingMainEdit.vue"
+import usePropertyBoard from "src/compose/usePropertyBoard.js"
+
 // import currentUser from "src/services/auth/current-user"
 export default defineComponent({
   name: "SppEdit",
@@ -116,6 +118,7 @@ export default defineComponent({
       handler(newVal, oldVal) {
         if (newVal && newVal.listing) {
           this.addToLocalSppItems(newVal.listing)
+          this.saveLocalPropertyBoard(newVal.property_board)
         }
       },
     },
@@ -149,8 +152,9 @@ export default defineComponent({
         (error) => {}
       )
     }
-    // runListingDataLoad()
+    const { saveLocalPropertyBoard } = usePropertyBoard()
     return {
+      saveLocalPropertyBoard,
       // currentListingData,
       runListingDataLoad,
     }

@@ -54,6 +54,7 @@
 import lodashRemove from "lodash.remove"
 import { ref } from "vue"
 import SppService from "src/spp.service"
+import usePropertyBoard from "src/compose/usePropertyBoard.js"
 export default {
   components: {},
   mounted() {},
@@ -88,7 +89,9 @@ export default {
       return urlIsValid
     }
 
+    const { saveLocalPropertyBoard } = usePropertyBoard()
     return {
+      saveLocalPropertyBoard,
       accept,
       importUrl,
       urlRef,
@@ -146,6 +149,7 @@ export default {
         let dataApiBase = this.$store.getters["configStore/getDataApiBase"]
         SppService.createSppFromUrl(dataApiBase, this.importUrl)
           .then((response) => {
+            this.saveLocalPropertyBoard(response.data.property_board)
             this.addToLocalSppItems(response.data.listing)
             let targetPath = `/p/spp/for-sale/${response.data.listing.listing_uuid}`
             this.$router.push(targetPath)
