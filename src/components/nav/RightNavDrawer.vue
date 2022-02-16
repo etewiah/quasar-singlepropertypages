@@ -38,6 +38,9 @@
         />
       </q-item>
       <q-item>
+        <RatingsSummary></RatingsSummary>
+      </q-item>
+      <q-item>
         <HomeHuntOverview></HomeHuntOverview>
       </q-item>
       <!-- <q-btn
@@ -99,13 +102,13 @@
 </template>
 <script>
 import { defineComponent, ref } from "vue"
-// import ListingNavItems from "components/nav/ListingNavItems.vue"
 import HomeHuntOverview from "components/home-hunt/HomeHuntOverview.vue"
+import RatingsSummary from "components/home-hunt/RatingsSummary.vue"
 export default defineComponent({
   inject: ["listingsEditProvider"],
   name: "RightNavDrawer",
   components: {
-    // ListingNavItems,
+    RatingsSummary,
     HomeHuntOverview,
   },
   props: {
