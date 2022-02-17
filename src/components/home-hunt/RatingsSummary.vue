@@ -52,18 +52,6 @@
                 @resetChangesCancelled="resetChangesCancelled"
               ></RatingsField>
             </div>
-            <!-- <div class="col-xs-12">
-              <div class="q-pa-md">
-                <q-rating
-                  v-model="overallRatingModel"
-                  size="2.5em"
-                  color="green-5"
-                  icon="star_border"
-                  icon-selected="star"
-                  @click="showRatingsBreakdown"
-                />
-              </div>
-            </div> -->
             <div class="col-12">
               <div class="q-pa-md q-ma-md">
                 <PropertyBoardSubmitter
@@ -83,6 +71,7 @@ import { defineComponent } from "vue"
 import RatingsField from "src/components/editor-forms-parts/RatingsField.vue"
 import PropertyBoardSubmitter from "src/components/editor-forms-parts/PropertyBoardSubmitter.vue"
 export default defineComponent({
+  inject: ["boardEditProvider"],
   name: "RatingsSummary",
   components: {
     RatingsField,
@@ -90,14 +79,7 @@ export default defineComponent({
   },
   data() {
     return {
-      ratingsBreakdown: {
-        location: 1,
-        valueForMoney: 2,
-      },
-      overallRatingModel: 2,
-      // locationRatingModel: 2,
-      // valueForMoneyRatingModel: 2,
-      ratingsModalVisible: true,
+      ratingsModalVisible: false,
       bedroomsFieldDetails: {
         labelEn: "Bedrooms",
         tooltipTextTKey: "",
@@ -116,7 +98,18 @@ export default defineComponent({
       },
     }
   },
-  // mounted: function () {},
+  computed: {
+    overallRatingModel() {
+      return this.boardEditProvider.state.propertyBoardItem.rating_overall
+    },
+    ratingsBreakdown() {
+      return this.boardEditProvider.state.propertyBoardItem.ratings_breakdown
+      // return {
+      //   location: 1,
+      //   valueForMoney: 2,
+      // }
+    },
+  },
   methods: {
     showRatingsBreakdown() {
       this.ratingsModalVisible = true

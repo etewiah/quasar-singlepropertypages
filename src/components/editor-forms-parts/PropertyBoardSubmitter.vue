@@ -47,8 +47,8 @@ export default {
     },
   },
   setup() {
-    const { putPropertyBoard } = useMgmtService()
-    return { putPropertyBoard }
+    const { putPropertyBoardItem } = useMgmtService()
+    return { putPropertyBoardItem }
   },
 
   methods: {
@@ -57,12 +57,10 @@ export default {
       this.boardEditProvider.clearPendingBoardChanges()
     },
     startUpdate() {
-      debugger
-      let listingModelName = this.currentModelForEditing.listing.model_name
-      this.putPropertyBoard({
-        listing_uuid: listingUuid,
-        listing_model_name: listingModelName,
-        changes: this.boardEditProvider.state.pendingBoardChanges,
+      let propertyBoardItemUuid = this.boardEditProvider.state.propertyBoardItem.uuid
+      this.putPropertyBoardItem({
+        property_board_item_uuid: propertyBoardItemUuid,
+        board_item_changes: this.boardEditProvider.state.pendingBoardChanges,
       }).then((response) => {
         debugger
         this.boardEditProvider.clearPendingBoardChanges()

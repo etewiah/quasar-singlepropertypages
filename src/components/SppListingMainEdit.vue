@@ -49,7 +49,7 @@
 <script>
 import { defineComponent, ref } from "vue"
 import { useQuasar } from "quasar"
-import {filter} from "lodash"
+import { filter } from "lodash"
 // import { useStore } from "vuex"
 import HeroClassic from "src/components/content-page-parts/HeroClassic.vue"
 import SppEditSectionsHost from "src/components/sections/SppEditSectionsHost.vue"
@@ -58,7 +58,7 @@ import useMgmtService from "src/compose/useMgmtService.js"
 // import SectionAdder from "src/packs/spp/edit/SectionAdder.vue"
 import EditPagePart from "src/components/content-page-parts-edit/EditPagePart.vue"
 export default defineComponent({
-  inject: ["listingsEditProvider"],
+  inject: ["listingsEditProvider", "boardEditProvider"],
   components: {
     HeroClassic,
     SppEditSectionsHost,
@@ -92,6 +92,12 @@ export default defineComponent({
         .then((response) => {
           currentEditData.value = response.data
           let listingsGrouping = this.$route.params.listings_grouping
+          this.boardEditProvider.setCurrentPropertyBoardItem(
+            response.data.mgmt_content.property_board_item
+          )
+          this.boardEditProvider.setCurrentPropertyBoard(
+            response.data.mgmt_content.property_board
+          )
           this.listingsEditProvider.setCurrentEditRealtyAsset(
             response.data,
             listingsGrouping

@@ -79,7 +79,13 @@ export default function () {
     let apiUrl = `${mgmtBaseURL}v4/page_sections/${pageSectionUuid}`
     return axios.put(apiUrl, putData, { headers: authHeader() })
   }
+  function putPropertyBoardItem(putData) {
+    let mgmtBaseURL = `${dataApiBase}/api_psq/`
+    let apiUrl = `${mgmtBaseURL}v1/property_board_items/${putData.property_board_item_uuid}`
+    return axios.put(apiUrl, putData, { headers: authHeader() })
+  }
   return {
+    putPropertyBoardItem,
     getMgmtRealtyAsset,
     putPageSection,
     addPageSection,

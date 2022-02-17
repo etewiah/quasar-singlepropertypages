@@ -40,8 +40,8 @@ export default {
   //  ["resourceModel", "fieldDetails", "cancelPendingChanges"],
   data() {
     return {
-      fieldValue: false,
-      origVal: false,
+      fieldValue: 0,
+      origVal: 0,
     }
   },
   watch: {
