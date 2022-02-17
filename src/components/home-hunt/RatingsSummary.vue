@@ -32,25 +32,42 @@
                 ></PropertyBoardSubmitter>
               </div>
             </div>
-
-            <div class="col-xs-12">
+            <div v-if="isEditRatingValuesMode" class="col-xs-12">
               <RatingsField
-                :fieldDetails="{ fieldName: 'location', label: 'Location' }"
+                v-for="(concern, index) in ratingsConcerns"
+                :key="index"
+                :fieldDetails="concern"
                 :resourceModel="ratingsBreakdown"
                 :cancelPendingChanges="cancelPendingChanges"
                 @resetChangesCancelled="resetChangesCancelled"
               ></RatingsField>
             </div>
-            <div class="col-xs-12">
-              <RatingsField
-                :fieldDetails="{
-                  fieldName: 'valueForMoney',
-                  label: 'Value For Money',
-                }"
-                :resourceModel="ratingsBreakdown"
-                :cancelPendingChanges="cancelPendingChanges"
-                @resetChangesCancelled="resetChangesCancelled"
-              ></RatingsField>
+            <div v-else class="col-xs-12">
+              <div class="q-pa-md q-ma-md">
+                <q-chip
+                  class="q-mb-md"
+                  v-for="(concern, index) in ratingsConcerns"
+                  :key="index"
+                  color="teal"
+                  text-color="white"
+                  @remove="removeRatingCriteria(concern)"
+                  removable
+                >
+                  {{ concern.label }}
+                </q-chip>
+                <q-input
+                  style="display: inline-flex"
+                  hide-bottom-space
+                  class="ratings-criteria-input"
+                  outlined
+                  dense
+                  label="New Rating Option"
+                  hint=""
+                  v-model="newRatingCriteria"
+                  @keydown.enter.prevent="addRatingCriteria"
+                  lazy-rules
+                />
+              </div>
             </div>
             <div class="col-12">
               <div class="q-pa-md q-ma-md">
@@ -60,6 +77,20 @@
                 ></PropertyBoardSubmitter>
               </div>
             </div>
+            <div class="col-12">
+              <div class="q-pa-md q-ma-md float-right">
+                <q-toggle
+                  :false-value="true"
+                  label="Edit Rating Options"
+                  :true-value="false"
+                  color="green"
+                  v-model="isEditRatingValuesMode"
+                />
+              </div>
+              <!-- <div class="q-pa-md q-ma-md">
+                <a @click="changeEditRatingValuesMode">Edit ratings criteria</a>
+              </div> -->
+            </div>
           </div>
         </q-page>
       </q-page-container>
@@ -67,6 +98,7 @@
   </q-dialog>
 </template>
 <script>
+// import lodashRemove from "lodash.remove"
 import { defineComponent } from "vue"
 import RatingsField from "src/components/editor-forms-parts/RatingsField.vue"
 import PropertyBoardSubmitter from "src/components/editor-forms-parts/PropertyBoardSubmitter.vue"
@@ -79,38 +111,67 @@ export default defineComponent({
   },
   data() {
     return {
+      newRatingCriteria: "",
       ratingsModalVisible: false,
-      bedroomsFieldDetails: {
-        labelEn: "Bedrooms",
-        tooltipTextTKey: "",
-        autofocus: false,
-        fieldName: "count_bedrooms",
-        fieldType: "simpleInput",
-        qInputType: "number",
-        constraints: {
-          inputValue: {},
-        },
-      },
       cancelPendingChanges: false,
-      lastChangedField: {
-        fieldDetails: {},
-        lastUpdateStamp: "",
-      },
+      // lastChangedField: {
+      //   fieldDetails: {},
+      //   lastUpdateStamp: "",
+      // },
+      editableRatingsConcerns: {},
+      isEditRatingValuesMode: true,
     }
   },
   computed: {
     overallRatingModel() {
-      return this.boardEditProvider.state.propertyBoardItem.rating_overall
+      return this.boardEditProvider.state.propertyBoardItem.rating_overall || 0
     },
     ratingsBreakdown() {
       return this.boardEditProvider.state.propertyBoardItem.ratings_breakdown
+    },
+    ratingsConcerns() {
       // return {
-      //   location: 1,
-      //   valueForMoney: 2,
+      //   location: {
+      //     fieldName: "location",
+      //     label: "Location",
+      //   },
+      //   valueForMoney: {
+      //     fieldName: "valueForMoney",
+      //     label: "Value For Money",
+      //   },
       // }
+      return this.boardEditProvider.state.propertyBoardRatingConcerns
     },
   },
   methods: {
+    // changeEditRatingValuesMode() {
+    //   this.isEditRatingValuesMode = false
+    // },
+    addRatingCriteria() {
+      // let ratingConcerns = this.ratingsConcerns
+      // let newCriteriaParam = this.newRatingCriteria
+      //   .trim()
+      //   .toLowerCase()
+      //   .replace(/[^a-zA-Z0-9 -]/, "")
+      //   .replace(/\s/g, "-")
+      // ratingConcerns[newCriteriaParam] = {
+      //   fieldName: newCriteriaParam,
+      //   label: this.newRatingCriteria,
+      // }
+      this.boardEditProvider.setPendingRatingConcernsChanges(
+        this.newRatingCriteria,
+        "add"
+      )
+      this.cancelPendingChanges = true
+      this.newRatingCriteria = ""
+    },
+    removeRatingCriteria(concern) {
+      this.boardEditProvider.setPendingRatingConcernsChanges(
+        concern.fieldName,
+        "remove"
+      )
+      this.cancelPendingChanges = true
+    },
     showRatingsBreakdown() {
       this.ratingsModalVisible = true
     },
@@ -126,6 +187,7 @@ export default defineComponent({
       // submitter will have called       this.boardEditProvider.clearPendingBoardChanges()
       // before getting here
       this.cancelPendingChanges = true
+      this.isEditRatingValuesMode = true
     },
     resetChangesCancelled() {
       this.cancelPendingChanges = false

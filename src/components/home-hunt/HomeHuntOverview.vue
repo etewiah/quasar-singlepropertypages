@@ -3,7 +3,7 @@
     class="full-width"
     color="blue"
     label="Show All Listings"
-    icon="picture_as_pdf"
+    icon="list"
     @click="showHomeHuntOverview"
   />
   <q-dialog v-model="listingsOverviewModalVisible" full-width>

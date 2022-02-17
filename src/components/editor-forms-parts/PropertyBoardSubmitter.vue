@@ -62,7 +62,6 @@ export default {
         property_board_item_uuid: propertyBoardItemUuid,
         board_item_changes: this.boardEditProvider.state.pendingBoardChanges,
       }).then((response) => {
-        debugger
         this.boardEditProvider.clearPendingBoardChanges()
         // TODO - find a better way to refresh than this:
         location.reload()
