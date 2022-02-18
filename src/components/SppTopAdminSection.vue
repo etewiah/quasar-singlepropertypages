@@ -162,7 +162,7 @@ export default {
     //   return "rSppPreview"
     // },
     showAdminSection() {
-      return ["rSppEdit"].includes(this.$route.name)
+      return ["rSppEdit","rBoardOverview"].includes(this.$route.name)
     },
   },
 }

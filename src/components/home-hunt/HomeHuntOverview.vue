@@ -18,28 +18,7 @@
       </q-header>
       <q-page-container>
         <q-page>
-          <q-table
-            title=""
-            :columns="listingColumns"
-            :rows="savedSppItems"
-            row-key="name"
-          >
-            <template v-slot:header="props">
-              <q-tr :props="props">
-                <q-th
-                  v-for="col in props.cols"
-                  :key="col.name"
-                  :props="props"
-                  class="text-italic text-purple"
-                >
-                  {{ col.label }}
-                </q-th>
-              </q-tr>
-            </template>
-            <template v-slot:body="props">
-              <ListingRow :incomingProps="props"></ListingRow>
-            </template>
-          </q-table>
+          <ListingsTable :savedSppItems="savedSppItems"></ListingsTable>
         </q-page>
       </q-page-container>
     </q-layout>
@@ -47,38 +26,15 @@
 </template>
 <script>
 import { defineComponent } from "vue"
-import ListingRow from "components/home-hunt/ListingRow.vue"
+import ListingsTable from "components/home-hunt/ListingsTable.vue"
 export default defineComponent({
   name: "HomeHuntOverview",
   components: {
-    ListingRow,
+    ListingsTable,
   },
   data() {
     return {
       listingsOverviewModalVisible: false,
-      listingColumns: [
-        {
-          name: "reference",
-          align: "left",
-          label: "Reference",
-          field: "reference",
-          sortable: true,
-        },
-        {
-          name: "sale_listing",
-          align: "left",
-          label: "Listing",
-          field: "sale_listing",
-          sortable: true,
-        },
-        {
-          name: "price",
-          align: "left",
-          label: "Price",
-          field: "price",
-          sortable: true,
-        },
-      ],
       savedSppItems: [],
     }
   },

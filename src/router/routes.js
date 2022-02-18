@@ -25,6 +25,11 @@ const routes = [
         ]
       },
       {
+        path: "b/:board_uuid",
+        name: "rBoardOverview",
+        component: () => import("src/pages/BoardOverview.vue"),
+      },
+      {
         path: "p/spp/:listings_grouping/:listing_slug",
         name: "rSppEdit",
         component: () => import("src/pages/SppEdit.vue"),
