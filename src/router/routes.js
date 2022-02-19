@@ -30,12 +30,12 @@ const routes = [
         component: () => import("src/pages/BoardOverview.vue"),
       },
       {
-        path: "p/spp/:listings_grouping/:listing_slug",
+        path: "p/:board_uuid/:listings_grouping/:listing_slug",
         name: "rSppEdit",
         component: () => import("src/pages/SppEdit.vue"),
       },
       {
-        path: "p/spp/:listings_grouping/:listing_slug/preview",
+        path: "p/:board_uuid/:listings_grouping/:listing_slug/preview",
         name: "rSppPreview",
         component: () => import("src/pages/SppPreview.vue"),
       },

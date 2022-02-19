@@ -137,6 +137,7 @@ export default defineComponent({
       // doing it client side here so I can more easily
       // see the api call in browser
       let listingParams = {
+        boardUuid: route.params.board_uuid,
         listingSlug: route.params.listing_slug,
         listingsGrouping: route.params.listings_grouping,
       }

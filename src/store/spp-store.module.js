@@ -19,9 +19,10 @@ export const sppStore = {
       let dataApiBase = webConfigData.general.dataApiBase || "/"
       let listingsGrouping = "for-sale"
       let listingSlug = listingParams.listingSlug
+      let boardUuid = listingParams.boardUuid
       // dataUrl += "/custom"
       let beTypeAndVersion = "v1"
-      let dataUrl = `${dataApiBase}/api_psq/${beTypeAndVersion}/spp/${listingsGrouping}/${listingSlug}`
+      let dataUrl = `${dataApiBase}/api_psq/${beTypeAndVersion}/spp/${listingsGrouping}/${listingSlug}/${boardUuid}`
       console.log(`Fetching SPP from ${dataUrl}`)
       return axios.get(dataUrl)
         .then((response) => {

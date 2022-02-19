@@ -1,8 +1,6 @@
 <template>
   <q-page class="">
-    <SppListingMainView
-      :sppViewData="sppViewData"
-    ></SppListingMainView>
+    <SppListingMainView :sppViewData="sppViewData"></SppListingMainView>
   </q-page>
 </template>
 <script>
@@ -30,6 +28,7 @@ export default defineComponent({
     // Return a Promise if you are running an async job
     // console.log(ssrContext)
     let listingParams = {
+      boardUuid: route.params.board_uuid,
       listingSlug: currentRoute.params.listing_slug,
       listingsGrouping: currentRoute.params.listings_grouping,
     }
