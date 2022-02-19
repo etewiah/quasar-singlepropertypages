@@ -1,5 +1,5 @@
 <template>
-  <q-page class="">
+  <q-page :key="$route.fullPath" class="">
     <SppListingMainEdit
       :sppViewData="sppViewData"
       :sppPageSections="sppPageSections"
@@ -158,6 +158,9 @@ export default defineComponent({
       // currentListingData,
       runListingDataLoad,
     }
+  },
+  updated: function () {
+    this.runListingDataLoad()
   },
   mounted: function () {
     this.runListingDataLoad()
