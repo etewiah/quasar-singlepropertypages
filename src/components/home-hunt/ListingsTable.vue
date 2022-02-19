@@ -2,7 +2,7 @@
   <q-table
     title=""
     :columns="listingColumns"
-    :rows="savedSppItems"
+    :rows="propertyBoardItems"
     row-key="name"
   >
     <template v-slot:header="props">
@@ -18,7 +18,7 @@
       </q-tr>
     </template>
     <template v-slot:body="props">
-      <ListingRow :incomingProps="props"></ListingRow>
+      <ListingRow :isOverview="isOverview" :incomingProps="props"></ListingRow>
     </template>
   </q-table>
 </template>
@@ -30,36 +30,20 @@ export default {
   },
   computed: {},
   data() {
-    return {
-      listingColumns: [
-        {
-          name: "rating",
-          align: "left",
-          label: "Rating",
-          field: "Rating",
-          sortable: true,
-        },
-        {
-          name: "sale_listing",
-          align: "left",
-          label: "Listing",
-          field: "sale_listing",
-          sortable: true,
-        },
-        {
-          name: "price",
-          align: "left",
-          label: "Price",
-          field: "price",
-          sortable: true,
-        },
-      ],
-    }
+    return {}
   },
   props: {
-    savedSppItems: {
+    propertyBoardItems: {
       type: Array,
       default: () => [],
+    },
+    listingColumns: {
+      type: Array,
+      default: () => [],
+    },
+    isOverview: {
+      type: Boolean,
+      default: false,
     },
   },
 }

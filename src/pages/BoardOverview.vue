@@ -1,14 +1,50 @@
 <template>
   <q-page class="container">
     <div class="col-xs-12">
-      <h4
-        class="font-medium text-center title-font text-gray-900 q-mb-sm pt-10"
+      <q-tabs
+        v-model="activeTab"
+        dense
+        class="text-grey"
+        active-color="primary"
+        indicator-color="primary"
+        align="justify"
+        narrow-indicator
+        @click="tablesTabChanged"
       >
-        Overview
-      </h4>
-      <div class="q-ma-sm">
-        <ListingsTable :savedSppItems="propertyBoardItems"></ListingsTable>
-      </div>
+        <q-tab name="overView" label="Overview" />
+        <q-tab name="ratingsBreakdown" label="Ratings Breakdown" />
+      </q-tabs>
+
+      <q-separator />
+
+      <q-tab-panels v-model="activeTab" animated>
+        <q-tab-panel name="overView">
+          <div class="text-h6 text-center">Properties Overview</div>
+          <div class="q-ma-sm">
+            <ListingsTable
+              :isOverview="true"
+              :listingColumns="overviewListingColumns"
+              :propertyBoardItems="propertyBoardItems"
+            ></ListingsTable>
+          </div>
+        </q-tab-panel>
+
+        <q-tab-panel name="ratingsBreakdown">
+          <div class="text-h6 text-center">Ratings Breakdown</div>
+          <div class="q-ma-sm">
+            <ListingsTable
+              :isOverview="false"
+              :listingColumns="listingColumns"
+              :propertyBoardItems="propertyBoardItems"
+            ></ListingsTable>
+          </div>
+        </q-tab-panel>
+
+        <q-tab-panel name="movies">
+          <div class="text-h6">Movies</div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </q-tab-panel>
+      </q-tab-panels>
     </div>
   </q-page>
 </template>
@@ -25,66 +61,81 @@ export default defineComponent({
     ListingsTable,
   },
   computed: {
-    propertyBoardItems(){
+    propertyBoardItems() {
       return this.boardEditProvider.state.propertyBoardItems || []
+    },
+    overviewListingColumns() {
+      let listingColumns = [
+        {
+          name: "rating",
+          align: "left",
+          label: "Overall Rating",
+          field: "Rating",
+          sortable: true,
+        },
+        {
+          name: "title",
+          align: "left",
+          label: "Title",
+          field: "title",
+          sortable: true,
+        },
+        {
+          name: "price",
+          align: "left",
+          label: "Price",
+          field: "price",
+          sortable: true,
+        },
+      ]
+      return listingColumns
+    },
+    listingColumns() {
+      let listingColumns = [
+        {
+          name: "rating",
+          align: "left",
+          label: "Overall Rating",
+          field: "Rating",
+          sortable: true,
+        },
+        {
+          name: "title",
+          align: "left",
+          label: "Title",
+          field: "title",
+          sortable: true,
+        },
+      ]
+      let ratingConcerns = {}
+      if (this.boardEditProvider.state.propertyBoard) {
+        ratingConcerns =
+          this.boardEditProvider.state.propertyBoard.rating_concerns || {}
+      }
+      Object.keys(ratingConcerns).forEach((ratingConcernKey) => {
+        let ratingConcern = ratingConcerns[ratingConcernKey]
+        let tableCol = {
+          name: ratingConcern.fieldName,
+          align: "left",
+          label: ratingConcern.label,
+          field: ratingConcern.fieldName,
+          sortable: true,
+        }
+        listingColumns.push(tableCol)
+      })
+      return listingColumns
+    },
+  },
+  data() {
+    return {
+      activeTab: "overView",
     }
   },
-  // mounted() {
-  //   // Running data load from here ensures it does not
-  //   // get triggered on the server side where cookies etc can be a pain
-  //   this.runEditorDataLoad()
-  // },
-  // setup() {
-  //   const $q = useQuasar()
-  //   // const store = useStore()
-  //   const currentEditData = ref(null)
-  //   currentEditData.value = {
-  //     editor_setup: {},
-  //     mgmt_content: {},
-  //   }
-  //   const route = useRoute()
-  //   const { getMgmtBoard } = useMgmtService()
-  //   function runEditorDataLoad() {
-  //     let boardUuid = route.params.board_uuid
-  //     getMgmtBoard(boardUuid)
-  //       .then((response) => {
-  //         currentEditData.value = response.data
-  //         this.boardEditProvider.setCurrentPropertyBoardItems(
-  //           response.data.property_board_items
-  //         )
-  //         this.boardEditProvider.setCurrentPropertyBoard(
-  //           response.data.property_board
-  //         )
-  //         // this.listingsEditProvider.setEditorConfig(response.data)
-  //       })
-  //       .catch((error) => {
-  //         let errorMessage = "Board Retrieval Error: "
-  //         if (error) {
-  //           if (error.response) {
-  //             errorMessage +=
-  //               error.response.data.error ||
-  //               (error.response &&
-  //                 error.response.data &&
-  //                 error.response.data.message) ||
-  //               error.message ||
-  //               error.toString()
-  //           } else {
-  //             errorMessage += error.toString()
-  //           }
-  //         }
-  //         $q.notify({
-  //           color: "negative",
-  //           position: "top",
-  //           message: errorMessage,
-  //           icon: "report_problem",
-  //         })
-  //       })
-  //   }
-  //   return {
-  //     currentEditData,
-  //     runEditorDataLoad,
-  //   }
-  // },
-  methods: {},
+  methods: {
+    tablesTabChanged() {
+      // debugger
+      // this.activeTab === "ratingsBreakdown"
+    },
+  },
 })
 </script>
