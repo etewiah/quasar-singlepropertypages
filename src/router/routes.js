@@ -54,8 +54,43 @@ const routes = [
         children: [
           {
             path: "",
-            name: "rBoardOverview",
+            name: "rBoardContainer",
             component: () => import("src/pages/BoardOverview.vue"),
+
+            children: [
+              {
+                path: "",
+                name: "rBoardOverview",
+                // redirect: to => {
+                //   // the function receives the target route as the argument
+                //   // we return a redirect path/location here.
+                //   return {
+                //     name: 'rBoardTab',
+                //     params: {
+                //       boardTab: "overview",
+                //       board_uuid: "board_uuid"
+                //     }
+                //   }
+                // },
+                // redirect: {
+                //   name: 'rBoardTab',
+                //   params: {
+                //     boardTab: "overview"
+                //   }
+                // },
+                component: () => import("src/pages/BoardOverview.vue"),
+              },
+              {
+                path: ":boardTab",
+                name: "rBoardTab",
+                component: () => import("src/pages/BoardOverview.vue"),
+              },
+              // {
+              //   path: "checklist",
+              //   name: "rBoardChecklist",
+              //   component: () => import("src/pages/BoardOverview.vue"),
+              // },
+            ]
           },
           {
             path: ":listings_grouping/:listing_slug",

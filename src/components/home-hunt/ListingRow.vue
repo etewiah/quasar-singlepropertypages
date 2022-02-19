@@ -53,6 +53,22 @@
       />
       {{ currentBoardItem.ratings_breakdown[ratingCol.name] }}
     </q-td>
+    <q-td
+      v-for="ratingCol in checklistCols"
+      :key="ratingCol.name"
+      :props="incomingProps"
+    >
+      <q-checkbox
+        keep-color
+        true-value="yes"
+        false-value="no"
+        readonly
+        v-model="currentBoardItem.checklist_values_for_features[ratingCol.name]"
+        :label="ratingCol.label"
+        color="cyan"
+      />
+      {{ currentBoardItem.checklist_values_for_features[ratingCol.name] }}
+    </q-td>
   </q-tr>
 </template>
 <script>
@@ -60,6 +76,25 @@ export default {
   inject: ["boardEditProvider"],
   components: {},
   computed: {
+    checklistCols() {
+      let checklistCols = []
+      let checklistItems = {}
+      if (this.boardEditProvider.state.propertyBoard) {
+        checklistItems =
+          this.boardEditProvider.state.propertyBoard
+            .checklist_items_for_features || {}
+      }
+      Object.keys(checklistItems).forEach((ratingConcernKey) => {
+        let ratingConcern = checklistItems[ratingConcernKey]
+        let tableCol = {
+          name: ratingConcern.fieldName,
+          label: ratingConcern.label,
+          field: ratingConcern.fieldName,
+        }
+        checklistCols.push(tableCol)
+      })
+      return checklistCols
+    },
     ratingCols() {
       let ratingCols = []
       let ratingConcerns = {}
@@ -74,7 +109,6 @@ export default {
           label: ratingConcern.label,
           field: ratingConcern.fieldName,
         }
-        // debugger
         ratingCols.push(tableCol)
       })
       return ratingCols
@@ -111,7 +145,7 @@ export default {
     },
     isOverview: {
       type: Boolean,
-      default: false
+      default: false,
     },
   },
 }

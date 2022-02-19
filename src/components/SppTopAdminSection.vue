@@ -163,7 +163,7 @@ export default {
     //   return "rSppPreview"
     // },
     showAdminSection() {
-      return ["rSppEdit", "rBoardOverview"].includes(this.$route.name)
+      return ["rSppEdit", "rBoardTab"].includes(this.$route.name)
     },
     showRightDrawer() {
       return ["rSppEdit"].includes(this.$route.name)

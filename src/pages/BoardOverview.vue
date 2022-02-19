@@ -12,7 +12,8 @@
         @click="tablesTabChanged"
       >
         <q-tab name="overView" label="Overview" />
-        <q-tab name="ratingsBreakdown" label="Ratings Breakdown" />
+        <q-tab name="ratings" label="Ratings Breakdown" />
+        <q-tab name="checklist" label="Checklist" />
       </q-tabs>
 
       <q-separator />
@@ -29,20 +30,26 @@
           </div>
         </q-tab-panel>
 
-        <q-tab-panel name="ratingsBreakdown">
+        <q-tab-panel name="ratings">
           <div class="text-h6 text-center">Ratings Breakdown</div>
           <div class="q-ma-sm">
             <ListingsTable
               :isOverview="false"
-              :listingColumns="listingColumns"
+              :listingColumns="ratingsListingColumns"
               :propertyBoardItems="propertyBoardItems"
             ></ListingsTable>
           </div>
         </q-tab-panel>
 
-        <q-tab-panel name="movies">
-          <div class="text-h6">Movies</div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        <q-tab-panel name="checklist">
+          <div class="text-h6 text-center">Checklist Items</div>
+          <div class="q-ma-sm">
+            <ListingsTable
+              :isOverview="false"
+              :listingColumns="checklistListingColumns"
+              :propertyBoardItems="propertyBoardItems"
+            ></ListingsTable>
+          </div>
         </q-tab-panel>
       </q-tab-panels>
     </div>
@@ -63,6 +70,35 @@ export default defineComponent({
   computed: {
     propertyBoardItems() {
       return this.boardEditProvider.state.propertyBoardItems || []
+    },
+    checklistListingColumns() {
+      let listingColumns = [
+        {
+          name: "title",
+          align: "left",
+          label: "Title",
+          field: "title",
+          sortable: true,
+        },
+      ]
+      let checklistItems = {}
+      if (this.boardEditProvider.state.propertyBoard) {
+        checklistItems =
+          this.boardEditProvider.state.propertyBoard
+            .checklist_items_for_features || {}
+      }
+      Object.keys(checklistItems).forEach((checklistItemKey) => {
+        let checklistItem = checklistItems[checklistItemKey]
+        let tableCol = {
+          name: checklistItem.fieldName,
+          align: "left",
+          label: checklistItem.label,
+          field: checklistItem.fieldName,
+          sortable: true,
+        }
+        listingColumns.push(tableCol)
+      })
+      return listingColumns
     },
     overviewListingColumns() {
       let listingColumns = [
@@ -90,7 +126,7 @@ export default defineComponent({
       ]
       return listingColumns
     },
-    listingColumns() {
+    ratingsListingColumns() {
       let listingColumns = [
         {
           name: "rating",
@@ -131,10 +167,28 @@ export default defineComponent({
       activeTab: "overView",
     }
   },
+  updated: function () {
+    this.activeTab = this.$route.params.boardTab || "overView"
+  },
+  mounted: function () {
+    if (this.$route.name === "rBoardOverview") {
+      this.$router.push({
+        name: "rBoardTab",
+        params: {
+          boardTab: this.activeTab,
+        },
+      })
+    } else {
+      this.activeTab = this.$route.params.boardTab || "overView"
+    }
+  },
   methods: {
     tablesTabChanged() {
-      // debugger
-      // this.activeTab === "ratingsBreakdown"
+      this.$router.push({
+        params: {
+          boardTab: this.activeTab,
+        },
+      })
     },
   },
 })

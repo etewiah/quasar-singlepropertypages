@@ -42,7 +42,7 @@ export default defineComponent({
   },
   computed: {
     navColor() {
-      if (this.$route.name === "rBoardOverview") {
+      if (this.$route.name === "rBoardContainer") {
         return "green"
       } else {
         return "blue"
@@ -54,7 +54,7 @@ export default defineComponent({
       let propBoardKey = "prop_board:pwbprem"
       let propBoardUuid = localStorage.getItem(propBoardKey) || ""
       this.$router.push({
-        name: "rBoardOverview",
+        name: "rBoardContainer",
         params: {
           board_uuid: propBoardUuid,
         },
