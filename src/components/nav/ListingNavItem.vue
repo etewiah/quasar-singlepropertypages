@@ -8,8 +8,16 @@
       :class="[`cursor-pointer q-hoverable bg-${navColor} text-white`]"
     >
       <q-card-section>
+        <q-rating
+          readonly
+          v-model="overallRatingModel"
+          size="1.5em"
+          color="white"
+          icon="star_border"
+          icon-selected="star"
+        />
         <div class="text-h6"></div>
-        <div class="text-subtitle2">{{ listingItem.title }}</div>
+        <div class="text-subtitle2">{{ listingItem.listing.title }}</div>
       </q-card-section>
       <!-- <q-card-actions>
         <q-btn flat>Action 1</q-btn>
@@ -41,28 +49,19 @@ export default defineComponent({
       this.$router.push({
         name: "rSppEdit",
         params: {
-          listing_slug: this.listingItem.listing_uuid,
+          listing_slug: this.listingItem.listing.listing_uuid,
           listings_grouping: "for-sale",
         },
       })
     },
   },
   computed: {
-    // viewListingUrl() {
-    //   let routeInputs = {
-    //     name: "rSppEdit",
-    //     params: {
-    //       listing_slug: this.listingItem.listing_uuid,
-    //       listings_grouping: "for-sale",
-    //     },
-    //   }
-    //   let resolvedRouter = this.$router.resolve(routeInputs)
-    //   let newUrl = resolvedRouter.href
-    //   return newUrl
-    // },
+    overallRatingModel() {
+      return this.listingItem.item.rating_overall || 0
+    },
     isActive() {
       let activeUuid = this.$route.params.listing_slug || ""
-      if (this.listingItem.listing_uuid === activeUuid) {
+      if (this.listingItem.listing.listing_uuid === activeUuid) {
         return true
       } else {
         return false

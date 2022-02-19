@@ -2,6 +2,7 @@
   <div class="q-pa-md">
     <div class="q-gutter-y-md column">
       <q-rating
+        readonly
         v-model="overallRatingModel"
         size="2.5em"
         color="green-5"

@@ -33,10 +33,10 @@ export default {
     return {
       listingColumns: [
         {
-          name: "reference",
+          name: "rating",
           align: "left",
-          label: "Reference",
-          field: "reference",
+          label: "Rating",
+          field: "Rating",
           sortable: true,
         },
         {
