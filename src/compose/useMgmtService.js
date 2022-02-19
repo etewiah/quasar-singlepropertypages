@@ -59,11 +59,11 @@ export default function () {
     let apiUrl = `${mgmtBaseURL}v4/realty_assets/by_uuid/${realtyAssetUuid}`
     return axios.get(apiUrl, { headers: authHeader() })
   }
-  // putSingleRealtyAsset(realtyAssetUuid, putData) {
-  //   let mgmtBaseURL = `${dataApiBase}/api_mgmt/`
-  //   let apiUrl = `${mgmtBaseURL}v4/realty_assets/${realtyAssetUuid}`
-  //   return axios.put(apiUrl, putData, { headers: authHeader() })
-  // }
+  function getMgmtBoard(boardUuid) {
+    let mgmtBaseURL = `${dataApiBase}/api_psq/`
+    let apiUrl = `${mgmtBaseURL}v1/property_boards/${boardUuid}`
+    return axios.get(apiUrl, { headers: authHeader() })
+  }
   function putRealtyAssetWithListing(putData) {
     let mgmtBaseURL = `${dataApiBase}/api_mgmt/`
     let apiUrl = `${mgmtBaseURL}v4/realty_asset_plus_listing`
@@ -85,6 +85,7 @@ export default function () {
     return axios.put(apiUrl, putData, { headers: authHeader() })
   }
   return {
+    getMgmtBoard,
     putPropertyBoardItem,
     getMgmtRealtyAsset,
     putPageSection,

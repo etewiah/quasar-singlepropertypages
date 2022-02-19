@@ -28,6 +28,7 @@
       </q-toolbar-title> -->
       <q-tabs align="right" class="sta-q-tabs full-width" style="">
         <q-btn
+          v-if="showRightDrawer"
           flat
           dense
           round
@@ -54,7 +55,7 @@
     :leftDrawerOpen="leftDrawerOpen"
   ></LeftNavDrawer>
   <RightNavDrawer
-    :drawerVisible="showAdminSection"
+    :drawerVisible="showRightDrawer"
     :rightDrawerOpen="rightDrawerOpen"
   ></RightNavDrawer>
 </template>
@@ -162,7 +163,10 @@ export default {
     //   return "rSppPreview"
     // },
     showAdminSection() {
-      return ["rSppEdit","rBoardOverview"].includes(this.$route.name)
+      return ["rSppEdit", "rBoardOverview"].includes(this.$route.name)
+    },
+    showRightDrawer() {
+      return ["rSppEdit"].includes(this.$route.name)
     },
   },
 }

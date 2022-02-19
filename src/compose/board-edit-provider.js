@@ -9,7 +9,8 @@ const state = reactive({
   },
   currentEditListing: {},
   propertyBoardItem: {},
-  propertyBoard: {}
+  propertyBoard: {},
+  propertyBoardItems: []
 })
 
 function setPendingBoardRatingsChanges({ fieldDetails, newValue }) {
@@ -61,6 +62,10 @@ function setCurrentPropertyBoard(propertyBoard) {
   state.propertyBoardRatingConcerns = propertyBoard.rating_concerns
   //  this.parseCurrentEditListing(propertyBoard)
 }
+function setCurrentPropertyBoardItems(propertyBoardItems) {
+  state.propertyBoardItems = propertyBoardItems
+  //  this.parseCurrentEditListing(propertyBoardItem)
+}
 
 // function parseCurrentEditListing(incomingData, listingsGrouping) {
 //   let currentEditListing = {}
@@ -75,6 +80,7 @@ function setCurrentPropertyBoard(propertyBoard) {
 
 export const boardEditProvider = readonly({
   state,
+  setCurrentPropertyBoardItems,
   setCurrentPropertyBoardItem,
   setCurrentPropertyBoard,
   // parseCurrentEditListing,

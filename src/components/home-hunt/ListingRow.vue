@@ -14,7 +14,7 @@
       {{ currentListing.reference }}
     </q-td>
     <q-td key="sale_listing" :props="incomingProps">
-      <a :href="viewSaleUrl">
+      <a :href="editRealtyUrl">
         {{ currentListing.title || "No listing title" }}
       </a>
     </q-td>
@@ -28,26 +28,14 @@ export default {
   components: {},
   computed: {
     currentListing() {
-      return this.incomingProps.row
+      return this.incomingProps.row.listing
       // preview_url  count_bathrooms count_bedrooms
     },
     editRealtyUrl() {
       let routeInputs = {
         name: "rSppEdit",
         params: {
-          listing_slug: this.incomingProps.row.listing_uuid,
-          listings_grouping: "for-sale",
-        },
-      }
-      let resolvedRouter = this.$router.resolve(routeInputs)
-      let newUrl = resolvedRouter.href
-      return newUrl
-    },
-    viewSaleUrl() {
-      let routeInputs = {
-        name: "rSppEdit",
-        params: {
-          listing_slug: this.incomingProps.row.listing_uuid,
+          listing_slug: this.incomingProps.row.listing.listing_uuid,
           listings_grouping: "for-sale",
         },
       }
