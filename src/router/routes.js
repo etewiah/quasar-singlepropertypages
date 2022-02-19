@@ -24,26 +24,52 @@ const routes = [
         children: [
         ]
       },
+      // {
+      //   path: "p/:board_uuid/:listings_grouping/:listing_slug",
+      //   name: "rSppEdit",
+      //   component: () => import("src/pages/SppEdit.vue"),
+      // },
+      // {
+      //   path: "p/:board_uuid/:listings_grouping/:listing_slug/preview",
+      //   name: "rSppPreview",
+      //   component: () => import("src/pages/SppPreview.vue"),
+      // },
+
+    ]
+  },
+  {
+    path: "/login",
+    name: "rLoginPage",
+    component: () => import("src/pages/SppLogin.vue"),
+  },
+  {
+    path: "/b",
+    name: "rBoardRoot",
+    component: () => import("layouts/SppLayout.vue"),
+    children: [
       {
-        path: "b/:board_uuid",
-        name: "rBoardOverview",
-        component: () => import("src/pages/BoardOverview.vue"),
+        path: ":board_uuid",
+        name: "rBoardLayout",
+        component: () => import("layouts/BoardLayout.vue"),
+        children: [
+          {
+            path: "",
+            name: "rBoardOverview",
+            component: () => import("src/pages/BoardOverview.vue"),
+          },
+          {
+            path: ":listings_grouping/:listing_slug",
+            name: "rSppEdit",
+            component: () => import("src/pages/SppEdit.vue"),
+          },
+          {
+            path: ":listings_grouping/:listing_slug/preview",
+            name: "rSppPreview",
+            component: () => import("src/pages/SppPreview.vue"),
+          },
+        ]
       },
-      {
-        path: "p/:board_uuid/:listings_grouping/:listing_slug",
-        name: "rSppEdit",
-        component: () => import("src/pages/SppEdit.vue"),
-      },
-      {
-        path: "p/:board_uuid/:listings_grouping/:listing_slug/preview",
-        name: "rSppPreview",
-        component: () => import("src/pages/SppPreview.vue"),
-      },
-      {
-        path: "/login",
-        name: "rLoginPage",
-        component: () => import("src/pages/SppLogin.vue"),
-      },
+
     ]
   },
   // Always leave this as last one,

@@ -40,9 +40,9 @@
       <q-item>
         <RatingsSummary></RatingsSummary>
       </q-item>
-      <q-item>
+      <!-- <q-item>
         <HomeHuntOverview></HomeHuntOverview>
-      </q-item>
+      </q-item> -->
       <!-- <q-btn
           align="around"
           class="full-width"
@@ -94,22 +94,21 @@
       </q-card-actions>
     </q-card>
   </q-dialog>
-  <q-dialog v-model="showPublishModal">
+  <!-- <q-dialog v-model="showPublishModal">
     <q-layout view="Lhh lpR fff" container class="bg-white">
-      <!-- <SppPublishForm></SppPublishForm> -->
     </q-layout>
-  </q-dialog>
+  </q-dialog> -->
 </template>
 <script>
 import { defineComponent, ref } from "vue"
-import HomeHuntOverview from "components/home-hunt/HomeHuntOverview.vue"
+// import HomeHuntOverview from "components/home-hunt/HomeHuntOverview.vue"
 import RatingsSummary from "components/home-hunt/RatingsSummary.vue"
 export default defineComponent({
   inject: ["listingsEditProvider"],
   name: "RightNavDrawer",
   components: {
     RatingsSummary,
-    HomeHuntOverview,
+    // HomeHuntOverview,
   },
   props: {
     drawerVisible: {
@@ -139,7 +138,7 @@ export default defineComponent({
   },
   data() {
     return {
-      showPublishModal: false,
+      // showPublishModal: false,
       exportToPdfModal: false,
       rightDrawerOpenModel: false,
     }
@@ -157,9 +156,9 @@ export default defineComponent({
     startExportToPdf() {
       this.exportToPdfModal = true
     },
-    startPublishSpp() {
-      this.showPublishModal = true
-    },
+    // startPublishSpp() {
+    //   this.showPublishModal = true
+    // },
   },
 })
 </script>
