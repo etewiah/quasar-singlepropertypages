@@ -84,9 +84,16 @@ export default function () {
     let apiUrl = `${mgmtBaseURL}v1/property_board_items/${putData.property_board_item_uuid}`
     return axios.put(apiUrl, putData, { headers: authHeader() })
   }
+  function putPropertyBoardItemChecklistValue(putData) {
+    let mgmtBaseURL = `${dataApiBase}/api_psq/`
+    let apiUrl = `${mgmtBaseURL}v1/property_board_items/${putData.property_board_item_uuid}`
+    apiUrl += `/checklist/${putData.checklist_group}/${putData.checklist_group_item}/${putData.checklist_group_item_value}`
+    return axios.put(apiUrl, putData, { headers: authHeader() })
+  }
   return {
     getMgmtBoard,
     putPropertyBoardItem,
+    putPropertyBoardItemChecklistValue,
     getMgmtRealtyAsset,
     putPageSection,
     addPageSection,

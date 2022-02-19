@@ -64,7 +64,7 @@ export default {
       }).then((response) => {
         this.boardEditProvider.clearPendingBoardChanges()
         // TODO - find a better way to refresh than this:
-        location.reload()
+        // location.reload()
       })
     },
   },

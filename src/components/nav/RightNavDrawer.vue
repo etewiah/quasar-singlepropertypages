@@ -40,6 +40,10 @@
       <q-item>
         <RatingsSummary></RatingsSummary>
       </q-item>
+      <q-item-label header class="text-grey-8">CheckList</q-item-label>
+      <q-item>
+        <ChecklistSummary></ChecklistSummary>
+      </q-item>
       <!-- <q-item>
         <HomeHuntOverview></HomeHuntOverview>
       </q-item> -->
@@ -101,14 +105,14 @@
 </template>
 <script>
 import { defineComponent, ref } from "vue"
-// import HomeHuntOverview from "components/home-hunt/HomeHuntOverview.vue"
+import ChecklistSummary from "components/home-hunt/ChecklistSummary.vue"
 import RatingsSummary from "components/home-hunt/RatingsSummary.vue"
 export default defineComponent({
   inject: ["listingsEditProvider"],
   name: "RightNavDrawer",
   components: {
     RatingsSummary,
-    // HomeHuntOverview,
+    ChecklistSummary,
   },
   props: {
     drawerVisible: {
