@@ -20,16 +20,6 @@
         icon-selected="star"
       />
     </q-td>
-    <q-td key="sale_listing" :props="incomingProps">
-      <q-rating
-        readonly
-        v-model="overallRatingModel"
-        size="1.5em"
-        color="black"
-        icon="star_border"
-        icon-selected="star"
-      />
-    </q-td>
     <q-td key="title" :props="incomingProps">
       <a :href="editRealtyUrl">
         {{ currentListing.title || "No listing title" }}
@@ -38,43 +28,31 @@
     <q-td key="price" :props="incomingProps">
       {{ currentListing.formatted_display_price }}
     </q-td>
-    <q-td
+    <ListingRowCol
+      :isRating="true"
       v-for="ratingCol in ratingCols"
       :key="ratingCol.name"
-      :props="incomingProps"
+      :ratingCol="ratingCol"
+      :incomingProps="incomingProps"
     >
-      <q-rating
-        readonly
-        v-model="currentBoardItem.ratings_breakdown[ratingCol.name]"
-        size="1.5em"
-        color="black"
-        icon="star_border"
-        icon-selected="star"
-      />
-      {{ currentBoardItem.ratings_breakdown[ratingCol.name] }}
-    </q-td>
-    <q-td
+    </ListingRowCol>
+    <ListingRowCol
+      :isChecklistItem="true"
       v-for="ratingCol in checklistCols"
       :key="ratingCol.name"
-      :props="incomingProps"
+      :ratingCol="ratingCol"
+      :incomingProps="incomingProps"
     >
-      <q-checkbox
-        keep-color
-        true-value="yes"
-        false-value="no"
-        readonly
-        v-model="currentBoardItem.checklist_values_for_features[ratingCol.name]"
-        :label="ratingCol.label"
-        color="cyan"
-      />
-      {{ currentBoardItem.checklist_values_for_features[ratingCol.name] }}
-    </q-td>
+    </ListingRowCol>
   </q-tr>
 </template>
 <script>
+import ListingRowCol from "components/home-hunt/ListingRowCol.vue"
 export default {
   inject: ["boardEditProvider"],
-  components: {},
+  components: {
+    ListingRowCol,
+  },
   computed: {
     checklistCols() {
       let checklistCols = []
