@@ -62,12 +62,13 @@ export default {
           this.boardEditProvider.state.propertyBoard
             .checklist_items_for_features || {}
       }
-      Object.keys(checklistItems).forEach((ratingConcernKey) => {
-        let ratingConcern = checklistItems[ratingConcernKey]
+      Object.keys(checklistItems).forEach((checklistItemKey) => {
+        let checklistItem = checklistItems[checklistItemKey]
+        let sortByName = `checklist#${checklistItem.fieldName}`
         let tableCol = {
-          name: ratingConcern.fieldName,
-          label: ratingConcern.label,
-          field: ratingConcern.fieldName,
+          name: sortByName,
+          label: checklistItem.label,
+          field: checklistItem.fieldName,
         }
         checklistCols.push(tableCol)
       })
@@ -82,8 +83,9 @@ export default {
       }
       Object.keys(ratingConcerns).forEach((ratingConcernKey) => {
         let ratingConcern = ratingConcerns[ratingConcernKey]
+        let sortByName = `rating#${ratingConcern.fieldName}`
         let tableCol = {
-          name: ratingConcern.fieldName,
+          name: sortByName,
           label: ratingConcern.label,
           field: ratingConcern.fieldName,
         }

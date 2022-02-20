@@ -30,13 +30,13 @@ export default {
       if (this.isChecklistItem) {
         return (
           this.currentBoardItem.checklist_values_for_features[
-            this.ratingCol.name
+            this.ratingCol.field
           ] || "no"
         )
       } else {
         return (
           this.currentBoardItem.ratings_breakdown[
-            this.ratingCol.name
+            this.ratingCol.field
           ] || 0
         )
       }
