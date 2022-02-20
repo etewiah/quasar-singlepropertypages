@@ -14,6 +14,7 @@
         <q-tab name="overView" label="Overview" />
         <q-tab name="ratings" label="Ratings Breakdown" />
         <q-tab name="checklist" label="Checklist" />
+        <q-tab name="mortgage" label="Mortgage" />
       </q-tabs>
 
       <q-separator />
@@ -40,7 +41,6 @@
             ></ListingsTable>
           </div>
         </q-tab-panel>
-
         <q-tab-panel name="checklist">
           <div class="text-h6 text-center">Checklist Items</div>
           <div class="q-ma-sm">
@@ -49,6 +49,18 @@
               :listingColumns="checklistListingColumns"
               :propertyBoardItems="propertyBoardItems"
             ></ListingsTable>
+          </div>
+        </q-tab-panel>
+        <q-tab-panel name="mortgage">
+          <div class="text-h6 text-center">Mortgage Calculator</div>
+          <div class="text-h8 text-center">
+            (Estimated, not including taxes and insurance)
+          </div>
+          <div class="q-ma-sm">
+            <MortgageTable
+              :isOverview="false"
+              :propertyBoardItems="propertyBoardItems"
+            ></MortgageTable>
           </div>
         </q-tab-panel>
       </q-tab-panels>
@@ -61,11 +73,13 @@ import { defineComponent, ref } from "vue"
 // import { useRoute } from "vue-router"
 // import useMgmtService from "src/compose/useMgmtService.js"
 import ListingsTable from "components/home-hunt/ListingsTable.vue"
+import MortgageTable from "components/home-hunt/MortgageTable.vue"
 export default defineComponent({
   name: "BoardOverview",
   inject: ["boardEditProvider"],
   components: {
     ListingsTable,
+    MortgageTable,
   },
   computed: {
     propertyBoardItems() {
