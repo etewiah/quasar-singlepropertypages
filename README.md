@@ -4,6 +4,16 @@ SinglePropertyPages allows you to enter the url of a property listing and create
 
 It is built on the amazing [Quasar toolkit](https://quasar.dev/) and uses Vue.js.
 
+
+## March 2022 update!
+
+I am currently working on a tool to help with house hunting. Would love to get some feedback about it.
+
+Please check it out here and let me know what you think (and if you would like it to be open-sourced):
+
+[https://propertysquares.com/](https://propertysquares.com/)
+
+
 ## Motivation
 
 I started work on this idea over a year ago when I was frustrated with the way a flat I wanted to sell in the UK was being presented.  Regular real estate listings websites almost always have to same template for every property.  The way a property is displayed takes no account of it's particular characteristics.
