@@ -5,13 +5,13 @@ SinglePropertyPages allows you to enter the url of a property listing and create
 It is built on the amazing [Quasar toolkit](https://quasar.dev/) and uses Vue.js.
 
 
-## March 2022 update!
+## June 2023 update!
 
 I am currently working on a tool to help with house hunting. Would love to get some feedback about it.
 
 Please check it out here and let me know what you think (and if you would like it to be open-sourced):
 
-[https://propertysquares.com/](https://propertysquares.com/)
+[https://homestocompare.com/](https://homestocompare.com/)
 
 
 ## Motivation
@@ -24,9 +24,6 @@ Long story short, I failed to monetize it adequately so rather than letting the 
 
 You can read a bit more about my initial project on this hn thread: [https://news.ycombinator.com/item?id=24339608](https://news.ycombinator.com/item?id=24339608)
 
-## [Demo](https://fabhomepages.com/)
-
-You can try out a demo at [https://fabhomepages.com](https://fabhomepages.com/)
 
 ## Installation
 
